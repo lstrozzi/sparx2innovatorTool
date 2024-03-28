@@ -2,42 +2,141 @@ elements = {}
 connectors = {}
 diagrams = {}
 
-function extractClasses(xmlDoc) {
-    var xmlclasses = xmlDoc.getElementsByTagName('UML:Class')
-    classes = {}
+function extractTaggedValue(xmlElement, tag) {
+    // extract information from the tagged values
+    var taggedValueRoot = xmlElement.getElementsByTagName('UML:ModelElement.taggedValue')
+    var taggedValues = taggedValueRoot[0].getElementsByTagName('UML:TaggedValue')
+    for (var j = 0; j < taggedValues.length; j++) {
+        var taggedValue = taggedValues[j];
+        if (taggedValue.getAttribute('tag') == tag) {
+            tv = taggedValue.getAttribute('value');
+            break
+        }
+    }
+    return tv
+}
 
-    for (var i = 0; i < xmlclasses.length; i++) {
-        xmlclass = xmlclasses[i];
-        if (xmlclass.getAttribute('isRoot') == 'false') {
+function extractPackages(xmlDoc) {
+    var xmlelements = xmlDoc.getElementsByTagName('UML:Package')
+    var elements = {}
+
+    for (var i = 0; i < xmlelements.length; i++) {
+        var xmlelement = xmlelements[i];
+        if (xmlelement.getAttribute('isRoot') == 'false') {
             // extract basic information
-            c = {}
-            c.name = xmlclass.getAttribute('name')
-            c.id = xmlclass.getAttribute('xmi.id')
+            item = {}
+            item.name = xmlelement.getAttribute('name')
+            item.id = xmlelement.getAttribute('xmi.id')
 
             // extract information from the tagged values
-            taggedValueRoot = xmlclass.getElementsByTagName('UML:ModelElement.taggedValue')
-            taggedValues = taggedValueRoot[0].getElementsByTagName('UML:TaggedValue')
-            for (var j = 0; j < taggedValues.length; j++) {
-                var taggedValue = taggedValues[j];
-                if (taggedValue.getAttribute('tag') == 'owner') {
-                    c.owner = taggedValue.getAttribute('value');
-                }
-                if (taggedValue.getAttribute('tag') == 'ea_stype') {
-                    c.type = taggedValue.getAttribute('value');
-                }
-            }
+            item.parentid = extractTaggedValue(xmlelement, 'parent');
 
             // add the information to the classes dictionary
-            classes[c.id] = c
+            elements[item.id] = item
         }
     }
 
-    return classes
+    return elements
 }
 
+function extractClasses(xmlDoc) {
+    var xmlelements = xmlDoc.getElementsByTagName('UML:Class')
+    var elements = {}
+
+    for (var i = 0; i < xmlelements.length; i++) {
+        var xmlelement = xmlelements[i];
+        if (xmlelement.getAttribute('isRoot') == 'false') {
+            // extract basic information
+            item = {}
+            item.name = xmlelement.getAttribute('name')
+            item.id = xmlelement.getAttribute('xmi.id')
+
+            // extract information from the tagged values
+            item.owner = extractTaggedValue(xmlelement, 'owner');
+            item.type = extractTaggedValue(xmlelement, 'ea_stype');
+            item.packageid = extractTaggedValue(xmlelement, 'package');
+
+            // add the information to the classes dictionary
+            elements[item.id] = item
+        }
+    }
+
+    return elements
+}
+
+function extractComponents(xmlDoc) {
+    var xmlelements = xmlDoc.getElementsByTagName('UML:Component')
+    var elements = {}
+
+    for (var i = 0; i < xmlelements.length; i++) {
+        var xmlelement = xmlelements[i];
+        if (xmlelement.getAttribute('isRoot') == 'false') {
+            // extract basic information
+            item = {}
+            item.name = xmlelement.getAttribute('name')
+            item.id = xmlelement.getAttribute('xmi.id')
+
+            // extract information from the tagged values
+            item.type = extractTaggedValue(xmlelement, 'ea_stype');
+            item.packageid = extractTaggedValue(xmlelement, 'package');
+
+            // add the information to the classes dictionary
+            elements[item.id] = item
+        }
+    }
+
+    return elements
+}
+
+function extractActors(xmlDoc) {
+    var xmlelements = xmlDoc.getElementsByTagName('UML:Actor')
+    var elements = {}
+
+    for (var i = 0; i < xmlelements.length; i++) {
+        var xmlelement = xmlelements[i];
+        if (xmlelement.getAttribute('isRoot') == 'false') {
+            // extract basic information
+            item = {}
+            item.name = xmlelement.getAttribute('name')
+            item.id = xmlelement.getAttribute('xmi.id')
+
+            // extract information from the tagged values
+            item.owner = extractTaggedValue(xmlelement, 'owner');
+            item.type = extractTaggedValue(xmlelement, 'ea_stype');
+            item.packageod = extractTaggedValue(xmlelement, 'package');
+
+            // add the information to the classes dictionary
+            elements[item.id] = item
+        }
+    }
+
+    return elements
+}
 
 function processContents(xmlDoc) {
+    packages = extractPackages(xmlDoc)
+    console.log("Imported " + Object.keys(packages).length + " packages")
+    for (var key in packages) {
+        console.log(" > " + packages[key].name)
+    }
+
     classes = extractClasses(xmlDoc)
+    console.log("Imported " + Object.keys(classes).length + " classes")
+    for (var key in classes) {
+        console.log(" > " + classes[key].name)
+    }
+
+    components = extractComponents(xmlDoc)
+    console.log("Imported " + Object.keys(components).length + " components")
+    for (var key in components) {
+        console.log(" > " + components[key].name)
+    }
+
+    actors = extractActors(xmlDoc)
+    console.log("Imported " + Object.keys(actors).length + " actors")
+    for (var key in actors) {
+        console.log(" > " + actors[key].name)
+    }
 }
 
 function processFile(file) {
