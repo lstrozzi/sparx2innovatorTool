@@ -16,6 +16,31 @@ function extractTaggedValue(xmlElement, tag) {
     return tv
 }
 
+function extractElements(xmlDoc, tag, tvmap) {
+    var xmlelements = xmlDoc.getElementsByTagName(tag)
+    var elements = {}
+
+    for (var i = 0; i < xmlelements.length; i++) {
+        var xmlelement = xmlelements[i];
+        if (xmlelement.getAttribute('isRoot') == 'false') {
+            // extract basic information
+            let item = {}
+            item['name'] = xmlelement.getAttribute('name')
+            item['id'] = xmlelement.getAttribute('xmi.id')
+
+            // tvmap is a dictionary of tagged values to extract. Key=tag, value:name of the key to be added to the item
+            for (var tag in tvmap) {
+                item[tvmap[tag]] = extractTaggedValue(xmlelement, tag);
+            }
+
+            // add the information to the classes dictionary
+            elements[item['id']] = item
+        }
+    }
+
+    return elements
+}
+
 function extractPackages(xmlDoc) {
     var xmlelements = xmlDoc.getElementsByTagName('UML:Package')
     var elements = {}
@@ -103,7 +128,7 @@ function extractActors(xmlDoc) {
             // extract information from the tagged values
             item.owner = extractTaggedValue(xmlelement, 'owner');
             item.type = extractTaggedValue(xmlelement, 'ea_stype');
-            item.packageod = extractTaggedValue(xmlelement, 'package');
+            item.packageid = extractTaggedValue(xmlelement, 'package');
 
             // add the information to the classes dictionary
             elements[item.id] = item
@@ -114,28 +139,28 @@ function extractActors(xmlDoc) {
 }
 
 function processContents(xmlDoc) {
-    packages = extractPackages(xmlDoc)
+    var packages = extractElements(xmlDoc, 'UML:Package', {'parent': 'parentid'})
     console.log("Imported " + Object.keys(packages).length + " packages")
     for (var key in packages) {
-        console.log(" > " + packages[key].name)
+        console.log(" > " + packages[key]['name'])
     }
 
-    classes = extractClasses(xmlDoc)
+    classes = extractElements(xmlDoc, 'UML:Class', {'owner': 'owner', 'ea_stype': 'type', 'package': 'packageid'})
     console.log("Imported " + Object.keys(classes).length + " classes")
     for (var key in classes) {
-        console.log(" > " + classes[key].name)
+        console.log(" > " + classes[key]['name'])
     }
 
-    components = extractComponents(xmlDoc)
+    components = extractElements(xmlDoc, 'UML:Component', {'ea_stype': 'type', 'package': 'packageid'})
     console.log("Imported " + Object.keys(components).length + " components")
     for (var key in components) {
-        console.log(" > " + components[key].name)
+        console.log(" > " + components[key]['name'])
     }
 
-    actors = extractActors(xmlDoc)
+    actors = extractElements(xmlDoc, 'UML:Actor', {'owner': 'owner', 'ea_stype': 'type', 'package': 'packageid'})
     console.log("Imported " + Object.keys(actors).length + " actors")
     for (var key in actors) {
-        console.log(" > " + actors[key].name)
+        console.log(" > " + actors[key]['name'])
     }
 }
 
