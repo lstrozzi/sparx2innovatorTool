@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<model xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.opengroup.org/xsd/archimate/3.0/ http://www.opengroup.org/xsd/archimate/3.1/archimate3_Diagram.xsd http://purl.org/dc/elements/1.1/ http://www.opengroup.org/xsd/archimate/3.1/dc.xsd" version="16.0.1.21019" identifier="id-085c6229-1eec-4881-889f-99b109ade5b8" xmlns="http://www.opengroup.org/xsd/archimate/3.0/">
+  <name xml:lang="de">Innovator</name>
+  <views>
+    <diagrams>
+      <view identifier="id-0b9527f4-4291-746b-59ec-f001956e72fc" xsi:type="Diagram" viewpoint="ArchiMate Diagram">
+        <name xml:lang="de">Prova1</name>
+        <node identifier="EAID_94620B68_C54A_435d_899D_652653D6D95F" xsi:type="Container" x="0" y="40" w="220" h="50">
+          <label xml:lang="de">Actor1</label>
+        </node>
+        <node identifier="EAID_AB5B300A_4BB6_4def_96B1_BC69E66A68D0" xsi:type="Container" x="320" y="0" w="250" h="140">
+          <label xml:lang="de">Component1</label>
+        </node>
+        <connection identifier="EAID_1CF9F3EF_2625_4d19_AC65_BBFE9D37CAAD" xsi:type="Line" source="EAID_94620B68_C54A_435d_899D_652653D6D95F" target="EAID_AB5B300A_4BB6_4def_96B1_BC69E66A68D0">
+          <sourceAttachment x="220" y="65" />
+          <targetAttachment x="320" y="65" />
+        </connection>
+      </view>
+    </diagrams>
+  </views>
+</model>

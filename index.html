@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sparx EA &rAarr; Innovator</title>
+    <script src="process.js"></script>
+</head>
+<body>
+    <h3>Sparx EA &rAarr; Innovator</h3>
+    <input type="file" id="fileInput" title="Select the exported Sparx EA XMI file">
+    <button id="processButton">Process File</button>
+    <a id="downloadLink" style="display: none;">Download File</a>
+
+    <script>
+        document.getElementById('processButton').addEventListener('click', function() {
+            var fileInput = document.getElementById('fileInput');
+            var file = fileInput.files[0];
+            if (!file) {
+                alert('Please select a file');
+                return;
+            }
+            processFile(file);
+        });
+    </script>
+</body>
+</html>
