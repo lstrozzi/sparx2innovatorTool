@@ -162,46 +162,50 @@ function processContents(xmlDoc) {
     var packages = extractElements(xmlDoc, 'UML:Package', {'parent': 'parentid'})
     console.log("Imported " + Object.keys(packages).length + " packages")
     for (var key in packages) {
-        console.log(" > " + packages[key]['name'])
+        console.log(" > Package: " + packages[key]['name'])
     }
 
     classes = extractElements(xmlDoc, 'UML:Class', {'ea_localid': 'localid', 'owner': 'owner', 'ea_stype': 'type', 'package': 'packageid'})
     console.log("Imported " + Object.keys(classes).length + " classes")
     for (var key in classes) {
-        console.log(" > " + classes[key]['name'])
+        console.log(" > Class: " + classes[key]['name'])
         allElements[key] = classes[key]
     }
 
     components = extractElements(xmlDoc, 'UML:Component', {'ea_localid': 'localid', 'ea_stype': 'type', 'package': 'packageid'})
     console.log("Imported " + Object.keys(components).length + " components")
     for (var key in components) {
-        console.log(" > " + components[key]['name'])
+        console.log(" > Component: " + components[key]['name'])
         allElements[key] = components[key]
     }
 
     actors = extractElements(xmlDoc, 'UML:Actor', {'ea_localid': 'localid', 'owner': 'owner', 'ea_stype': 'type', 'package': 'packageid'})
     console.log("Imported " + Object.keys(actors).length + " actors")
     for (var key in actors) {
-        console.log(" > " + actors[key]['name'])
+        console.log(" > Actor: " + actors[key]['name'])
         allElements[key] = actors[key]
     }
 
     associations = extractConnectors(xmlDoc, 'UML:Association', {'ea_localid': 'localid', 'ea_stype': 'type', 'direction': 'direction', 'ea_sourceID': 'startid', 'ea_targetID': 'endid', 'ea_sourceType': 'starttype', 'ea_targetType': 'endtype', 'ea_sourceName': 'startname', 'ea_targetName': 'endname'})
     console.log("Imported " + Object.keys(associations).length + " associations")
     for (var key in associations) {
-        console.log(" > " + localidmap['E-'+associations[key]['startid']]['name'] + " -> " + localidmap['E-'+associations[key]['endid']]['name'])
+        console.log(" > Connector: " + localidmap['E-'+associations[key]['startid']]['name'] + " -> " + localidmap['E-'+associations[key]['endid']]['name'])
         allConnectors[key] = associations[key]
     }
 
     diagrams = extractDiagrams(xmlDoc, 'UML:Diagram', {'ea_localid': 'localid', 'type': 'type2' })
     console.log("Imported " + Object.keys(diagrams).length + " diagrams")
     for (var key in diagrams) {
-        console.log(" > " + diagrams[key]['name'])
+        console.log(" > Diagram: " + diagrams[key]['name'])
         for (var key2 in diagrams[key]['diagramelements']) {
             if (diagrams[key]['diagramelements'][key2]['type'] == 'element') {
-                console.log("   > " + allElements[diagrams[key]['diagramelements'][key2]['subject']]['name'])
+                console.log("   > Diagram Element: " + allElements[diagrams[key]['diagramelements'][key2]['subject']]['name'])
+                if (allElements[diagrams[key]['diagramelements'][key2]['subject']]['type'] == 'Port') {
+                    let owner = allElements[diagrams[key]['diagramelements'][key2]['subject']]['owner']
+                    console.log("       > Belongs to: " + allElements[owner]['name'])
+                }
             } else if (diagrams[key]['diagramelements'][key2]['type'] == 'connector') {
-                console.log("   > " + allConnectors[diagrams[key]['diagramelements'][key2]['subject']]['name'])
+                console.log("   > Diagram Connector: " + allConnectors[diagrams[key]['diagramelements'][key2]['subject']]['name'])
             } else {
                 console.log("   > unknown")
             }
