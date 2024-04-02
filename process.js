@@ -308,6 +308,48 @@ function exportToInnovator() {
     view.setAttribute('xsi:type', 'Diagram');
     view.setAttribute('viewpoint', 'ArchiMate Diagram');
 
+    //      <view identifier="id-0b9527f4-4291-746b-59ec-f001956e72fc" xsi:type="Diagram" viewpoint="ArchiMate Diagram">
+    //        <name xml:lang="de">Prova1</name>
+    let viewname = doc.createElement('name');
+    viewname.setAttribute('xml:lang', 'de');
+    viewname.textContent = 'Prova1';
+    view.appendChild(viewname);
+
+    //      <view identifier="id-0b9527f4-4291-746b-59ec-f001956e72fc" xsi:type="Diagram" viewpoint="ArchiMate Diagram">
+    //        <node identifier="EAID_94620B68_C54A_435d_899D_652653D6D95F" xsi:type="Container" x="0" y="40" w="220" h="50">
+    //          <label xml:lang="de">Actor1</label>
+    //        </node>
+    let node = doc.createElement('node');
+    node.setAttribute('identifier', 'ABC-123');
+    node.setAttribute('xsi:type', 'Container');
+    node.setAttribute('x', '0');
+    node.setAttribute('y', '40');
+    node.setAttribute('w', '220');
+    node.setAttribute('h', '50');
+    let label = doc.createElement('label');
+    label.setAttribute('xml:lang', 'de');
+    label.textContent = 'Actor1';
+    node.appendChild(label);
+
+    //      <view identifier="id-0b9527f4-4291-746b-59ec-f001956e72fc" xsi:type="Diagram" viewpoint="ArchiMate Diagram">
+    //        <connection identifier="EAID_1CF9F3EF_2625_4d19_AC65_BBFE9D37CAAD" xsi:type="Line" source="EAID_94620B68_C54A_435d_899D_652653D6D95F" target="EAID_AB5B300A_4BB6_4def_96B1_BC69E66A68D0">
+    //           <sourceAttachment x="220" y="65" />
+    //           <targetAttachment x="320" y="65" />
+    //        </connection>
+    let connection = doc.createElement('connection');
+    connection.setAttribute('identifier', 'ABC-123');
+    connection.setAttribute('xsi:type', 'Line');
+    connection.setAttribute('source', 'ABC-123');
+    connection.setAttribute('target', 'ABC-123');
+    let sourceAttachment = doc.createElement('sourceAttachment');
+    sourceAttachment.setAttribute('x', '220');
+    sourceAttachment.setAttribute('y', '65');
+    connection.appendChild(sourceAttachment);
+    let targetAttachment = doc.createElement('targetAttachment');
+    targetAttachment.setAttribute('x', '320');
+    targetAttachment.setAttribute('y', '65');
+    connection.appendChild(targetAttachment);
+    
 
     // Serialize XML DOM to string
     let serializer = new XMLSerializer();
