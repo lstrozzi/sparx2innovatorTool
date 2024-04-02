@@ -220,8 +220,101 @@ function extractFromSparxXmlDoc(xmlDoc) {
 //#endregion
 
 //#region Innovator Exporter
+function formatXml(xml) {
+    var reg = /(>)(<)(\/*)/g;
+    var wsexp = / *(.*) +\n/g;
+    var contexp = /(<.+>)(.+\n)/g;
+    xml = xml.replace(reg, '$1\n$2$3').replace(wsexp, '$1\n').replace(contexp, '$1\n$2');
+    var pad = 0;
+    var formatted = '';
+    var lines = xml.split('\n');
+    var indent = 0;
+    var lastType = 'other';
+    // 4 types of tags - single, closing, opening, other (text, doctype, comment) - 4*4 = 16 transitions 
+    var transitions = {
+        'single->single'    : 0,
+        'single->closing'   : -1,
+        'single->opening'   : 0,
+        'single->other'     : 0,
+        'closing->single'   : 0,
+        'closing->closing'  : -1,
+        'closing->opening'  : 0,
+        'closing->other'    : 0,
+        'opening->single'   : 1,
+        'opening->closing'  : 0, 
+        'opening->opening'  : 1,
+        'opening->other'    : 1,
+        'other->single'     : 0,
+        'other->closing'    : -1,
+        'other->opening'    : 0,
+        'other->other'      : 0
+    };
+
+    for (var i=0; i < lines.length; i++) {
+        var ln = lines[i];
+        var single = Boolean(ln.match(/<.+\/>/)); // is this line a single tag? ex. <br />
+        var closing = Boolean(ln.match(/<\/.+>/)); // is this a closing tag? ex. </a>
+        var opening = Boolean(ln.match(/<[^!].*>/)); // is this even a tag (that's not <!something>)
+        var type = single ? 'single' : closing ? 'closing' : opening ? 'opening' : 'other';
+        var fromTo = lastType + '->' + type;
+        lastType = type;
+        var padding = '';
+
+        indent += transitions[fromTo];
+        for (var j = 0; j < indent; j++) {
+            padding += '  ';
+        }
+
+        formatted += padding + ln + '\n';
+    }
+
+    return formatted;
+};
+
 function exportToInnovator() {
-    // TODO
+    // prepare basic export XMI structure
+    let doc = new DOMParser().parseFromString('<model></model>', 'application/xml');
+    let model = doc.firstChild;
+
+    // <?xml version="1.0" encoding="utf-8" standalone="no"?>
+    // <model xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.opengroup.org/xsd/archimate/3.0/ http://www.opengroup.org/xsd/archimate/3.1/archimate3_Diagram.xsd http://purl.org/dc/elements/1.1/ http://www.opengroup.org/xsd/archimate/3.1/dc.xsd" version="16.0.1.21019" identifier="id-085c6229-1eec-4881-889f-99b109ade5b8" xmlns="http://www.opengroup.org/xsd/archimate/3.0/">
+    model.setAttribute('xmlns:dc', 'http://purl.org/dc/elements/1.1/');
+    model.setAttribute('xmlns:xsi', 'http://www.w3.org/2001/XMLSchema-instance');
+    model.setAttribute('xsi:schemaLocation', 'http://www.opengroup.org/xsd/archimate/3.0/ http://www.opengroup.org/xsd/archimate/3.1/archimate3_Diagram.xsd http://purl.org/dc/elements/1.1/ http://www.opengroup.org/xsd/archimate/3.1/dc.xsd');
+    model.setAttribute('version', '16.0.1.21019');
+    model.setAttribute('identifier', 'id-085c6229-1eec-4881-889f-99b109ade5b8');
+    model.setAttribute('xmlns', 'http://www.opengroup.org/xsd/archimate/3.0/');
+
+    // <name xml:lang="de">Innovator</name>
+    let name = doc.createElement('name');
+    name.setAttribute('xml:lang', 'de');
+    name.textContent = 'Innovator';
+    model.appendChild(name);
+
+    // <views>
+    let views = doc.createElement('views');
+    model.appendChild(views);
+
+    // <views>
+    //   <diagrams>
+    let diagrams = doc.createElement('diagrams');
+    views.appendChild(diagrams);
+
+    // <views>
+    //   <diagrams>
+    //      <view identifier="id-0b9527f4-4291-746b-59ec-f001956e72fc" xsi:type="Diagram" viewpoint="ArchiMate Diagram">
+    let view = doc.createElement('view');
+    view.setAttribute('identifier', 'ABC-123');
+    view.setAttribute('xsi:type', 'Diagram');
+    view.setAttribute('viewpoint', 'ArchiMate Diagram');
+
+
+    // Serialize XML DOM to string
+    let serializer = new XMLSerializer();
+    let xmlStr = serializer.serializeToString(doc);
+    let xmlPretty = formatXml(xmlStr, "  ");
+
+    return xmlPretty;
 }
 //#endregion
 
@@ -239,8 +332,8 @@ function processFile(file) {
         extractFromSparxXmlDoc(xmlDoc);
 
         // Create a Blob with the processed contents
-        var processedContents = exportToInnovator();
-        var blob = new Blob([processedContents], {type: 'text/plain'});
+        var innovatorXmi = exportToInnovator();
+        var blob = new Blob([innovatorXmi], {type: 'text/xml'});
 
         // Create a URL for the Blob
         var url = URL.createObjectURL(blob);
