@@ -1,7 +1,10 @@
+let allPackages = {}
 let allElements = {}
 let allConnectors = {}
+let allDiagrams = {}
 let localidmap = {}
 
+//#region Sparx EA Extractor
 function extractTaggedValue(xmlElement, tag) {
     // extract information from the tagged values
     let tv = null
@@ -158,12 +161,13 @@ function extractDiagrams(xmlDoc, tag, tvmap) {
     return diagrams
 }
 
-function processContents(xmlDoc) {
+function extractFromSparxXmlDoc(xmlDoc) {
     var packages = extractElements(xmlDoc, 'UML:Package', {'parent': 'parentid'})
     console.log("Imported " + Object.keys(packages).length + " packages")
     for (var key in packages) {
         console.log(" > Package: " + packages[key]['name'])
     }
+    allPackages = packages
 
     classes = extractElements(xmlDoc, 'UML:Class', {'ea_localid': 'localid', 'owner': 'owner', 'ea_stype': 'type', 'package': 'packageid'})
     console.log("Imported " + Object.keys(classes).length + " classes")
@@ -211,8 +215,17 @@ function processContents(xmlDoc) {
             }
         }
     }
+    allDiagrams = diagrams
 }
+//#endregion
 
+//#region Innovator Exporter
+function exportToInnovator() {
+    // TODO
+}
+//#endregion
+
+//#region Input/Output Processing
 function processFile(file) {
     // Process the file here
     // For example, let's just read it as text
@@ -223,9 +236,10 @@ function processFile(file) {
         // The file contains XML. Import the XML to a DOM and then process it
         var parser = new DOMParser();
         var xmlDoc = parser.parseFromString(contents, 'text/xml');
-        var processedContents = processContents(xmlDoc);
+        extractFromSparxXmlDoc(xmlDoc);
 
         // Create a Blob with the processed contents
+        var processedContents = exportToInnovator();
         var blob = new Blob([processedContents], {type: 'text/plain'});
 
         // Create a URL for the Blob
@@ -239,3 +253,4 @@ function processFile(file) {
     };
     reader.readAsText(file);
 }
+//#endregion
