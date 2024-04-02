@@ -301,10 +301,11 @@ function exportToInnovator() {
     views.appendChild(diagrams);
 
     // add all diagrams
-    allDiagrams.forEach(diagram => {
+    for (let diagram of Object.values(allDiagrams)) {
         //   <diagrams>
         //      <view identifier="ABC-123" xsi:type="Diagram" viewpoint="ArchiMate Diagram">
         let view = doc.createElement('view');
+        diagrams.appendChild(view);
         view.setAttribute('identifier', diagram.id);
         view.setAttribute('xsi:type', 'Diagram');
         view.setAttribute('viewpoint', 'ArchiMate Diagram');
@@ -316,13 +317,16 @@ function exportToInnovator() {
         viewname.textContent = 'Prova1';
         view.appendChild(viewname);
 
-        element['diagramelements'].forEach(diagramelement => {
+        for (let diagramelement of Object.values(diagram['diagramelements'])) {
             let element = allElements[diagramelement.subject];
+            if (element == null) continue;
+            if (element.type == 'Port') continue;
             //      <view identifier="ABC-123" xsi:type="Diagram" viewpoint="ArchiMate Diagram">
             //        <node identifier="EAID_94620B68_C54A_435d_899D_652653D6D95F" xsi:type="Container" x="0" y="40" w="220" h="50">
             //          <label xml:lang="de">Actor1</label>
             //        </node>
             let node = doc.createElement('node');
+            view.appendChild(node);
             node.setAttribute('identifier', diagramelement.subject);
             node.setAttribute('xsi:type', 'Container');
             let geometry = diagramelement.geometry.split(';');  // Left=351;Top=197;Right=366;Bottom=212;
@@ -334,7 +338,7 @@ function exportToInnovator() {
             label.setAttribute('xml:lang', 'de');
             label.textContent = element.name;
             node.appendChild(label);
-        });
+        }
 
         //      <view identifier="ABC-123" xsi:type="Diagram" viewpoint="ArchiMate Diagram">
         //        <connection identifier="EAID_1CF9F3EF_2625_4d19_AC65_BBFE9D37CAAD" xsi:type="Line" source="EAID_94620B68_C54A_435d_899D_652653D6D95F" target="EAID_AB5B300A_4BB6_4def_96B1_BC69E66A68D0">
@@ -354,7 +358,7 @@ function exportToInnovator() {
         targetAttachment.setAttribute('x', '320');
         targetAttachment.setAttribute('y', '65');
         connection.appendChild(targetAttachment);
-    });
+    }
 
     // Serialize XML DOM to string
     let serializer = new XMLSerializer();
