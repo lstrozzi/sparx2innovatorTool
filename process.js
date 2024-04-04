@@ -292,6 +292,78 @@ function exportToInnovator() {
     name.textContent = 'Innovator';
     model.appendChild(name);
 
+    // Export elements
+    exportElements(doc, model);
+
+    // Export connectors
+    exportConnectors(doc, model);
+
+    // Export diagrams
+    exportDiagrams(doc, model);
+
+    // Serialize XML DOM to string
+    let serializer = new XMLSerializer();
+    let xmlStr = serializer.serializeToString(doc);
+    let xmlPretty = formatXml(xmlStr, "  ");
+
+    return xmlPretty;
+}
+
+function exportElements(doc, model) {
+    // <elements>
+    let elements = doc.createElement('elements');
+    model.appendChild(elements);
+
+    // add all elements
+    for (let element of Object.values(allElements)) {
+        if (element.type == 'Port') continue;
+
+        // <element identifier="EAID_94620B68_C54A_435d_899D_652653D6D95F" xsi:type="Actor">
+        let el = doc.createElement('element');
+        elements.appendChild(el);
+        el.setAttribute('identifier', element.id);
+        el.setAttribute('xsi:type', element.type);
+
+        // <name xml:lang="de">Actor1</name>
+        let elName = doc.createElement('name');
+        elName.setAttribute('xml:lang', 'de');
+        elName.textContent = element.name;
+        el.appendChild(elName);
+    }
+}
+
+function exportConnectors(doc, model) {
+    // <relationships>
+    let relationships = doc.createElement('relationships');
+    model.appendChild(relationships);
+
+    // add all connectors
+    for (let connector of Object.values(allConnectors)) {
+        // <relationship identifier="EAID_1CF9F3EF_2625_4d19_AC65_BBFE9D37CAAD" xsi:type="Association" source="EAID_94620B68_C54A_435d_899D_652653D6D95F" target="EAID_AB5B300A_4BB6_4def_96B1_BC69E66A68D0">
+        let rel = doc.createElement('relationship');
+        relationships.appendChild(rel);
+        rel.setAttribute('identifier', connector.id);
+        rel.setAttribute('xsi:type', connector.type);
+
+        // source and target identifiers
+        let sourceid = localidmap['E-'+connector['startid']] ? localidmap['E-'+connector['startid']]['id'] : undefined;
+        if (sourceid && allElements[sourceid] && allElements[sourceid]['type'] == 'Port') {
+            sourceid = allElements[sourceid]['owner'];
+        }
+        let targetid = localidmap['E-'+connector['endid']] ? localidmap['E-'+connector['endid']]['id'] : undefined;
+        if (targetid && allElements[targetid] && allElements[targetid]['type'] == 'Port') {
+            targetid = allElements[targetid]['owner'];
+        }
+        if (sourceid) {
+            rel.setAttribute('source', sourceid);
+        }
+        if (targetid) {
+            rel.setAttribute('target', targetid);
+        }
+    }
+}
+
+function exportDiagrams(doc, model) {
     // <views>
     let views = doc.createElement('views');
     model.appendChild(views);
@@ -390,13 +462,6 @@ function exportToInnovator() {
             }
         }
     }
-
-    // Serialize XML DOM to string
-    let serializer = new XMLSerializer();
-    let xmlStr = serializer.serializeToString(doc);
-    let xmlPretty = formatXml(xmlStr, "  ");
-
-    return xmlPretty;
 }
 //#endregion
 
