@@ -84,6 +84,7 @@ function extractConnectors(xmlDoc, tag, tvmap) {
         let item = {}
         item['name'] = xmlelement.getAttribute('name')
         item['id'] = xmlelement.getAttribute('xmi.id')
+        item['type'] = tag.split(":")[1]
 
         // tvmap is a dictionary of tagged values to extract. Key=tag, value:name of the key to be added to the item
         for (var tag in tvmap) {
@@ -191,7 +192,7 @@ function extractFromSparxXmlDoc(xmlDoc) {
         allElements[key] = actors[key]
     }
 
-    associations = extractConnectors(xmlDoc, 'UML:Association', {'ea_localid': 'localid', 'ea_stype': 'type', 'direction': 'direction', 'ea_sourceID': 'startid', 'ea_targetID': 'endid', 'ea_sourceType': 'starttype', 'ea_targetType': 'endtype', 'ea_sourceName': 'startname', 'ea_targetName': 'endname'})
+    associations = extractConnectors(xmlDoc, 'UML:Association', {'ea_localid': 'localid', 'ea_stype': 'ea_stype', 'direction': 'direction', 'ea_sourceID': 'startid', 'ea_targetID': 'endid', 'ea_sourceType': 'starttype', 'ea_targetType': 'endtype', 'ea_sourceName': 'startname', 'ea_targetName': 'endname'})
     console.log("Imported " + Object.keys(associations).length + " associations")
     for (var key in associations) {
         console.log(" > Connector: " + localidmap['E-'+associations[key]['startid']]['name'] + " -> " + localidmap['E-'+associations[key]['endid']]['name'])
@@ -322,7 +323,7 @@ function exportElements(doc, model) {
         let el = doc.createElement('element');
         elements.appendChild(el);
         el.setAttribute('identifier', element.id);
-        el.setAttribute('xsi:type', element.type);
+        el.setAttribute('xsi:type', convertElementType(element.type));
 
         // <name xml:lang="de">Actor1</name>
         let elName = doc.createElement('name');
@@ -330,6 +331,21 @@ function exportElements(doc, model) {
         elName.textContent = element.name;
         el.appendChild(elName);
     }
+}
+
+function convertElementType(sparxtype) {
+    switch (sparxtype) {
+        case 'Component':
+            innovatortype = 'ApplicationComponent';
+            break;
+        case 'Actor':
+            innovatortype = 'BusinessRole';
+            break;
+        default:
+            innovatortype = sparxtype;
+            break;
+    }
+    return innovatortype;
 }
 
 function exportConnectors(doc, model) {
@@ -343,7 +359,7 @@ function exportConnectors(doc, model) {
         let rel = doc.createElement('relationship');
         relationships.appendChild(rel);
         rel.setAttribute('identifier', connector.id);
-        rel.setAttribute('xsi:type', connector.type);
+        rel.setAttribute('xsi:type', convertConnectorType(connector.type));
 
         // source and target identifiers
         let sourceid = localidmap['E-'+connector['startid']] ? localidmap['E-'+connector['startid']]['id'] : undefined;
@@ -361,6 +377,18 @@ function exportConnectors(doc, model) {
             rel.setAttribute('target', targetid);
         }
     }
+}
+
+function convertConnectorType(sparxtype) {
+    switch (sparxtype) {
+        case 'Association':
+            innovatortype = 'Association';
+            break;
+        default:
+            innovatortype = sparxtype;
+            break;
+    }
+    return innovatortype;
 }
 
 function exportDiagrams(doc, model) {
