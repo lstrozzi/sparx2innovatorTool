@@ -430,7 +430,7 @@ function exportDiagrams(doc, model) {
                 let node = doc.createElement('node');
                 view.appendChild(node);
                 node.setAttribute('identifier', diagramelement.subject);
-                node.setAttribute('xsi:type', 'Container');
+                node.setAttribute('xsi:type', convertElementType(element.type));
                 let geometry = diagramelement.geometry.split(';');  // Left=351;Top=197;Right=366;Bottom=212;
                 node.setAttribute('x', geometry[0].split('=')[1]);
                 node.setAttribute('y', geometry[1].split('=')[1]);
