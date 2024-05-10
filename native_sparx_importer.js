@@ -236,12 +236,13 @@ function exportDiagrams(doc, model) {
     views.appendChild(diagrams);
 
     // add all diagrams
-    for (let diagram of Object.values(allDiagrams)) {
+    for (let key in extracted.diagrams) {
+        let diagram = extracted.diagrams[key];
         //   <diagrams>
         //      <view identifier="ABC-123" xsi:type="Diagram" viewpoint="ArchiMate Diagram">
         let view = doc.createElement('view');
         diagrams.appendChild(view);
-        view.setAttribute('identifier', diagram.id);
+        view.setAttribute('identifier', diagram['Diagram_ID']);
         view.setAttribute('xsi:type', 'Diagram');
         view.setAttribute('viewpoint', 'ArchiMate Diagram');
 
@@ -249,7 +250,7 @@ function exportDiagrams(doc, model) {
         //        <name xml:lang="de">Prova1</name>
         let viewname = doc.createElement('name');
         viewname.setAttribute('xml:lang', 'de');
-        viewname.textContent = 'Prova1';
+        viewname.textContent = diagram['Name'];
         view.appendChild(viewname);
 
         for (let diagramelement of Object.values(diagram['diagramelements'])) {
