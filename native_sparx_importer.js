@@ -34,7 +34,11 @@ function importObjects(tableName) {
                     console.log(attributeValues); // This will log the attributes as an object
                 }
 
-                objects[dict['ea_guid']] = dict;
+                if (dict['ea_guid'] != null) {
+                    objects[dict['ea_guid']] = dict;
+                } else {
+                    objects[dict['Object_ID']] = dict;
+                }
             });
             totalObjects = Object.assign(totalObjects, objects);
         }
