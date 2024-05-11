@@ -138,7 +138,7 @@ function exportToInnovator() {
     exportConnectors(doc, model);
 
     // Export diagrams
-    // TODO exportDiagrams(doc, model);
+    exportDiagrams(doc, model);
 
     // Serialize XML DOM to string
     let serializer = new XMLSerializer();
@@ -242,7 +242,7 @@ function exportDiagrams(doc, model) {
         //      <view identifier="ABC-123" xsi:type="Diagram" viewpoint="ArchiMate Diagram">
         let view = doc.createElement('view');
         diagrams.appendChild(view);
-        view.setAttribute('identifier', diagram['Diagram_ID']);
+        view.setAttribute('identifier', diagram['ea_guid']);
         view.setAttribute('xsi:type', 'Diagram');
         view.setAttribute('viewpoint', 'ArchiMate Diagram');
 
@@ -253,9 +253,9 @@ function exportDiagrams(doc, model) {
         viewname.textContent = diagram['Name'];
         view.appendChild(viewname);
 
-        for (let diagramelement of Object.values(diagram['diagramelements'])) {
-            let element = allElements[diagramelement.subject];
-            let connector = allConnectors[diagramelement.subject];
+        for (let key in extracted.diagramobjects) {
+            let diagramelement = extracted.diagramobjects[key];
+            let element = extracted.elements[diagramelement['Object_ID']];
             if (element != null) {
                 if (element.type == 'Port') continue;
                 //      <view identifier="ABC-123" xsi:type="Diagram" viewpoint="ArchiMate Diagram">
@@ -264,18 +264,22 @@ function exportDiagrams(doc, model) {
                 //        </node>
                 let node = doc.createElement('node');
                 view.appendChild(node);
-                node.setAttribute('identifier', diagramelement.subject);
+                node.setAttribute('identifier', diagramelement['Object_ID']);
                 node.setAttribute('xsi:type', convertElementType(element.type));
-                let geometry = diagramelement.geometry.split(';');  // Left=351;Top=197;Right=366;Bottom=212;
-                node.setAttribute('x', geometry[0].split('=')[1]);
-                node.setAttribute('y', geometry[1].split('=')[1]);
-                node.setAttribute('w', geometry[2].split('=')[1]);
-                node.setAttribute('h', geometry[3].split('=')[1]);
+                node.setAttribute('x', diagramelement['RectLeft']);
+                node.setAttribute('y', -diagramelement['RectTop']);
+                node.setAttribute('w', diagramelement['RectRight']-diagramelement['RectLeft']);
+                node.setAttribute('h', -diagramelement['RectBottom']+diagramelement['RectTop']);
                 let label = doc.createElement('label');
                 label.setAttribute('xml:lang', 'de');
-                label.textContent = element.name;
+                label.textContent = element['Name'];
                 node.appendChild(label);
-            } else if (connector != null) {
+            }
+        }
+
+        for (let key in extracted.diagramlinks) {
+            let connector = extracted.diagramlinks[key];
+            if (false && connector != null) {
                 //      <view identifier="ABC-123" xsi:type="Diagram" viewpoint="ArchiMate Diagram">
                 //        <connection identifier="EAID_1CF9F3EF_2625_4d19_AC65_BBFE9D37CAAD" xsi:type="Line" source="EAID_94620B68_C54A_435d_899D_652653D6D95F" target="EAID_AB5B300A_4BB6_4def_96B1_BC69E66A68D0">
                 //           <sourceAttachment x="220" y="65" />
