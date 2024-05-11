@@ -2,8 +2,13 @@ var xmlDoc = null;
 var extracted = {};
 
 //#region Sparx Importer
-function importObjects(tableName) {
+function convert_guid(guid) {
+    // strip the curly braces, convert to uppercase, then add the 'ea' prefix
+    guid = guid.replace(/[{}]/g, '').toUpperCase();
+    return "EA_" + guid;
+}
 
+function importObjects(tableName) {
     let tables = xmlDoc.getElementsByTagName('Table');
     let totalObjects = {};
 
@@ -34,10 +39,24 @@ function importObjects(tableName) {
                     console.log(attributeValues); // This will log the attributes as an object
                 }
 
+                // convert GUIDs to the format used in Innovator
+                if (dict['Start_Object_ID'] != null) {
+                    dict['Start_Object_ID'] = convert_guid(dict['Start_Object_ID']);
+                }
+                if (dict['End_Object_ID'] != null) {
+                    dict['End_Object_ID'] = convert_guid(dict['End_Object_ID']);
+                }
                 if (dict['ea_guid'] != null) {
+                    dict['ea_guid'] = convert_guid(dict['ea_guid']);
                     objects[dict['ea_guid']] = dict;
-                } else {
+                } else if (dict['Object_ID'] != null) {
+                    dict['Object_ID'] = convert_guid(dict['Object_ID']);
                     objects[dict['Object_ID']] = dict;
+                } else if (dict['Client'] != null) {
+                    dict['Client'] = convert_guid(dict['Client']);
+                    objects[dict['Client']] = dict;
+                } else {
+                    console.log('No GUID or Object_ID found for object');
                 }
             });
             totalObjects = Object.assign(totalObjects, objects);
@@ -182,6 +201,9 @@ function convertElementType(sparxtype) {
         case 'Component':
             innovatortype = 'ApplicationComponent';
             break;
+        case 'Class':
+            innovatortype = 'BusinessObject';
+            break;
         case 'Actor':
             innovatortype = 'BusinessRole';
             break;
@@ -203,7 +225,7 @@ function exportConnectors(doc, model) {
         // <relationship identifier="EAID_1CF9F3EF_2625_4d19_AC65_BBFE9D37CAAD" xsi:type="Association" source="EAID_94620B68_C54A_435d_899D_652653D6D95F" target="EAID_AB5B300A_4BB6_4def_96B1_BC69E66A68D0">
         let rel = doc.createElement('relationship');
         relationships.appendChild(rel);
-        rel.setAttribute('identifier', connector['Connector_ID']);
+        rel.setAttribute('identifier', connector['ea_guid']);
         rel.setAttribute('xsi:type', convertConnectorType(connector['Connector_Type']));
 
         // source and target identifiers
@@ -219,10 +241,13 @@ function convertConnectorType(sparxtype) {
         case 'Association':
             innovatortype = 'Association';
             break;
-            case 'InformationFlow':
-                innovatortype = 'InformationFlow';
-                break;
-            default:
+        case 'InformationFlow':
+            innovatortype = 'Flow';
+            break;
+        case 'Usage':
+            innovatortype = 'Access';
+            break;
+        default:
             innovatortype = sparxtype;
             break;
     }
@@ -268,12 +293,13 @@ function exportDiagrams(doc, model) {
                 //        </node>
                 let node = doc.createElement('node');
                 view.appendChild(node);
-                node.setAttribute('identifier', diagramelement['Object_ID']);
-                node.setAttribute('xsi:type', convertElementType(element.type));
+                node.setAttribute('identifier', "_" + diagramelement['Instance_ID']);
+                node.setAttribute('elementRef', diagramelement['Object_ID']);
+                node.setAttribute('xsi:type', "Element");
                 node.setAttribute('x', diagramelement['RectLeft']);
                 node.setAttribute('y', -diagramelement['RectTop']);
-                node.setAttribute('w', diagramelement['RectRight']-diagramelement['RectLeft']);
-                node.setAttribute('h', -diagramelement['RectBottom']+diagramelement['RectTop']);
+                node.setAttribute('w', parseInt(diagramelement['RectRight'])-parseInt(diagramelement['RectLeft']));
+                node.setAttribute('h', -parseInt(diagramelement['RectBottom'])+parseInt(diagramelement['RectTop']));
                 let label = doc.createElement('label');
                 label.setAttribute('xml:lang', 'de');
                 label.textContent = element['Name'];
@@ -337,6 +363,14 @@ function exportDiagrams(doc, model) {
 //#endregion
 
 //#region main
+function convert_filename(filename) {
+    if (filename.includes("Sparx.xml")) {
+        return filename.replace('Sparx.xml', 'Innovator.xml');
+    } else {
+        return filename.replace('.xml', '-Innovator.xml');
+    }
+}
+
 function processNativeFile(file) {
     var reader = new FileReader();
 
@@ -360,7 +394,7 @@ function processNativeFile(file) {
         // Set the href of the download link to the Blob URL and show the link
         var downloadLink = document.getElementById('downloadLink');
         downloadLink.href = url;
-        downloadLink.download = 'processed_' + file.name;
+        downloadLink.download = convert_filename(file.name);
         downloadLink.style.display = 'block';    };
     reader.readAsText(file);
 }
