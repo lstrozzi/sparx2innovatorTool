@@ -471,7 +471,7 @@
     </element>
   </elements>
   <relationships>
-    <relationship identifier="id-a833a366-4280-195f-fa34-ff92968a33d5" source="id-f18c7150-8a8d-3f64-43da-47e3fcb419bc" target="id-c791e5da-f817-81b1-5e4e-b2695b59282e" xsi:type="Association" isDirected="true">
+    <relationship identifier="id-a833a366-4280-195f-fa34-ff92968a33d5" source="id-f18c7150-8a8d-3f64-43da-47e3fcb419bc" target="id-c791e5da-f817-81b1-5e4e-b2695b59282e" xsi:type="Association"> <!--isDirected="true"-->
       <name xml:lang="de">AssociationApplicationDirected_ToApplicationForConnectionEstablishment</name>
       <properties>
         <property propertyDefinitionRef="id-ede5d1a9-05f9-5cab-2e60-2c9b277b16d6">
