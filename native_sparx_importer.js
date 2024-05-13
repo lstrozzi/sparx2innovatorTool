@@ -48,6 +48,9 @@ function importObjects(tableName) {
                 if (dict['Diagram_ID'] != null) {
                     dict['Diagram_ID'] = convert_guid(dict['Diagram_ID']);
                 }
+                if (dict['DiagramID'] != null) {
+                    dict['Diagram_ID'] = convert_guid(dict['DiagramID']);
+                }
 
                 // store the object in the dictionary
                 if (dict['ea_guid'] != null) {
@@ -59,6 +62,9 @@ function importObjects(tableName) {
                 } else if (dict['Client'] != null) {
                     dict['Client'] = convert_guid(dict['Client']);
                     objects[dict['Client']] = dict;
+                } else if (dict['ConnectorID'] != null) {
+                    dict['Connector_ID'] = convert_guid(dict['ConnectorID']);
+                    objects[dict['Connector_ID']] = dict;
                 } else {
                     console.log('No GUID or Object_ID found for object');
                 }
@@ -81,6 +87,7 @@ function importNativeFile() {
     extracted.operations     = importObjects('t_operation');
     extracted.diagrams       = importObjects('t_diagram');
     extracted.diagramobjects = importObjects('t_diagramobjects');
+    extracted.diagramlinks   = importObjects('t_diagramlinks');
     extracted.taggedvalues   = importObjects('t_taggedvalue');
     extracted.xrefs          = importObjects('t_xref');
 }
@@ -268,7 +275,7 @@ function exportDiagrams(doc, model) {
     let diagrams = doc.createElement('diagrams');
     views.appendChild(diagrams);
 
-    // add all diagrams
+    // add diagrams and their elements
     for (let key in extracted.diagrams) {
         let diagram = extracted.diagrams[key];
         //   <diagrams>
@@ -286,12 +293,13 @@ function exportDiagrams(doc, model) {
         viewname.textContent = diagram['Name'];
         view.appendChild(viewname);
 
+        let nodes = [];
         for (let key in extracted.diagramobjects) {
             let diagramelement = extracted.diagramobjects[key];
             if (diagramelement['Diagram_ID'] != diagram['ea_guid']) continue;
             let element = extracted.elements[diagramelement['Object_ID']];
             if (element != null) {
-                if (element.type == 'Port') continue;
+                if (element['Object_Type'] == 'Port') continue;
                 //      <view identifier="ABC-123" xsi:type="Diagram" viewpoint="ArchiMate Diagram">
                 //        <node identifier="EAID_94620B68_C54A_435d_899D_652653D6D95F" xsi:type="Container" x="0" y="40" w="220" h="50">
                 //          <label xml:lang="de">Actor1</label>
@@ -309,32 +317,44 @@ function exportDiagrams(doc, model) {
                 label.setAttribute('xml:lang', 'de');
                 label.textContent = element['Name'];
                 node.appendChild(label);
+
+                nodes[element['ea_guid']] = "_" + diagramelement['Instance_ID'];
             }
         }
 
+        // diagram links (the connectors that appear in the diagram)
         for (let key in extracted.diagramlinks) {
-            let connector = extracted.diagramlinks[key];
-            if (false && connector != null) {
+            let diagramlink = extracted.diagramlinks[key];
+            if (diagramlink['Diagram_ID'] != diagram['ea_guid']) continue;
+            if (diagramlink != null) {
                 //      <view identifier="ABC-123" xsi:type="Diagram" viewpoint="ArchiMate Diagram">
                 //        <connection identifier="EAID_1CF9F3EF_2625_4d19_AC65_BBFE9D37CAAD" xsi:type="Line" source="EAID_94620B68_C54A_435d_899D_652653D6D95F" target="EAID_AB5B300A_4BB6_4def_96B1_BC69E66A68D0">
                 //           <sourceAttachment x="220" y="65" />
                 //           <targetAttachment x="320" y="65" />
                 //        </connection>
+                let connector = extracted.connectors[diagramlink['Connector_ID']];
+                if (connector == null) continue;
                 let connection = doc.createElement('connection');
                 view.appendChild(connection);
-                let sourceid = localidmap['E-'+connector['startid']]['id'];
-                if (allElements[sourceid]['type'] == 'Port') {
+                let sourceid = connector['Start_Object_ID'];
+                let source = extracted.elements[sourceid];
+                if (source['Object_Type'] == 'Port') {
+                    // TODO
                     sourceid = allElements[sourceid]['owner'];
                 }
-                let targetid = localidmap['E-'+connector['endid']]['id'];
-                if (allElements[targetid]['type'] == 'Port') {
+                let targetid = connector['End_Object_ID'];
+                let target = extracted.elements[targetid];
+                if (target['Object_Type'] == 'Port') {
+                    // TODO
                     targetid = allElements[targetid]['owner'];
                 }
-                connection.setAttribute('identifier', diagramelement.subject);
+                connection.setAttribute('identifier', "DL-" + diagramlink['Instance_ID']);
                 connection.setAttribute('xsi:type', 'Line');
-                connection.setAttribute('source', sourceid);
-                connection.setAttribute('target', targetid);
-                let geometry = diagramelement['geometry'].split(';');        // SX=0;SY=0;EX=0;EY=0;EDGE=2;$LLB=;LLT=;LMT=;LMB=;LRT=;LRB=;IRHS=;ILHS=;Path=;
+                connection.setAttribute('source', nodes[sourceid]);
+                connection.setAttribute('target', nodes[targetid]);
+
+                // connector geometry
+                let geometry = diagramlink['Geometry'].split(';');        // SX=0;SY=0;EX=0;EY=0;EDGE=2;$LLB=;LLT=;LMT=;LMB=;LRT=;LRB=;IRHS=;ILHS=;Path=;
                 let sx = undefined;
                 let sy = undefined;
                 let ex = undefined;
@@ -353,14 +373,22 @@ function exportDiagrams(doc, model) {
                         ey = geometryItem.split('=')[1];
                     }
                 }
-                let sourceAttachment = doc.createElement('sourceAttachment');
-                sourceAttachment.setAttribute('x', sx);
-                sourceAttachment.setAttribute('y', sy);
-                connection.appendChild(sourceAttachment);
-                let targetAttachment = doc.createElement('targetAttachment');
-                targetAttachment.setAttribute('x', ex);
-                targetAttachment.setAttribute('y', ey);
-                connection.appendChild(targetAttachment);
+                if (sx != undefined && sy != undefined) {
+                    sx = Math.max(sx, 0);
+                    sy = Math.max(sy, 0);
+                    let sourceAttachment = doc.createElement('sourceAttachment');
+                    sourceAttachment.setAttribute('x', sx);
+                    sourceAttachment.setAttribute('y', sy);
+                    connection.appendChild(sourceAttachment);
+                }
+                if (ex != undefined && ey != undefined) {
+                    ex = Math.max(ex, 0);
+                    ey = Math.max(ey, 0);
+                    let targetAttachment = doc.createElement('targetAttachment');
+                    targetAttachment.setAttribute('x', ex);
+                    targetAttachment.setAttribute('y', ey);
+                    connection.appendChild(targetAttachment);
+                }
             }
         }
     }
