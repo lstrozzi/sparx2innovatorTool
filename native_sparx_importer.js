@@ -36,7 +36,6 @@ function importObjects(tableName) {
                     for(let i = 0; i < attributes.length; i++) {
                         dict[attributes[i].name] = attributes[i].value;
                     }
-                    console.log(attributeValues); // This will log the attributes as an object
                 }
 
                 // convert GUIDs to the format used in Innovator
@@ -46,6 +45,11 @@ function importObjects(tableName) {
                 if (dict['End_Object_ID'] != null) {
                     dict['End_Object_ID'] = convert_guid(dict['End_Object_ID']);
                 }
+                if (dict['Diagram_ID'] != null) {
+                    dict['Diagram_ID'] = convert_guid(dict['Diagram_ID']);
+                }
+
+                // store the object in the dictionary
                 if (dict['ea_guid'] != null) {
                     dict['ea_guid'] = convert_guid(dict['ea_guid']);
                     objects[dict['ea_guid']] = dict;
@@ -284,6 +288,7 @@ function exportDiagrams(doc, model) {
 
         for (let key in extracted.diagramobjects) {
             let diagramelement = extracted.diagramobjects[key];
+            if (diagramelement['Diagram_ID'] != diagram['ea_guid']) continue;
             let element = extracted.elements[diagramelement['Object_ID']];
             if (element != null) {
                 if (element.type == 'Port') continue;
