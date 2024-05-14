@@ -55,7 +55,7 @@
 			<Column name="Object_ID" value="2732"/>
 			<Column name="Object_Type" value="Component"/>
 			<Column name="Diagram_ID" value="0"/>
-			<Column name="Name" value="Component12"/>
+			<Column name="Name" value="Luca_Component1"/>
 			<Column name="Author" value="GunnarWitschi(t2b)"/>
 			<Column name="Version" value="1.0"/>
 			<Column name="Package_ID" value="171"/>
@@ -88,7 +88,7 @@
 			<Column name="Object_ID" value="2730"/>
 			<Column name="Object_Type" value="Component"/>
 			<Column name="Diagram_ID" value="0"/>
-			<Column name="Name" value="Component1"/>
+			<Column name="Name" value="Luca_Component2"/>
 			<Column name="Author" value="GunnarWitschi(t2b)"/>
 			<Column name="Version" value="1.0"/>
 			<Column name="Package_ID" value="171"/>
@@ -121,7 +121,7 @@
 			<Column name="Object_ID" value="2731"/>
 			<Column name="Object_Type" value="Class"/>
 			<Column name="Diagram_ID" value="0"/>
-			<Column name="Name" value="Class1"/>
+			<Column name="Name" value="Luca_Class1"/>
 			<Column name="Author" value="GunnarWitschi(t2b)"/>
 			<Column name="Version" value="1.0"/>
 			<Column name="Package_ID" value="171"/>
@@ -167,7 +167,7 @@
 			<Column name="DestIsOrdered" value="0"/>
 			<Column name="Start_Object_ID" value="2730"/>
 			<Column name="End_Object_ID" value="2731"/>
-			<Column name="Btm_Mid_Label" value="«bag_InfFlow»"/>
+			<Column name="Btm_Mid_Label" value="ï¿½bag_InfFlowï¿½"/>
 			<Column name="Start_Edge" value="0"/>
 			<Column name="End_Edge" value="0"/>
 			<Column name="PtStartX" value="0"/>
@@ -212,7 +212,7 @@
 			<Column name="DestIsOrdered" value="0"/>
 			<Column name="Start_Object_ID" value="2730"/>
 			<Column name="End_Object_ID" value="2731"/>
-			<Column name="Btm_Mid_Label" value="«use» &#xA;«bag_isMaster»"/>
+			<Column name="Btm_Mid_Label" value="ï¿½useï¿½ &#xA;ï¿½bag_isMasterï¿½"/>
 			<Column name="Start_Edge" value="0"/>
 			<Column name="End_Edge" value="0"/>
 			<Column name="PtStartX" value="0"/>
@@ -258,7 +258,7 @@
 			<Column name="Start_Object_ID" value="2730"/>
 			<Column name="End_Object_ID" value="2732"/>
 			<Column name="Top_Mid_Label" value="Class1"/>
-			<Column name="Btm_Mid_Label" value="«bag_InfFlow»"/>
+			<Column name="Btm_Mid_Label" value="ï¿½bag_InfFlowï¿½"/>
 			<Column name="Start_Edge" value="0"/>
 			<Column name="End_Edge" value="0"/>
 			<Column name="PtStartX" value="0"/>

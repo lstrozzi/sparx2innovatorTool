@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
-<model xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.opengroup.org/xsd/archimate/3.0/ http://www.opengroup.org/xsd/archimate/3.0/archimate3_Diagram.xsd http://purl.org/dc/elements/1.1/ http://www.opengroup.org/xsd/archimate/3.0/dc.xsd" version="16.0.1.21019" identifier="id-ed17c092-4eea-4a28-b01b-24b23402b5fb" xmlns="http://www.opengroup.org/xsd/archimate/3.0/">
+<model xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.opengroup.org/xsd/archimate/3.0/ http://www.opengroup.org/xsd/archimate/3.0/archimate3_Diagram.xsd http://purl.org/dc/elements/1.1/ http://www.opengroup.org/xsd/archimate/3.0/dc.xsd" version="16.0.1.21019" identifier="id-a4528dd4-ac07-4963-8d0f-79bd12de95c6" xmlns="http://www.opengroup.org/xsd/archimate/3.0/">
   <name xml:lang="de">Innovator</name>
   <metadata>
     <schema>http://purl.org/dc/elements/1.1/</schema>
     <schemaversion>1.1</schemaversion>
     <dc:title>Innovator</dc:title>
     <dc:creator>cm018809.adb.intra.admin.ch:x60020912</dc:creator>
-    <dc:date>Montag, 13. Mai 2024 08:58:24</dc:date>
+    <dc:date>Dienstag, 14. Mai 2024 09:23:25</dc:date>
   </metadata>
   <elements>
-    <element identifier="id-bd8c8909-6360-aa12-03b8-6398e47a322a" xsi:type="ApplicationComponent">
-      <name xml:lang="de">Component1_14711</name>
+    <element identifier="id-5cd4f036-d593-aa96-122a-49d1233b32e7" xsi:type="ApplicationComponent">
+      <name xml:lang="de">Luca_Component1</name>
       <properties>
         <property propertyDefinitionRef="id-fe253d42-6a14-51ce-6ca6-becd0d504037">
           <value xml:lang="de">Kein Eintrag</value>
@@ -101,145 +101,6 @@
         </property>
         <property propertyDefinitionRef="id-c4206b45-e32b-62d7-fd50-ca1e2842babf">
           <value xml:lang="de">standardkonform</value>
-        </property>
-      </properties>
-    </element>
-    <element identifier="id-c388fda2-1e4b-e577-47e3-a6b103bc7555" xsi:type="ApplicationComponent">
-      <name xml:lang="de">Component12</name>
-      <properties>
-        <property propertyDefinitionRef="id-fe253d42-6a14-51ce-6ca6-becd0d504037">
-          <value xml:lang="de">Kein Eintrag</value>
-        </property>
-        <property propertyDefinitionRef="id-9e2a3238-0dfe-3ec3-bdb0-b59daa3a5d78">
-          <value xml:lang="de">Kein Eintrag</value>
-        </property>
-        <property propertyDefinitionRef="id-eec244ae-0560-9266-6b3a-78f729b2f316">
-          <value xml:lang="de">nein</value>
-        </property>
-        <property propertyDefinitionRef="id-2ff0dca9-1f09-aea8-ea9e-d5b85d886df7">
-          <value xml:lang="de">Kein Eintrag</value>
-        </property>
-        <property propertyDefinitionRef="id-b98b6a90-291b-b533-5a14-ade89bab3371">
-          <value xml:lang="de">2999-12-31T00:00</value>
-        </property>
-        <property propertyDefinitionRef="id-80c2f072-32c1-f753-0637-4a9db8150cfd">
-          <value xml:lang="de">Kein Eintrag</value>
-        </property>
-        <property propertyDefinitionRef="id-26ace61e-98d3-6910-386f-4c6187183d9a">
-          <value xml:lang="de">Kein Eintrag</value>
-        </property>
-        <property propertyDefinitionRef="id-56d31914-2324-f09d-ca8b-ddfcb4f24462">
-          <value xml:lang="de">0</value>
-        </property>
-        <property propertyDefinitionRef="id-be0f1d26-6d4e-8e98-593a-6c8cfdd07841">
-          <value xml:lang="de">0</value>
-        </property>
-        <property propertyDefinitionRef="id-dfa993d0-4e97-c83d-2a81-c35bb1fea49f">
-          <value xml:lang="de">0</value>
-        </property>
-        <property propertyDefinitionRef="id-bb98855a-5efc-dfef-4342-dc2805353b91">
-          <value xml:lang="de">0</value>
-        </property>
-        <property propertyDefinitionRef="id-a4acb691-4845-6432-5648-93be6fa603c3">
-          <value xml:lang="de">0</value>
-        </property>
-        <property propertyDefinitionRef="id-9b98a234-af1f-f0fc-2539-db36eb07136a">
-          <value xml:lang="de">0</value>
-        </property>
-        <property propertyDefinitionRef="id-6e9f5bd0-20f6-65ce-5826-b8ae12e24830">
-          <value xml:lang="de">0</value>
-        </property>
-        <property propertyDefinitionRef="id-02cd3c4f-c2d4-3ada-12c3-60af03c042e9">
-          <value xml:lang="de">0</value>
-        </property>
-        <property propertyDefinitionRef="id-b1923f03-5a39-4a3b-0ea8-bcdd730f34cc">
-          <value xml:lang="de">Kein Eintrag</value>
-        </property>
-        <property propertyDefinitionRef="id-a1302b44-8359-dcec-bffa-7aad055edc32">
-          <value xml:lang="de">Kein Eintrag</value>
-        </property>
-        <property propertyDefinitionRef="id-82fc0ecd-8c89-b09d-bf0b-d9a47f17a83c">
-          <value xml:lang="de">Kein Eintrag</value>
-        </property>
-        <property propertyDefinitionRef="id-80487260-ae9d-99b3-f81b-37c9162d33a5">
-          <value xml:lang="de">Kein Eintrag</value>
-        </property>
-        <property propertyDefinitionRef="id-e1015a39-0503-8599-4f9b-2714aa7c8de5">
-          <value xml:lang="de">Kein Eintrag</value>
-        </property>
-        <property propertyDefinitionRef="id-e281aea3-c2d5-4a7a-853c-b2e08cf86968">
-          <value xml:lang="de">Kein Eintrag</value>
-        </property>
-        <property propertyDefinitionRef="id-f2850df8-2b47-4332-f591-33aa61a8d8a6">
-          <value xml:lang="de">Sehr gut</value>
-        </property>
-        <property propertyDefinitionRef="id-367ebb1c-53a7-51e7-941a-dd2d009f206f">
-          <value xml:lang="de">nein</value>
-        </property>
-        <property propertyDefinitionRef="id-fa7f2ac6-c8d8-0961-ea05-01352d1aad70">
-          <value xml:lang="de">Kein Eintrag</value>
-        </property>
-        <property propertyDefinitionRef="id-6dfccf0e-6024-28f6-1e08-5497e7ae74b1">
-          <value xml:lang="de">Applikation</value>
-        </property>
-        <property propertyDefinitionRef="id-272363fe-0179-f984-72d6-e0e30940db4e">
-          <value xml:lang="de">nein</value>
-        </property>
-        <property propertyDefinitionRef="id-Stereotype">
-          <value xml:lang="de">application component</value>
-        </property>
-        <property propertyDefinitionRef="id-92a71f66-54e9-cd58-8f1c-f4d240a14f4b">
-          <value xml:lang="de">in Arbeit</value>
-        </property>
-        <property propertyDefinitionRef="id-d2beac0b-f00c-369e-4c49-23dfb5ed0528">
-          <value xml:lang="de">In Baseline- und Ziel-Plateau</value>
-        </property>
-        <property propertyDefinitionRef="id-c4206b45-e32b-62d7-fd50-ca1e2842babf">
-          <value xml:lang="de">standardkonform</value>
-        </property>
-      </properties>
-    </element>
-    <element identifier="id-a27f1554-fcc2-5250-7ded-85952527d172" xsi:type="BusinessObject">
-      <name xml:lang="de">Class1</name>
-      <properties>
-        <property propertyDefinitionRef="id-eec244ae-0560-9266-6b3a-78f729b2f316">
-          <value xml:lang="de">nein</value>
-        </property>
-        <property propertyDefinitionRef="id-2ff0dca9-1f09-aea8-ea9e-d5b85d886df7">
-          <value xml:lang="de">Kein Eintrag</value>
-        </property>
-        <property propertyDefinitionRef="id-b98b6a90-291b-b533-5a14-ade89bab3371">
-          <value xml:lang="de">2999-12-31T00:00</value>
-        </property>
-        <property propertyDefinitionRef="id-80c2f072-32c1-f753-0637-4a9db8150cfd">
-          <value xml:lang="de">Kein Eintrag</value>
-        </property>
-        <property propertyDefinitionRef="id-26ace61e-98d3-6910-386f-4c6187183d9a">
-          <value xml:lang="de">Kein Eintrag</value>
-        </property>
-        <property propertyDefinitionRef="id-a4acb691-4845-6432-5648-93be6fa603c3">
-          <value xml:lang="de">0</value>
-        </property>
-        <property propertyDefinitionRef="id-9b98a234-af1f-f0fc-2539-db36eb07136a">
-          <value xml:lang="de">0</value>
-        </property>
-        <property propertyDefinitionRef="id-6e9f5bd0-20f6-65ce-5826-b8ae12e24830">
-          <value xml:lang="de">0</value>
-        </property>
-        <property propertyDefinitionRef="id-02cd3c4f-c2d4-3ada-12c3-60af03c042e9">
-          <value xml:lang="de">0</value>
-        </property>
-        <property propertyDefinitionRef="id-3a79e67a-efba-06a4-8d65-514032d09c6b">
-          <value xml:lang="de">Kein Eintrag</value>
-        </property>
-        <property propertyDefinitionRef="id-Stereotype">
-          <value xml:lang="de">business object</value>
-        </property>
-        <property propertyDefinitionRef="id-92a71f66-54e9-cd58-8f1c-f4d240a14f4b">
-          <value xml:lang="de">in Arbeit</value>
-        </property>
-        <property propertyDefinitionRef="id-d2beac0b-f00c-369e-4c49-23dfb5ed0528">
-          <value xml:lang="de">In Baseline- und Ziel-Plateau</value>
         </property>
       </properties>
     </element>
@@ -390,49 +251,10 @@
       <name xml:lang="en">Standard conformity</name>
       <name xml:lang="de">Standardkonformität</name>
     </propertyDefinition>
-    <propertyDefinition identifier="id-3a79e67a-efba-06a4-8d65-514032d09c6b" type="string">
-      <name>Spezialisierung</name>
-      <name xml:lang="en">Specialisation</name>
-      <name xml:lang="de">Spezialisierung</name>
-    </propertyDefinition>
-    <propertyDefinition identifier="id-c664b8d6-0d73-fe7d-1b1a-5f802791bcf6" type="boolean">
-      <name>Ebenen anzeigen</name>
-      <name xml:lang="en"></name>
-      <name xml:lang="de"></name>
-    </propertyDefinition>
     <propertyDefinition identifier="id-Stereotype" type="string">
       <name>Stereotype</name>
       <name xml:lang="en">Stereotype</name>
       <name xml:lang="de">Stereotyp</name>
     </propertyDefinition>
   </propertyDefinitions>
-  <views>
-    <diagrams>
-      <view identifier="id-b5e41430-f64b-a276-4b43-8e77d9a26673" xsi:type="Diagram" viewpoint="ArchiMate Diagram">
-        <name xml:lang="de">AllImportedElements</name>
-        <properties>
-          <property propertyDefinitionRef="id-c664b8d6-0d73-fe7d-1b1a-5f802791bcf6">
-            <value xml:lang="de">nein</value>
-          </property>
-          <property propertyDefinitionRef="id-Stereotype">
-            <value xml:lang="de">ArchiMate Diagram</value>
-          </property>
-          <property propertyDefinitionRef="id-92a71f66-54e9-cd58-8f1c-f4d240a14f4b">
-            <value xml:lang="de">in Arbeit</value>
-          </property>
-        </properties>
-        <node identifier="id-c8f85318-ca4e-3875-ed3d-ecccdb5fadf0" elementRef="id-bd8c8909-6360-aa12-03b8-6398e47a322a" xsi:type="Element" x="0" y="0" w="150" h="90" />
-        <node identifier="id-05852f7e-c8e1-44a9-40d7-20768555fcfb" elementRef="id-a27f1554-fcc2-5250-7ded-85952527d172" xsi:type="Element" x="10" y="280" w="130" h="100" />
-        <node identifier="id-bdb836f8-6813-b381-4c0f-7b93b7f0c457" elementRef="id-c388fda2-1e4b-e577-47e3-a6b103bc7555" xsi:type="Element" x="490" y="0" w="150" h="90" />
-        <connection identifier="id-38ea9ef5-321a-06c5-014d-f5519308977e" xsi:type="Line" source="id-c8f85318-ca4e-3875-ed3d-ecccdb5fadf0" target="id-05852f7e-c8e1-44a9-40d7-20768555fcfb">
-          <sourceAttachment x="72" y="90" />
-          <targetAttachment x="72" y="280" />
-        </connection>
-        <connection identifier="id-b70e4428-4bf5-44ae-2a69-81fcef4fa31a" xsi:type="Line" source="id-c8f85318-ca4e-3875-ed3d-ecccdb5fadf0" target="id-bdb836f8-6813-b381-4c0f-7b93b7f0c457">
-          <sourceAttachment x="150" y="45" />
-          <targetAttachment x="490" y="45" />
-        </connection>
-      </view>
-    </diagrams>
-  </views>
 </model>
