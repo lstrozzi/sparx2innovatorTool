@@ -1,0 +1,59 @@
+<model xmlns:dc="http://purl.org/dc/elements/1.1/"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.opengroup.org/xsd/archimate/3.0/ http://www.opengroup.org/xsd/archimate/3.1/archimate3_Diagram.xsd
+                      http://purl.org/dc/elements/1.1/ http://www.opengroup.org/xsd/archimate/3.1/dc.xsd"
+  version="16.0.1.21019" identifier="id-085c6229-1eec-4881-889f-99b109ade5b8"
+  xmlns="http://www.opengroup.org/xsd/archimate/3.0/">
+  <name xml:lang="de">Innovator</name>
+  <elements>
+    <element identifier="EA_7A3D7001-771E-481D-8546-20AD76B315B5" xsi:type="ApplicationComponent">
+      <name xml:lang="de">Component12</name>
+    </element>
+    <element identifier="EA_C1E7FC41-C7D7-411A-A4BB-058C1E85A3EC" xsi:type="ApplicationComponent">
+      <name xml:lang="de">Component1</name>
+    </element>
+    <element identifier="EA_D6C559A3-F112-4F97-9404-AE5082639A37" xsi:type="BusinessObject">
+      <name xml:lang="de">Class1</name>
+    </element>
+  </elements>
+  <relationships>
+    <relationship identifier="EA_7AA13208-C39A-4C87-AAFC-EC20E76ECBBE" xsi:type="Flow"
+      source="EA_C1E7FC41-C7D7-411A-A4BB-058C1E85A3EC"
+      target="EA_D6C559A3-F112-4F97-9404-AE5082639A37" />
+    <relationship identifier="EA_90E8697B-1EFB-4C61-AB8E-F7F75B56F73C" xsi:type="Access"
+      source="EA_C1E7FC41-C7D7-411A-A4BB-058C1E85A3EC"
+      target="EA_D6C559A3-F112-4F97-9404-AE5082639A37" />
+    <relationship identifier="EA_9F25C602-4EC0-46CF-844E-1F194A62FF11" xsi:type="Flow"
+      source="EA_C1E7FC41-C7D7-411A-A4BB-058C1E85A3EC"
+      target="EA_7A3D7001-771E-481D-8546-20AD76B315B5" />
+  </relationships>
+  <views>
+    <diagrams>
+      <view identifier="EA_36C0D16A-1F0A-438B-886F-6D2BBC016DA6" xsi:type="Diagram"
+        viewpoint="ArchiMate Diagram">
+        <name xml:lang="de">91 Sandbox</name>
+        <node identifier="_4745" elementRef="EA_C1E7FC41-C7D7-411A-A4BB-058C1E85A3EC"
+          xsi:type="Element" x="94" y="83" w="110" h="60">
+          <label xml:lang="de">Component1</label>
+        </node>
+        <node identifier="_4748" elementRef="EA_D6C559A3-F112-4F97-9404-AE5082639A37"
+          xsi:type="Element" x="104" y="291" w="90" h="70">
+          <label xml:lang="de">Class1</label>
+        </node>
+        <node identifier="_4747" elementRef="EA_7A3D7001-771E-481D-8546-20AD76B315B5"
+          xsi:type="Element" x="457" y="83" w="110" h="60">
+          <label xml:lang="de">Component12</label>
+        </node>
+        <connection identifier="DL-2214" xsi:type="Line" source="_4745" target="_4748">
+          <sourceAttachment x="22" y="0" />
+          <targetAttachment x="22" y="0" />
+        </connection>
+        <connection identifier="DL-2213" xsi:type="Line" source="_4745" target="_4747" />
+        <connection identifier="DL-2215" xsi:type="Line" source="_4745" target="_4748">
+          <sourceAttachment x="0" y="0" />
+          <targetAttachment x="0" y="0" />
+        </connection>
+      </view>
+    </diagrams>
+  </views>
+</model>
