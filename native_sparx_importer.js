@@ -174,6 +174,9 @@ function exportToInnovator() {
     // Export diagrams
     exportDiagrams(doc, model);
 
+    // export all elements into a single diagram without connectors
+    exportAllElements(doc, model);
+
     // Serialize XML DOM to string
     let serializer = new XMLSerializer();
     let xmlStr = serializer.serializeToString(doc);
@@ -393,6 +396,61 @@ function exportDiagrams(doc, model) {
         }
     }
 }
+
+function exportAllElements(doc, model) {
+    const N = 20; // number of horizontal nodes
+
+    // <views>
+    //   <diagrams>
+    let diagrams = doc.getElementsByTagName('diagrams')[0];
+ 
+    //   <diagrams>
+    //      <view identifier="ABC-123" xsi:type="Diagram" viewpoint="ArchiMate Diagram">
+    let view = doc.createElement('view');
+    diagrams.appendChild(view);
+    view.setAttribute('identifier', 'AllElements');
+    view.setAttribute('xsi:type', 'Diagram');
+    view.setAttribute('viewpoint', 'ArchiMate Diagram');
+
+    //      <view identifier="ABC-123" xsi:type="Diagram" viewpoint="ArchiMate Diagram">
+    //        <name xml:lang="de">All Elements</name>
+    let viewname = doc.createElement('name');
+    viewname.setAttribute('xml:lang', 'de');
+    viewname.textContent = 'All Elements';
+    view.appendChild(viewname);
+
+    let nodes = [];
+    instanceid = 0;
+    for (let key in extracted.elements) {
+        let element = extracted.elements[key];
+        if (elementTypeBlackList.includes(element['Object_Type'])) continue;
+        //      <view identifier="ABC-123" xsi:type="Diagram" viewpoint="ArchiMate Diagram">
+        //        <node identifier="EAID_94620B68_C54A_435d_899D_652653D6D95F" xsi:type="Container" x="0" y="40" w="220" h="50">
+        //          <label xml:lang="de">Actor1</label>
+        //        </node>
+        let node = doc.createElement('node');
+        view.appendChild(node);
+        node.setAttribute('identifier', "_" + ++instanceid);
+        node.setAttribute('elementRef', element['ea_guid']);
+        node.setAttribute('xsi:type', "Element");
+
+        // position the node in the diagram, each node is positioned in a matrix with N horizontal nodes, with 50px separation between nodes horizontally and vertically
+        let i = Object.keys(nodes).length;
+        let x = 50 + (i % N) * 250;
+        let y = 50 + Math.floor(i / N) * 100;
+        node.setAttribute('x', x);
+        node.setAttribute('y', y);
+        node.setAttribute('w', 220);
+        node.setAttribute('h', 50);
+        let label = doc.createElement('label');
+        label.setAttribute('xml:lang', 'de');
+        label.textContent = element['Name'];
+        node.appendChild(label);
+
+        nodes[element['ea_guid']] = element['ea_guid'];
+    }
+}
+        
 //#endregion
 
 //#region main
