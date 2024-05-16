@@ -6,21 +6,18 @@
   xmlns="http://www.opengroup.org/xsd/archimate/3.0/">
   <name xml:lang="de">Innovator</name>
   <elements>
-    <element identifier="EA_7A3D7001-771E-481D-8546-20AD76B315B5" xsi:type="ApplicationComponent">
-      <name xml:lang="de">Component12</name>
+    <element identifier="EA_7A3D7001-771E-481D-8546-20AD76B315B5" xsi:type="ApplicationCollaboration">
+      <name xml:lang="de">ApplicationCollaboration1</name>
     </element>
-    <element identifier="EA_C1E7FC41-C7D7-411A-A4BB-058C1E85A3EC" xsi:type="ApplicationComponent">
-      <name xml:lang="de">Component1</name>
+    <element identifier="EA_C1E7FC41-C7D7-411A-A4BB-058C1E85A3EC" xsi:type="ApplicationCollaboration">
+      <name xml:lang="de">ApplicationCollaboration2</name>
     </element>
-    <element identifier="EA_D6C559A3-F112-4F97-9404-AE5082639A37" xsi:type="BusinessObject">
-      <name xml:lang="de">Class1</name>
+    <element identifier="EA_D6C559A3-F112-4F97-9404-AE5082639A37" xsi:type="ApplicationComponent">
+      <name xml:lang="de">ApplicationComponent1</name>
     </element>
   </elements>
   <relationships>
     <relationship identifier="EA_7AA13208-C39A-4C87-AAFC-EC20E76ECBBE" xsi:type="Flow"
-      source="EA_C1E7FC41-C7D7-411A-A4BB-058C1E85A3EC"
-      target="EA_D6C559A3-F112-4F97-9404-AE5082639A37" />
-    <relationship identifier="EA_90E8697B-1EFB-4C61-AB8E-F7F75B56F73C" xsi:type="Access"
       source="EA_C1E7FC41-C7D7-411A-A4BB-058C1E85A3EC"
       target="EA_D6C559A3-F112-4F97-9404-AE5082639A37" />
     <relationship identifier="EA_9F25C602-4EC0-46CF-844E-1F194A62FF11" xsi:type="Flow"
@@ -29,8 +26,7 @@
   </relationships>
   <views>
     <diagrams>
-      <view identifier="EA_36C0D16A-1F0A-438B-886F-6D2BBC016DA6" xsi:type="Diagram"
-        viewpoint="ArchiMate Diagram">
+      <view identifier="EA_36C0D16A-1F0A-438B-886F-6D2BBC016DA6" xsi:type="Diagram" viewpoint="ArchiMate Diagram">
         <name xml:lang="de">91 Sandbox</name>
         <node identifier="_4745" elementRef="EA_C1E7FC41-C7D7-411A-A4BB-058C1E85A3EC"
           xsi:type="Element" x="94" y="83" w="110" h="60">
