@@ -1,5 +1,6 @@
 var xmlDoc = null;
 var extracted = {};
+let exportedDiagrams = [];
 
 //#region Sparx Importer
 function convert_guid(guid) {
@@ -80,6 +81,8 @@ function importObjects(tableName) {
 }
 
 function importNativeFile() {
+    exportedDiagrams = [];
+
     extracted.packages       = importObjects('t_package');
     extracted.elements       = importObjects('t_object');
     extracted.connectors     = importObjects('t_connector');
@@ -111,6 +114,7 @@ function fillDiagramsTable() {
         // the second column contains the diagram name
         let cells = row.getElementsByTagName('td');
         cells[1].textContent = diagram['Name'];
+        cells[2].textContent = diagram['ea_guid'];
 
         tbody.appendChild(row);
     }
@@ -169,7 +173,25 @@ function formatXml(xml) {
     return formatted;
 };
 
+function identifyExportedObjects() {
+    // identify which diagrams, elements and connector to export
+    let diagrams = document.getElementById('diagramsTable').getElementsByTagName('input');
+    let exportedDiagrams = []; // make sure to declare this array
+    for (let i = 0; i < diagrams.length; i++) {
+        if (diagrams[i].checked) {
+            if (diagrams[i].parentElement.nextElementSibling.textContent == 'Diagram Name') continue;
+            if (diagrams[i].parentElement.nextElementSibling.textContent == 'Select/unselect all diagrams') continue;
+            let ea_guid = diagrams[i].parentElement.nextElementSibling.nextElementSibling.textContent;
+            if (ea_guid == 'Enterprise Architect Global Unique Identifier') continue;
+            exportedDiagrams.push(ea_guid);
+        }
+    }
+}
+
 function exportToInnovator() {
+    // identify which diagrams, elements and connector to export
+    identifyExportedObjects();
+
     // prepare basic export XMI structure
     let doc = new DOMParser().parseFromString('<model></model>', 'application/xml');
     let model = doc.firstChild;
