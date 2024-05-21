@@ -93,6 +93,30 @@ function importNativeFile() {
 }
 //#endregion
 
+//#region Diagrams table
+function fillDiagramsTable() {
+    let table = document.getElementById('diagramsTable');
+    let tbody = table.getElementsByTagName('tbody')[0];
+
+    for (let key in extracted.diagrams) {
+        // use the existing row with id="diagramrow-template" as a template
+        let diagram = extracted.diagrams[key];
+        let row = document.getElementById('diagramrow-template').cloneNode(true);
+        row.removeAttribute('id');
+        row.style.display = 'table-row';
+        row.style.hidden = false;
+
+        // fill the row with the diagram data:
+        // the first column contains an input checkbox, it should be enabled as it is in the template
+        // the second column contains the diagram name
+        let cells = row.getElementsByTagName('td');
+        cells[1].textContent = diagram['Name'];
+
+        tbody.appendChild(row);
+    }
+}
+//#endregion
+
 //#region Innovator Exporter
 function formatXml(xml) {
     var reg = /(>)(<)(\/*)/g;
@@ -474,6 +498,9 @@ function processNativeFile(file) {
         console.log('...file read');
 
         importNativeFile();
+        exportToInnovator();
+
+        fillDiagramsTable();
     };
     reader.readAsText(file);
 }

@@ -378,7 +378,7 @@
                                 <div id="diagramsPanel" class="row col-md-8" hidden="true">
                                     <div>
                                         <h4>Diagrams available for export:</h4>
-                                        <table style="width: 100%; border: 1px solid black; box-shadow: none;">
+                                        <table id="diagramsTable" style="width: 100%; border: 1px solid black; box-shadow: none;">
                                             <thead>
                                                 <tr>
                                                     <th style="width: 70px; border: 1px solid black; text-align: center; padding: 0 10px;">Export?</th>
@@ -391,7 +391,7 @@
                                                     <td style="border: 1px solid black; text-align: center; padding: 0 10px;"><input type="checkbox" id="diagrams-selectall" checked></td>
                                                     <td style="border: 1px solid black; padding: 0 10px;" colspan="2">Select/unselect all diagrams</td>
                                                 </tr>
-                                                <tr id="diagramrow-template">
+                                                <tr id="diagramrow-template" style="display: none;">
                                                     <td style="border: 1px solid black; text-align: center; padding: 0 10px;"><input type="checkbox" checked></td>
                                                     <td style="border: 1px solid black; padding: 0 10px;">Example Diagram</td>
                                                     <td style="border: 1px solid black; padding: 0 10px;">Example Comment</td>
