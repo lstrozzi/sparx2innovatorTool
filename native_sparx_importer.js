@@ -450,7 +450,6 @@ function exportAllElements(doc, model) {
         nodes[element['ea_guid']] = element['ea_guid'];
     }
 }
-        
 //#endregion
 
 //#region main
@@ -475,7 +474,14 @@ function processNativeFile(file) {
         console.log('...file read');
 
         importNativeFile();
-        
+    };
+    reader.readAsText(file);
+}
+
+function convertNativeFile(file) {
+    var reader = new FileReader();
+
+    reader.onload = function(e) {
         var innovatorXmi = exportToInnovator();
         var blob = new Blob([innovatorXmi], {type: 'text/xml'});
 
@@ -486,7 +492,8 @@ function processNativeFile(file) {
         var downloadLink = document.getElementById('downloadLink');
         downloadLink.href = url;
         downloadLink.download = convert_filename(file.name);
-        downloadLink.style.display = 'block';    };
+        downloadLink.style.display = 'block';
+    };
     reader.readAsText(file);
 }
 //#endregion
