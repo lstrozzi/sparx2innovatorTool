@@ -100,6 +100,7 @@ function importNativeFile() {
 function fillDiagramsTable() {
     let table = document.getElementById('diagramsTable');
     let tbody = table.getElementsByTagName('tbody')[0];
+    let decoder = new TextDecoder('utf-8');
 
     for (let key in extracted.diagrams) {
         // use the existing row with id="diagramrow-template" as a template
@@ -389,13 +390,15 @@ function exportDiagrams(doc, model) {
                 let source = extracted.elements[sourceid];
                 if (source['Object_Type'] == 'Port') {
                     // TODO
-                    sourceid = allElements[sourceid]['owner'];
+                    console.warn('NOT IMPLEMENTED: conversion of Port');
+                    // sourceid = allElements[sourceid]['owner'];
                 }
                 let targetid = connector['End_Object_ID'];
                 let target = extracted.elements[targetid];
                 if (target['Object_Type'] == 'Port') {
                     // TODO
-                    targetid = allElements[targetid]['owner'];
+                    console.warn('NOT IMPLEMENTED: conversion of Port');
+                    // targetid = allElements[targetid]['owner'];
                 }
                 connection.setAttribute('identifier', "DL-" + diagramlink['Instance_ID']);
                 connection.setAttribute('xsi:type', 'Line');
@@ -513,6 +516,7 @@ function processNativeFile(file) {
     reader.onload = function(e) {
         console.log('Reading file...');
         var contents = e.target.result;
+        
         // Process contents here
         // The file contains XML. Import the XML to a DOM and then process it
         var parser = new DOMParser();
@@ -524,7 +528,7 @@ function processNativeFile(file) {
 
         fillDiagramsTable();
     };
-    reader.readAsText(file);
+    reader.readAsText(file, 'windows-1252');
 }
 
 function convertNativeFile(file) {
