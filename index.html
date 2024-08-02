@@ -393,7 +393,9 @@
                                                     <td style="border: 1px solid black; padding: 0 10px;" colspan="2">Select/unselect all diagrams</td>
                                                 </tr>
                                                 <tr id="diagramrow-template" style="display: none;">
-                                                    <td style="border: 1px solid black; text-align: center; padding: 0 10px;"><input type="checkbox" checked></td>
+                                                    <td style="border: 1px solid black; text-align: center; padding: 0 10px;">
+                                                        <input type="checkbox" class="diagram-checkbox" checked>
+                                                    </td>
                                                     <td style="border: 1px solid black; padding: 0 10px;">Example Diagram</td>
                                                     <td id="ea_guid" style="border: 1px solid black; padding: 0 10px;">Enterprise Architect Global Unique Identifier</td>
                                                 </tr>
@@ -434,6 +436,18 @@
                 return;
             }
             convertNativeFile(file);
+        });
+
+        document.getElementById('diagrams-selectall').addEventListener('change', function() {
+            const selectAllCheckbox = this;
+            const diagramCheckboxes = document.querySelectorAll('.diagram-checkbox');
+            const allSelected = Array.from(diagramCheckboxes).every(checkbox => checkbox.checked);
+
+            diagramCheckboxes.forEach(checkbox => {
+                checkbox.checked = !allSelected;
+            });
+
+            selectAllCheckbox.checked = !allSelected;
         });
     </script>
 </body>
