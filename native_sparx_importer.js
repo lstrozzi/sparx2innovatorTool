@@ -35,7 +35,19 @@ function importObjects(tableName) {
                     let attributes = extension[0].attributes;
                     let attributeValues = {};
                     for(let i = 0; i < attributes.length; i++) {
-                        dict[attributes[i].name] = attributes[i].value;
+                        extensionName = attributes[i].name;
+                        extensionValue = attributes[i].value;
+                        if (extensionName == 'Object_ID') {
+                            // convert Object_ID to Element_ID to avoid confusion with the Object_ID of the current object
+                            extensionName = 'Element_ID';
+                        } else if (extensionName == 'Diagram_ID') {
+                            // convert Object_ID to Object_in_Diagram_ID to avoid confusion with the Diagram_ID of the current object
+                            extensionName = 'Object_in_Diagram_ID';
+                        }
+                        if (extensionValue.startsWith('{')) {
+                            extensionValue = convert_guid(extensionValue);
+                        }
+                        dict[extensionName] = extensionValue;
                     }
                 }
 
@@ -47,10 +59,18 @@ function importObjects(tableName) {
                     dict['End_Object_ID'] = convert_guid(dict['End_Object_ID']);
                 }
                 if (dict['Diagram_ID'] != null) {
-                    dict['Diagram_ID'] = convert_guid(dict['Diagram_ID']);
+                    diagId = dict['Diagram_ID'];
+                    if (diagId.startsWith('{')) {
+                        diagId = convert_guid(diagId);
+                    }
+                    dict['Diagram_ID'] = diagId;
                 }
                 if (dict['DiagramID'] != null) {
-                    dict['Diagram_ID'] = convert_guid(dict['DiagramID']);
+                    diagId = dict['DiagramID'];
+                    if (diagId.startsWith('{')) {
+                        diagId = convert_guid(diagId);
+                    }
+                    dict['Diagram_ID'] = diagId;
                 }
 
                 // store the object in the dictionary
@@ -195,33 +215,40 @@ function identifyExportedObjects() {
         'connectors': [],
         'diagrams': []
     };
-    for (let key in extracted.diagrams) {
+    for (let diagramkey in extracted.diagrams) {
         // include all selected diagram IDs
-        if (exportedDiagrams.includes(extracted.diagrams[key]['ea_guid'])) {
-            objectIdsToBeExported.diagrams.push(extracted.diagrams[key]['ea_guid']);
+        if (exportedDiagrams.includes(extracted.diagrams[diagramkey]['ea_guid'])) {
+            objectIdsToBeExported.diagrams.push(extracted.diagrams[diagramkey]['ea_guid']);
         }
 
         // include all selected elements that appear on the diagram. To find out which
         // elements appear on the diagram, we need to look at the diagramobjects table
-        for (let key in extracted.diagramobjects) {
-            let diagramobject = extracted.diagramobjects[key];
-            if (objectIdsToBeExported.diagrams.includes(diagramobject['Diagram_ID'])) {
-                objectIdsToBeExported.elements.push(diagramobject['Object_ID']);
+        for (let dokey in extracted.diagramobjects) {
+            let diagramobject = extracted.diagramobjects[dokey];
+            let diagramobject_diagram_id = diagramobject['Object_in_Diagram_ID'];
+            if (objectIdsToBeExported.diagrams.includes(diagramobject_diagram_id)) {
+                let element = extracted.elements[diagramobject['Element_ID']];  // this is coming from the Extension part of the diagramobjects table, there it's called Object_ID but it's renamed to Element_ID to avoid overriding the Object_ID of the t_diagramobjects table
+                if (!objectIdsToBeExported.elements.includes(diagramobject['Element_ID'])) {
+                    objectIdsToBeExported.elements.push(diagramobject['Element_ID']);
+                }
             }
         }
 
         // include all selected connectors that appear on the diagram. To find out which
         // connectors appear on the diagram, we need to look at the diagramlinks table
-        for (let key in extracted.diagramlinks) {
-            let diagramlink = extracted.diagramlinks[key];
-            if (objectIdsToBeExported.diagrams.includes(diagramlink['Diagram_ID'])) {
-                objectIdsToBeExported.connectors.push(diagramlink['Connector_ID']);
+        for (let dlkey in extracted.diagramlinks) {
+            let diagramlink = extracted.diagramlinks[dlkey];
+            let diagramlink_diagram_id = diagramlink['Diagram_ID'];
+            if (objectIdsToBeExported.diagrams.includes(diagramlink_diagram_id)) {
+                if (!objectIdsToBeExported.connectors.includes(diagramlink['Connector_ID'])) {
+                    objectIdsToBeExported.connectors.push(diagramlink['Connector_ID']);
+                }
             }
         }
     }
 }
 
-function exportToInnovator() {
+function exportToInnovator(filter) {
     // identify which diagrams, elements and connector to export
     identifyExportedObjects();
 
@@ -245,16 +272,16 @@ function exportToInnovator() {
     model.appendChild(name);
 
     // Export elements
-    exportElements(doc, model);
+    exportElements(doc, model, filter);
 
     // Export connectors
-    exportConnectors(doc, model);
+    exportConnectors(doc, model, filter);
 
     // Export diagrams
-    exportDiagrams(doc, model);
+    exportDiagrams(doc, model, filter);
 
     // export all elements into a single diagram without connectors
-    exportAllElements(doc, model);
+    exportAllElements(doc, model, filter);
 
     // Serialize XML DOM to string
     let serializer = new XMLSerializer();
@@ -265,13 +292,15 @@ function exportToInnovator() {
 }
 
 const elementTypeBlackList = ['Port', 'DataType', 'Package'];
-function exportElements(doc, model) {
+function exportElements(doc, model, filter) {
     // <elements>
     let elements = doc.createElement('elements');
     model.appendChild(elements);
 
     // add all elements
     for (let key in extracted.elements) {
+        if (filter && !objectIdsToBeExported.elements.includes(key)) continue;
+
         let element = extracted.elements[key];
         if (elementTypeBlackList.includes(element['Object_Type'])) continue;
 
@@ -307,13 +336,15 @@ function convertElementType(sparxtype) {
     return innovatortype;
 }
 
-function exportConnectors(doc, model) {
+function exportConnectors(doc, model, filter) {
     // <relationships>
     let relationships = doc.createElement('relationships');
     model.appendChild(relationships);
 
     // add all connectors
     for (let key in extracted.connectors) {
+        if (filter && !objectIdsToBeExported.connectors.includes(key)) continue;
+
         let connector = extracted.connectors[key];
         // <relationship identifier="EAID_1CF9F3EF_2625_4d19_AC65_BBFE9D37CAAD" xsi:type="Association" source="EAID_94620B68_C54A_435d_899D_652653D6D95F" target="EAID_AB5B300A_4BB6_4def_96B1_BC69E66A68D0">
         let rel = doc.createElement('relationship');
@@ -347,7 +378,7 @@ function convertConnectorType(sparxtype) {
     return innovatortype;
 }
 
-function exportDiagrams(doc, model) {
+function exportDiagrams(doc, model, filter) {
     // <views>
     let views = doc.createElement('views');
     model.appendChild(views);
@@ -360,6 +391,8 @@ function exportDiagrams(doc, model) {
     // add diagrams and their elements
     for (let key in extracted.diagrams) {
         let diagram = extracted.diagrams[key];
+        if (filter && !objectIdsToBeExported.diagrams.includes(diagram['ea_guid'])) continue;
+
         //   <diagrams>
         //      <view identifier="ABC-123" xsi:type="Diagram" viewpoint="ArchiMate Diagram">
         let view = doc.createElement('view');
@@ -556,7 +589,7 @@ function processNativeFile(file) {
         console.log('...file read');
 
         importNativeFile();
-        exportToInnovator();
+        exportToInnovator(false);
 
         fillDiagramsTable();
     };
@@ -567,7 +600,7 @@ function convertNativeFile(file) {
     var reader = new FileReader();
 
     reader.onload = function(e) {
-        var innovatorXmi = exportToInnovator();
+        var innovatorXmi = exportToInnovator(true);
         var blob = new Blob([innovatorXmi], {type: 'text/xml'});
 
         // Create a URL for the Blob
