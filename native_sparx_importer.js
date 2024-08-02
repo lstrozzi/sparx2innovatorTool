@@ -1,6 +1,6 @@
 var xmlDoc = null;
 var extracted = {};
-let exportedDiagrams = [];
+var objectIdsToBeExported = [];
 
 //#region Sparx Importer
 function convert_guid(guid) {
@@ -81,7 +81,7 @@ function importObjects(tableName) {
 }
 
 function importNativeFile() {
-    exportedDiagrams = [];
+    objectIdsToBeExported = [];
 
     extracted.packages       = importObjects('t_package');
     extracted.elements       = importObjects('t_object');
@@ -174,6 +174,7 @@ function formatXml(xml) {
     return formatted;
 };
 
+// fills the objectIdsToBeExported object with the GUIDs of the diagrams, elements and connectors to be exported
 function identifyExportedObjects() {
     // identify which diagrams, elements and connector to export
     let diagrams = document.getElementById('diagramsTable').getElementsByTagName('input');
@@ -185,6 +186,37 @@ function identifyExportedObjects() {
             let ea_guid = diagrams[i].parentElement.nextElementSibling.nextElementSibling.textContent;
             if (ea_guid == 'Enterprise Architect Global Unique Identifier') continue;
             exportedDiagrams.push(ea_guid);
+        }
+    }
+
+    // use the exported diagrams to identify the elements, diagrams and connectors to export
+    objectIdsToBeExported = {
+        'elements': [],
+        'connectors': [],
+        'diagrams': []
+    };
+    for (let key in extracted.diagrams) {
+        // include all selected diagram IDs
+        if (exportedDiagrams.includes(extracted.diagrams[key]['ea_guid'])) {
+            objectIdsToBeExported.diagrams.push(extracted.diagrams[key]['ea_guid']);
+        }
+
+        // include all selected elements that appear on the diagram. To find out which
+        // elements appear on the diagram, we need to look at the diagramobjects table
+        for (let key in extracted.diagramobjects) {
+            let diagramobject = extracted.diagramobjects[key];
+            if (objectIdsToBeExported.diagrams.includes(diagramobject['Diagram_ID'])) {
+                objectIdsToBeExported.elements.push(diagramobject['Object_ID']);
+            }
+        }
+
+        // include all selected connectors that appear on the diagram. To find out which
+        // connectors appear on the diagram, we need to look at the diagramlinks table
+        for (let key in extracted.diagramlinks) {
+            let diagramlink = extracted.diagramlinks[key];
+            if (objectIdsToBeExported.diagrams.includes(diagramlink['Diagram_ID'])) {
+                objectIdsToBeExported.connectors.push(diagramlink['Connector_ID']);
+            }
         }
     }
 }
