@@ -321,7 +321,7 @@ function exportElements(doc, model, filter) {
 function convertElementType(sparxtype) {
     switch (sparxtype) {
         case 'Component':
-            innovatortype = 'ApplicationComponent';
+            innovatortype = 'ApplicationCollaboration';
             break;
         case 'Class':
             innovatortype = 'BusinessObject';
@@ -337,6 +337,8 @@ function convertElementType(sparxtype) {
 }
 
 function exportConnectors(doc, model, filter) {
+    if (extracted.connectors == null || extracted.connectors.length == 0) return;
+
     // <relationships>
     let relationships = doc.createElement('relationships');
     model.appendChild(relationships);
