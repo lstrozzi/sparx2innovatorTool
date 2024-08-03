@@ -535,8 +535,9 @@ function exportAllElements(doc, model) {
 
     let nodes = [];
     instanceid = 0;
-    for (let key in extracted.elements) {
-        let element = extracted.elements[key];
+    for (let key in objectIdsToBeExported.elements) {
+        let elementKey = objectIdsToBeExported.elements[key];
+        let element = extracted.elements[elementKey];
         if (elementTypeBlackList.includes(element['Object_Type'])) continue;
         //      <view identifier="ABC-123" xsi:type="Diagram" viewpoint="ArchiMate Diagram">
         //        <node identifier="EAID_94620B68_C54A_435d_899D_652653D6D95F" xsi:type="Container" x="0" y="40" w="220" h="50">

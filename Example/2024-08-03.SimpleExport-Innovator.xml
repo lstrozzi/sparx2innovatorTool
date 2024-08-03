@@ -1,0 +1,41 @@
+<model xmlns:dc="http://purl.org/dc/elements/1.1/"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.opengroup.org/xsd/archimate/3.0/ http://www.opengroup.org/xsd/archimate/3.1/archimate3_Diagram.xsd http://purl.org/dc/elements/1.1/ http://www.opengroup.org/xsd/archimate/3.1/dc.xsd" version="16.0.1.21019" identifier="id-085c6229-1eec-4881-889f-99b109ade5b8"
+  xmlns="http://www.opengroup.org/xsd/archimate/3.0/">
+  <name xml:lang="de">Innovator</name>
+  <elements>
+    <element identifier="EA_1385821C-0FED-467D-A087-968926E51B35" xsi:type="ApplicationComponent">
+      <name xml:lang="de">IDD</name>
+    </element>
+    <element identifier="EA_A747B025-31AB-4F97-9A5F-9AB3A0A74D72" xsi:type="ApplicationComponent">
+      <name xml:lang="de">nasure</name>
+    </element>
+    <element identifier="EA_B158BB4F-EDDF-4FFA-989F-BAAD41AD0ABC" xsi:type="ApplicationComponent">
+      <name xml:lang="de">Harvester</name>
+    </element>
+    <element identifier="EA_F42E07AD-881D-4910-A077-36FBA09F6ECA" xsi:type="ApplicationComponent">
+      <name xml:lang="de">Dashboard Covid-19</name>
+    </element>
+  </elements>
+  <views>
+    <diagrams>
+      <view identifier="EA_79F6BD40-0272-475B-851E-C89CB99ACCBB" xsi:type="Diagram" viewpoint="ArchiMate Diagram">
+        <name xml:lang="de">BAG Fachanwendungen und Prozesse</name>
+      </view>
+      <view identifier="AllElements" xsi:type="Diagram" viewpoint="ArchiMate Diagram">
+        <name xml:lang="de">All Elements</name>
+        <node identifier="_1" elementRef="EA_F42E07AD-881D-4910-A077-36FBA09F6ECA" xsi:type="Element" x="50" y="50" w="220" h="50">
+          <label xml:lang="de">Dashboard Covid-19</label>
+        </node>
+        <node identifier="_2" elementRef="EA_1385821C-0FED-467D-A087-968926E51B35" xsi:type="Element" x="300" y="50" w="220" h="50">
+          <label xml:lang="de">IDD</label>
+        </node>
+        <node identifier="_3" elementRef="EA_B158BB4F-EDDF-4FFA-989F-BAAD41AD0ABC" xsi:type="Element" x="550" y="50" w="220" h="50">
+          <label xml:lang="de">Harvester</label>
+        </node>
+        <node identifier="_6" elementRef="EA_A747B025-31AB-4F97-9A5F-9AB3A0A74D72" xsi:type="Element" x="1300" y="50" w="220" h="50">
+          <label xml:lang="de">nasure</label>
+        </node>
+      </view>
+    </diagrams>
+  </views>
+</model>
