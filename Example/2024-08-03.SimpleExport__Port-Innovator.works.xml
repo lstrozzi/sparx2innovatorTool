@@ -45,14 +45,6 @@
   </propertyDefinitions>
   <views>
     <diagrams>
-      <view identifier="EA_B94B72FE-C691-45AA-A7D2-221DB6CB1689" xsi:type="Diagram" viewpoint="ArchiMate Diagram">
-        <name xml:lang="de">_BAG Fachanwendungen und Prozesse_APPS_ONLY</name>
-        <properties>
-          <property propertyDefinitionRef="id-Stereotype">
-            <value xml:lang="de">DiagramEAEnterpriseArchitecture</value>
-          </property>
-        </properties>
-      </view>
       <view identifier="AllElements" xsi:type="Diagram" viewpoint="ArchiMate Diagram">
         <name xml:lang="de">All Elements</name>
         <properties>

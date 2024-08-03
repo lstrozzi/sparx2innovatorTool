@@ -277,6 +277,9 @@ function exportToInnovator(filter) {
     // Export connectors
     exportConnectors(doc, model, filter);
 
+    // Export properties
+    exportProperties(doc, model, filter);
+
     // Export diagrams
     exportDiagrams(doc, model, filter);
 
@@ -315,6 +318,22 @@ function exportElements(doc, model, filter) {
         elName.setAttribute('xml:lang', 'de');
         elName.textContent = element['Name'];
         el.appendChild(elName);
+
+        //       <properties>
+        //         <property propertyDefinitionRef="id-Stereotype">
+        //           <value xml:lang="de">ApplicationBusinessApplication</value>
+        //         </property>
+        //       </properties>
+        let mmb_stereotype = convertStereotype(element['Stereotype']);
+        let properties = doc.createElement('properties');
+        el.appendChild(properties);
+        let property = doc.createElement('property');
+        properties.appendChild(property);
+        property.setAttribute('propertyDefinitionRef', 'id-Stereotype');
+        let value = doc.createElement('value');
+        value.setAttribute('xml:lang', 'de');
+        value.textContent = mmb_stereotype;
+        property.appendChild(value);
     }
 }
 
@@ -334,6 +353,50 @@ function convertElementType(sparxtype) {
             break;
     }
     return innovatortype;
+}
+
+function convertStereotype(sparxstereotype) {
+    switch (sparxstereotype) {
+        case 'bag_InfSys':
+            innovatorstereotype = 'ApplicationBusinessApplication';
+            break;
+        default:
+            innovatorstereotype = sparxstereotype;
+            break;
+    }
+    return innovatorstereotype;
+}
+
+function exportProperties(doc, model, filter) {
+    // <elements>
+    let elements = doc.createElement('elements');
+    model.appendChild(elements);
+
+    // add all properties
+    // <propertyDefinitions>
+    //   <propertyDefinition identifier="id-Stereotype" type="string">
+    //     <name>Stereotype</name>
+    //     <name xml:lang="en">Stereotype</name>
+    //     <name xml:lang="de">Stereotyp</name>
+    //   </propertyDefinition>
+    // </propertyDefinitions>
+    let propertyDefinitions = doc.createElement('propertyDefinitions');
+    model.appendChild(propertyDefinitions);
+    let propertyDefinition = doc.createElement('propertyDefinition');
+    propertyDefinitions.appendChild(propertyDefinition);
+    propertyDefinition.setAttribute('identifier', 'id-Stereotype');
+    propertyDefinition.setAttribute('type', 'string');
+    let name = doc.createElement('name');
+    name.textContent = 'Stereotype';
+    propertyDefinition.appendChild(name);
+    let name_en = doc.createElement('name');
+    name_en.setAttribute('xml:lang', 'en');
+    name_en.textContent = 'Stereotype';
+    propertyDefinition.appendChild(name_en);
+    let name_de = doc.createElement('name');
+    name_de.setAttribute('xml:lang', 'de');
+    name_de.textContent = 'Stereotyp';
+    propertyDefinition.appendChild(name_de);
 }
 
 function exportConnectors(doc, model, filter) {
@@ -409,6 +472,22 @@ function exportDiagrams(doc, model, filter) {
         viewname.setAttribute('xml:lang', 'de');
         viewname.textContent = diagram['Name'];
         view.appendChild(viewname);
+
+        //       <properties>
+        //         <property propertyDefinitionRef="id-Stereotype">
+        //           <value xml:lang="de">DiagramEAEnterpriseArchitecture</value>
+        //         </property>
+        //       </properties>
+        let mmb_stereotype = "DiagramEAEnterpriseArchitecture";
+        let properties = doc.createElement('properties');
+        view.appendChild(properties);
+        let property = doc.createElement('property');
+        properties.appendChild(property);
+        property.setAttribute('propertyDefinitionRef', 'id-Stereotype');
+        let value = doc.createElement('value');
+        value.setAttribute('xml:lang', 'de');
+        value.textContent = mmb_stereotype;
+        property.appendChild(value);
 
         let nodes = [];
         for (let key in extracted.diagramobjects) {
@@ -535,6 +614,22 @@ function exportAllElements(doc, model) {
     viewname.textContent = 'All Elements';
     view.appendChild(viewname);
 
+    //         <properties>
+    //           <property propertyDefinitionRef="id-Stereotype">
+    //             <value xml:lang="de">DiagramEAEnterpriseArchitecture</value>
+    //           </property>
+    //         </properties>
+    let mmb_stereotype = "DiagramEAEnterpriseArchitecture";
+    let properties = doc.createElement('properties');
+    view.appendChild(properties);
+    let property = doc.createElement('property');
+    properties.appendChild(property);
+    property.setAttribute('propertyDefinitionRef', 'id-Stereotype');
+    let value = doc.createElement('value');
+    value.setAttribute('xml:lang', 'de');
+    value.textContent = mmb_stereotype;
+    property.appendChild(value);
+    
     let nodes = [];
     instanceid = 0;
     for (let key in objectIdsToBeExported.elements) {
