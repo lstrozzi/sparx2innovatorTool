@@ -519,11 +519,11 @@ function exportDiagrams(doc, model, filter) {
         value.textContent = mmb_stereotype;
         property.appendChild(value);
 
-        let nodes = [];
+        let nodes = {};
         for (let key in extracted.diagramobjects) {
             let diagramelement = extracted.diagramobjects[key];
-            if (diagramelement['Diagram_ID'] != diagram['ea_guid']) continue;
-            let element = extracted.elements[diagramelement['Object_ID']];
+            if (diagramelement['Diagram_ID'] != diagram['Diagram_ID']) continue;
+            let element = extracted.elements[diagramelement['Element_ID']];
             if (element != null) {
                 if (element['Object_Type'] == 'Port') continue;
                 //      <view identifier="ABC-123" xsi:type="Diagram" viewpoint="ArchiMate Diagram">
@@ -532,8 +532,8 @@ function exportDiagrams(doc, model, filter) {
                 //        </node>
                 let node = doc.createElement('node');
                 view.appendChild(node);
-                node.setAttribute('identifier', "_" + diagramelement['Instance_ID']);
-                node.setAttribute('elementRef', diagramelement['Object_ID']);
+                node.setAttribute('identifier', "id-" + diagramelement['Instance_ID']);
+                node.setAttribute('elementRef', diagramelement['Element_ID']);
                 node.setAttribute('xsi:type', "Element");
                 node.setAttribute('x', diagramelement['RectLeft']);
                 node.setAttribute('y', -diagramelement['RectTop']);
@@ -544,7 +544,7 @@ function exportDiagrams(doc, model, filter) {
                 label.textContent = element['Name'];
                 node.appendChild(label);
 
-                nodes[element['ea_guid']] = "_" + diagramelement['Instance_ID'];
+                nodes[element['ea_guid']] = "id-" + diagramelement['Instance_ID'];
             }
         }
 
@@ -554,9 +554,9 @@ function exportDiagrams(doc, model, filter) {
             if (diagramlink['Diagram_ID'] != diagram['ea_guid']) continue;
             if (diagramlink != null) {
                 //      <view identifier="ABC-123" xsi:type="Diagram" viewpoint="ArchiMate Diagram">
-                //        <connection identifier="EAID_1CF9F3EF_2625_4d19_AC65_BBFE9D37CAAD" xsi:type="Line" source="EAID_94620B68_C54A_435d_899D_652653D6D95F" target="EAID_AB5B300A_4BB6_4def_96B1_BC69E66A68D0">
-                //           <sourceAttachment x="220" y="65" />
-                //           <targetAttachment x="320" y="65" />
+                //        <connection identifier="id-2fc9c902-8a05-9be6-d8e7-ce6a02a401f7" relationshipRef="id-fb2e3752-de21-f0ca-b8b6-bfcc1c76f131" xsi:type="Relationship" source="id-57c7c9fc-2722-58a0-6327-9810885b4d26" target="id-ebcfaa3c-2443-b965-4c38-082cbc24290f">
+                //          <sourceAttachment x="150" y="45" />
+                //          <targetAttachment x="410" y="45" />
                 //        </connection>
                 let connector = extracted.connectors[diagramlink['Connector_ID']];
                 if (connector == null) continue;
@@ -576,8 +576,9 @@ function exportDiagrams(doc, model, filter) {
                     console.warn('NOT IMPLEMENTED: conversion of Port');
                     // targetid = allElements[targetid]['owner'];
                 }
+                connection.setAttribute('relationshipRef', diagramlink['Connector_ID']);
                 connection.setAttribute('identifier', "DL-" + diagramlink['Instance_ID']);
-                connection.setAttribute('xsi:type', 'Line');
+                connection.setAttribute('xsi:type', 'Relationship');
                 connection.setAttribute('source', nodes[sourceid]);
                 connection.setAttribute('target', nodes[targetid]);
 
@@ -672,7 +673,7 @@ function exportAllElements(doc, model) {
         //        </node>
         let node = doc.createElement('node');
         view.appendChild(node);
-        node.setAttribute('identifier', "_" + ++instanceid);
+        node.setAttribute('identifier', "id-" + ++instanceid);
         node.setAttribute('elementRef', element['ea_guid']);
         node.setAttribute('xsi:type', "Element");
 

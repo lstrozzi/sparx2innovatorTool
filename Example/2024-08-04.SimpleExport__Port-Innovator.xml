@@ -37,7 +37,7 @@
     </element>
   </elements>
   <relationships>
-    <relationship identifier="EA_1E4E9E06-E7FC-4F61-BF89-ECC7FB96524E" xsi:type="Dependency" source="EA_A747B025-31AB-4F97-9A5F-9AB3A0A74D72" target="EA_1385821C-0FED-467D-A087-968926E51B35">
+    <relationship identifier="EA_1E4E9E06-E7FC-4F61-BF89-ECC7FB96524E" xsi:type="Association" source="EA_A747B025-31AB-4F97-9A5F-9AB3A0A74D72" target="EA_1385821C-0FED-467D-A087-968926E51B35">
       <name xml:lang="de">löst IDD ab</name>
       <properties>
         <property propertyDefinitionRef="id-Stereotype">
@@ -45,7 +45,7 @@
         </property>
       </properties>
     </relationship>
-    <relationship identifier="EA_37222965-CA7C-4A8A-8879-8AB9DC818236" xsi:type="Dependency" source="EA_F42E07AD-881D-4910-A077-36FBA09F6ECA" target="EA_1385821C-0FED-467D-A087-968926E51B35">
+    <relationship identifier="EA_37222965-CA7C-4A8A-8879-8AB9DC818236" xsi:type="Association" source="EA_F42E07AD-881D-4910-A077-36FBA09F6ECA" target="EA_1385821C-0FED-467D-A087-968926E51B35">
       <name xml:lang="de">abgelöst durch IDD</name>
       <properties>
         <property propertyDefinitionRef="id-Stereotype">
@@ -70,11 +70,23 @@
             <value xml:lang="de">DiagramEAEnterpriseArchitecture</value>
           </property>
         </properties>
-        <connection identifier="DL-3211" xsi:type="Line" source="undefined" target="undefined">
+        <node identifier="id-6622" elementRef="EA_F42E07AD-881D-4910-A077-36FBA09F6ECA" xsi:type="Element" x="83" y="103" w="110" h="60">
+          <label xml:lang="de">Dashboard Covid-19</label>
+        </node>
+        <node identifier="id-6625" elementRef="EA_1385821C-0FED-467D-A087-968926E51B35" xsi:type="Element" x="392" y="103" w="110" h="60">
+          <label xml:lang="de">IDD</label>
+        </node>
+        <node identifier="id-6624" elementRef="EA_B158BB4F-EDDF-4FFA-989F-BAAD41AD0ABC" xsi:type="Element" x="83" y="319" w="110" h="60">
+          <label xml:lang="de">Harvester</label>
+        </node>
+        <node identifier="id-6623" elementRef="EA_A747B025-31AB-4F97-9A5F-9AB3A0A74D72" xsi:type="Element" x="392" y="319" w="110" h="60">
+          <label xml:lang="de">nasure</label>
+        </node>
+        <connection relationshipRef="EA_37222965-CA7C-4A8A-8879-8AB9DC818236" identifier="DL-3211" xsi:type="Relationship" source="id-6622" target="id-6625">
           <sourceAttachment x="0" y="0"/>
           <targetAttachment x="0" y="0"/>
         </connection>
-        <connection identifier="DL-3210" xsi:type="Line" source="undefined" target="undefined">
+        <connection relationshipRef="EA_1E4E9E06-E7FC-4F61-BF89-ECC7FB96524E" identifier="DL-3210" xsi:type="Relationship" source="id-6623" target="id-6625">
           <sourceAttachment x="0" y="0"/>
           <targetAttachment x="0" y="0"/>
         </connection>
@@ -86,16 +98,16 @@
             <value xml:lang="de">DiagramEAEnterpriseArchitecture</value>
           </property>
         </properties>
-        <node identifier="_1" elementRef="EA_F42E07AD-881D-4910-A077-36FBA09F6ECA" xsi:type="Element" x="50" y="50" w="220" h="50">
+        <node identifier="id-1" elementRef="EA_F42E07AD-881D-4910-A077-36FBA09F6ECA" xsi:type="Element" x="50" y="50" w="220" h="50">
           <label xml:lang="de">Dashboard Covid-19</label>
         </node>
-        <node identifier="_2" elementRef="EA_1385821C-0FED-467D-A087-968926E51B35" xsi:type="Element" x="300" y="50" w="220" h="50">
+        <node identifier="id-2" elementRef="EA_1385821C-0FED-467D-A087-968926E51B35" xsi:type="Element" x="300" y="50" w="220" h="50">
           <label xml:lang="de">IDD</label>
         </node>
-        <node identifier="_3" elementRef="EA_B158BB4F-EDDF-4FFA-989F-BAAD41AD0ABC" xsi:type="Element" x="550" y="50" w="220" h="50">
+        <node identifier="id-3" elementRef="EA_B158BB4F-EDDF-4FFA-989F-BAAD41AD0ABC" xsi:type="Element" x="550" y="50" w="220" h="50">
           <label xml:lang="de">Harvester</label>
         </node>
-        <node identifier="_4" elementRef="EA_A747B025-31AB-4F97-9A5F-9AB3A0A74D72" xsi:type="Element" x="800" y="50" w="220" h="50">
+        <node identifier="id-4" elementRef="EA_A747B025-31AB-4F97-9A5F-9AB3A0A74D72" xsi:type="Element" x="800" y="50" w="220" h="50">
           <label xml:lang="de">nasure</label>
         </node>
       </view>
