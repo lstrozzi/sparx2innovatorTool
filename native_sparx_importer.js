@@ -365,6 +365,9 @@ function convertElementType(sparxtype) {
 
 function convertStereotype(sparxstereotype) {
     switch (sparxstereotype) {
+        case 'ReplacedBy':
+            innovatorstereotype = 'AssociationApplicationDirected_ToApplicationReplacedByApplication';
+            break;
         case 'bag_InfSys':
             innovatorstereotype = 'ApplicationBusinessApplication';
             break;
@@ -415,6 +418,8 @@ function exportConnectors(doc, model, filter) {
         if (filter && !objectIdsToBeExported.connectors.includes(key)) continue;
 
         let connector = extracted.connectors[key];
+        let mmb_stereotype = convertStereotype(connector['Stereotype']);
+
         // <relationship identifier="EAID_1CF9F3EF_2625_4d19_AC65_BBFE9D37CAAD" xsi:type="Association" source="EAID_94620B68_C54A_435d_899D_652653D6D95F" target="EAID_AB5B300A_4BB6_4def_96B1_BC69E66A68D0">
         let rel = doc.createElement('relationship');
         relationships.appendChild(rel);
@@ -426,13 +431,18 @@ function exportConnectors(doc, model, filter) {
         let targetid = connector['End_Object_ID'];
         rel.setAttribute('source', sourceid);
         rel.setAttribute('target', targetid);
+        
+        //       <name xml:lang="de">ApplicationBusinessApplication</name>
+        let name = doc.createElement('name');
+        name.setAttribute('xml:lang', 'de');
+        name.textContent = connector['Name'];
+        rel.appendChild(name);
 
         //       <properties>
         //         <property propertyDefinitionRef="id-Stereotype">
         //           <value xml:lang="de">ApplicationBusinessApplication</value>
         //         </property>
         //       </properties>
-        let mmb_stereotype = convertStereotype(connector['Stereotype']);
         let properties = doc.createElement('properties');
         rel.appendChild(properties);
         let property = doc.createElement('property');
@@ -447,7 +457,7 @@ function exportConnectors(doc, model, filter) {
 
 function convertConnectorType(sparxtype) {
     switch (sparxtype) {
-        case 'Association':
+        case 'Dependency':
             innovatortype = 'Association';
             break;
         case 'InformationFlow':
