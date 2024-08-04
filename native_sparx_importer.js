@@ -372,10 +372,6 @@ function convertStereotype(sparxstereotype) {
 }
 
 function exportProperties(doc, model, filter) {
-    // <elements>
-    let elements = doc.createElement('elements');
-    model.appendChild(elements);
-
     // add all properties
     // <propertyDefinitions>
     //   <propertyDefinition identifier="id-Stereotype" type="string">

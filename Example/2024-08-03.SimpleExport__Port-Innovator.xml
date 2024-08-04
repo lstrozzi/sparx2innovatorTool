@@ -52,7 +52,6 @@
       </properties>
     </relationship>
   </relationships>
-  <elements/>
   <propertyDefinitions>
     <propertyDefinition identifier="id-Stereotype" type="string">
       <name>Stereotype</name>
