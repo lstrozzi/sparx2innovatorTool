@@ -37,14 +37,14 @@
     </element>
   </elements>
   <relationships>
-    <relationship identifier="EA_1E4E9E06-E7FC-4F61-BF89-ECC7FB96524E" xsi:type="Dependency" source="EA_EA_A747B025-31AB-4F97-9A5F-9AB3A0A74D72" target="EA_EA_1385821C-0FED-467D-A087-968926E51B35">
+    <relationship identifier="EA_1E4E9E06-E7FC-4F61-BF89-ECC7FB96524E" xsi:type="Dependency" source="EA_A747B025-31AB-4F97-9A5F-9AB3A0A74D72" target="EA_1385821C-0FED-467D-A087-968926E51B35">
       <properties>
         <property propertyDefinitionRef="id-Stereotype">
           <value xml:lang="de"/>
         </property>
       </properties>
     </relationship>
-    <relationship identifier="EA_37222965-CA7C-4A8A-8879-8AB9DC818236" xsi:type="Dependency" source="EA_EA_F42E07AD-881D-4910-A077-36FBA09F6ECA" target="EA_EA_1385821C-0FED-467D-A087-968926E51B35">
+    <relationship identifier="EA_37222965-CA7C-4A8A-8879-8AB9DC818236" xsi:type="Dependency" source="EA_F42E07AD-881D-4910-A077-36FBA09F6ECA" target="EA_1385821C-0FED-467D-A087-968926E51B35">
       <properties>
         <property propertyDefinitionRef="id-Stereotype">
           <value xml:lang="de"/>

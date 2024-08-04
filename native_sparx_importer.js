@@ -53,10 +53,14 @@ function importObjects(tableName) {
 
                 // convert GUIDs to the format used in Innovator
                 if (dict['Start_Object_ID'] != null) {
-                    dict['Start_Object_ID'] = convert_guid(dict['Start_Object_ID']);
+                    if (dict['Start_Object_ID'].startsWith('{')) {
+                        dict['Start_Object_ID'] = convert_guid(dict['Start_Object_ID']);
+                    }
                 }
                 if (dict['End_Object_ID'] != null) {
-                    dict['End_Object_ID'] = convert_guid(dict['End_Object_ID']);
+                    if (dict['End_Object_ID'].startsWith('{')) {
+                        dict['End_Object_ID'] = convert_guid(dict['End_Object_ID']);
+                    }
                 }
                 if (dict['Diagram_ID'] != null) {
                     diagId = dict['Diagram_ID'];
