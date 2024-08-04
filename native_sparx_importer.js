@@ -84,7 +84,11 @@ function importObjects(tableName) {
                     dict['Client'] = convert_guid(dict['Client']);
                     objects[dict['Client']] = dict;
                 } else if (dict['ConnectorID'] != null) {
-                    dict['Connector_ID'] = convert_guid(dict['ConnectorID']);
+                    if (dict['ConnectorID'].startsWith('{')) {
+                        dict['Connector_ID'] = convert_guid(dict['ConnectorID']);
+                    } else {
+                        dict['Connector_ID'] = dict['ConnectorID'];
+                    }
                     objects[dict['Connector_ID']] = dict;
                 } else {
                     console.log('No GUID or Object_ID found for object');
@@ -422,6 +426,22 @@ function exportConnectors(doc, model, filter) {
         let targetid = connector['End_Object_ID'];
         rel.setAttribute('source', sourceid);
         rel.setAttribute('target', targetid);
+
+        //       <properties>
+        //         <property propertyDefinitionRef="id-Stereotype">
+        //           <value xml:lang="de">ApplicationBusinessApplication</value>
+        //         </property>
+        //       </properties>
+        let mmb_stereotype = convertStereotype(connector['Stereotype']);
+        let properties = doc.createElement('properties');
+        rel.appendChild(properties);
+        let property = doc.createElement('property');
+        properties.appendChild(property);
+        property.setAttribute('propertyDefinitionRef', 'id-Stereotype');
+        let value = doc.createElement('value');
+        value.setAttribute('xml:lang', 'de');
+        value.textContent = mmb_stereotype;
+        property.appendChild(value);
     }
 }
 
@@ -534,14 +554,14 @@ function exportDiagrams(doc, model, filter) {
                 view.appendChild(connection);
                 let sourceid = connector['Start_Object_ID'];
                 let source = extracted.elements[sourceid];
-                if (source['Object_Type'] == 'Port') {
+                if (source != null && 'Object_Type' in source && source['Object_Type'] == 'Port') {
                     // TODO
                     console.warn('NOT IMPLEMENTED: conversion of Port');
                     // sourceid = allElements[sourceid]['owner'];
                 }
                 let targetid = connector['End_Object_ID'];
                 let target = extracted.elements[targetid];
-                if (target['Object_Type'] == 'Port') {
+                if (target != null && 'Object_Type' in target && target['Object_Type'] == 'Port') {
                     // TODO
                     console.warn('NOT IMPLEMENTED: conversion of Port');
                     // targetid = allElements[targetid]['owner'];

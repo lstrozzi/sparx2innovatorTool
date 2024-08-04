@@ -468,42 +468,6 @@
     <relationship identifier="id-d42f3f6d-6620-ea30-d0f7-08f0cc5b2598" source="id-054e67bb-787b-4fba-b784-ae2cdca8f160" target="id-6e4d1973-bc9f-80d8-5f65-21418fb37d70" xsi:type="Flow">
       <name xml:lang="de">FlowApplication_ToBusinessApplication</name>
       <properties>
-        <property propertyDefinitionRef="id-ede5d1a9-05f9-5cab-2e60-2c9b277b16d6">
-          <value xml:lang="de">nein</value>
-        </property>
-        <property propertyDefinitionRef="id-80396852-f3fa-75e3-4baa-38bdeca3e97b">
-          <value xml:lang="de">n/a</value>
-        </property>
-        <property propertyDefinitionRef="id-cef04801-279a-8b19-c3e7-658631bedeff">
-          <value xml:lang="de">n/a</value>
-        </property>
-        <property propertyDefinitionRef="id-9c2767e7-e9dd-861f-4eaf-763f52df164a">
-          <value xml:lang="de">n/a</value>
-        </property>
-        <property propertyDefinitionRef="id-75fc6ad1-7871-043f-9efb-e5f9025afe07">
-          <value xml:lang="de">n/a</value>
-        </property>
-        <property propertyDefinitionRef="id-47025541-596e-3115-0c52-19f11744f019">
-          <value xml:lang="de">n/a</value>
-        </property>
-        <property propertyDefinitionRef="id-e94c8817-6ad1-2a23-8e76-fbebd088721f">
-          <value xml:lang="de">n/a</value>
-        </property>
-        <property propertyDefinitionRef="id-8c1c8a4b-bee0-406c-42fa-ec99e9f6cc11">
-          <value xml:lang="de">n/a</value>
-        </property>
-        <property propertyDefinitionRef="id-09ef77d8-dc4a-7129-8df2-931c0408e3b8">
-          <value xml:lang="de">nein</value>
-        </property>
-        <property propertyDefinitionRef="id-d51c59c8-a78e-d11b-be53-16606eeecccf">
-          <value xml:lang="de">nein</value>
-        </property>
-        <property propertyDefinitionRef="id-b13fe051-a42a-18fc-d601-22283c88a7a7">
-          <value xml:lang="de">nein</value>
-        </property>
-        <property propertyDefinitionRef="id-7e04920f-6a44-6e5a-2558-5b881d51cd85">
-          <value xml:lang="de">nein</value>
-        </property>
         <property propertyDefinitionRef="id-Stereotype">
           <value xml:lang="de">FlowApplication_ToBusinessApplication</value>
         </property>
