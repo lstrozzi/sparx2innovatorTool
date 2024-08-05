@@ -53,7 +53,7 @@
         </property>
       </properties>
     </relationship>
-    <relationship identifier="EA_601576A1-8242-44CD-A28B-A9F965DD53A0" xsi:type="Association" source="EA_F42E07AD-881D-4910-A077-36FBA09F6ECA" target="EA_EFDBEB49-BEF1-4076-9F7B-713924C68792">
+    <relationship identifier="EA_601576A1-8242-44CD-A28B-A9F965DD53A0" xsi:type="Association" source="EA_F42E07AD-881D-4910-A077-36FBA09F6ECA" target="EA_1385821C-0FED-467D-A087-968926E51B35">
       <name xml:lang="de">CONNECTOR_TO_PORT</name>
       <properties>
         <property propertyDefinitionRef="id-Stereotype">

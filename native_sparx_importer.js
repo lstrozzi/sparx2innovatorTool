@@ -421,6 +421,8 @@ function exportConnectors(doc, model, filter) {
         if (filter && !objectIdsToBeExported.connectors.includes(key)) continue;
 
         let connector = extracted.connectors[key];
+        let sourceid = connector['Start_Object_ID'];
+        let targetid = connector['End_Object_ID'];
         let mmb_stereotype = convertStereotype(connector['Stereotype']);
 
         // <relationship identifier="EAID_1CF9F3EF_2625_4d19_AC65_BBFE9D37CAAD" xsi:type="Association" source="EAID_94620B68_C54A_435d_899D_652653D6D95F" target="EAID_AB5B300A_4BB6_4def_96B1_BC69E66A68D0">
@@ -429,9 +431,19 @@ function exportConnectors(doc, model, filter) {
         rel.setAttribute('identifier', connector['ea_guid']);
         rel.setAttribute('xsi:type', convertConnectorType(connector['Connector_Type']));
 
+        // handle the case where the source or target is a port
+        let sourceelement = extracted.elements[connector['Start_Object_ID']];
+        if (sourceelement != null && 'Object_Type' in sourceelement && sourceelement['Object_Type'] == 'Port') {
+            sourceelement = extracted.elements[sourceelement['ParentID']];
+            sourceid = sourceelement['ea_guid'];
+        }
+        let targetelement = extracted.elements[connector['End_Object_ID']];
+        if (targetelement != null && 'Object_Type' in targetelement && targetelement['Object_Type'] == 'Port') {
+            targetelement = extracted.elements[targetelement['ParentID']];
+            targetid = targetelement['ea_guid'];
+        }
+
         // source and target identifiers
-        let sourceid = connector['Start_Object_ID'];
-        let targetid = connector['End_Object_ID'];
         rel.setAttribute('source', sourceid);
         rel.setAttribute('target', targetid);
         
@@ -576,6 +588,7 @@ function exportDiagrams(doc, model, filter) {
                 if (target != null && 'Object_Type' in target && target['Object_Type'] == 'Port') {
                     targetelement = extracted.elements[targetid];
                     targetid = targetelement['ParentID'];
+                    targetelement = extracted.elements[targetid];
                 }
                 connection.setAttribute('relationshipRef', diagramlink['Connector_ID']);
                 connection.setAttribute('identifier', "DL-" + diagramlink['Instance_ID']);
