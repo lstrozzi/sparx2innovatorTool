@@ -565,16 +565,14 @@ function exportDiagrams(doc, model, filter) {
                 let sourceid = connector['Start_Object_ID'];
                 let source = extracted.elements[sourceid];
                 if (source != null && 'Object_Type' in source && source['Object_Type'] == 'Port') {
-                    // TODO
-                    console.warn('NOT IMPLEMENTED: conversion of Port');
-                    // sourceid = allElements[sourceid]['owner'];
+                    sourceelement = extracted.elements[sourceid];
+                    sourceid = sourceelement['ParentID'];
                 }
                 let targetid = connector['End_Object_ID'];
                 let target = extracted.elements[targetid];
                 if (target != null && 'Object_Type' in target && target['Object_Type'] == 'Port') {
-                    // TODO
-                    console.warn('NOT IMPLEMENTED: conversion of Port');
-                    // targetid = allElements[targetid]['owner'];
+                    targetelement = extracted.elements[targetid];
+                    targetid = targetelement['ParentID'];
                 }
                 connection.setAttribute('relationshipRef', diagramlink['Connector_ID']);
                 connection.setAttribute('identifier', "DL-" + diagramlink['Instance_ID']);
