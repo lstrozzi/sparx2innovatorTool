@@ -449,18 +449,21 @@ function exportDiagrams(doc, model) {
                 let connection = doc.createElement('connection');
                 view.appendChild(connection);
                 let sourceid = localidmap['E-'+connector['startid']]['id'];
+                geometryelement = diagramelement;
                 if (allElements[sourceid]['type'] == 'Port') {
                     sourceid = allElements[sourceid]['owner'];
+                    geometryelement = allElements[sourceid];
                 }
                 let targetid = localidmap['E-'+connector['endid']]['id'];
                 if (allElements[targetid]['type'] == 'Port') {
                     targetid = allElements[targetid]['owner'];
+                    geometryelement = allElements[targetid];
                 }
                 connection.setAttribute('identifier', diagramelement.subject);
                 connection.setAttribute('xsi:type', 'Line');
                 connection.setAttribute('source', sourceid);
                 connection.setAttribute('target', targetid);
-                let geometry = diagramelement['geometry'].split(';');        // SX=0;SY=0;EX=0;EY=0;EDGE=2;$LLB=;LLT=;LMT=;LMB=;LRT=;LRB=;IRHS=;ILHS=;Path=;
+                let geometry = geometryelement['geometry'].split(';');        // SX=0;SY=0;EX=0;EY=0;EDGE=2;$LLB=;LLT=;LMT=;LMB=;LRT=;LRB=;IRHS=;ILHS=;Path=;
                 let sx = undefined;
                 let sy = undefined;
                 let ex = undefined;

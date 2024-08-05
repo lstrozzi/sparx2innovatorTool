@@ -302,7 +302,9 @@ function exportToInnovator(filter) {
     return xmlPretty;
 }
 
-const elementTypeBlackList = ['Port', 'DataType', 'Package'];
+// TODO: enable again if needed: 
+const elementTypeBlackList = ['DataType', 'Package'];
+
 function exportElements(doc, model, filter) {
     // <elements>
     let elements = doc.createElement('elements');
@@ -314,6 +316,7 @@ function exportElements(doc, model, filter) {
 
         let element = extracted.elements[key];
         if (elementTypeBlackList.includes(element['Object_Type'])) continue;
+        if (element['Object_Type'] == 'Port') continue;
 
         // <element identifier="EAID_94620B68_C54A_435d_899D_652653D6D95F" xsi:type="Actor">
         let el = doc.createElement('element');
@@ -665,6 +668,7 @@ function exportAllElements(doc, model) {
         let elementKey = objectIdsToBeExported.elements[key];
         let element = extracted.elements[elementKey];
         if (elementTypeBlackList.includes(element['Object_Type'])) continue;
+        if (element['Object_Type'] == 'Port') continue;
         //      <view identifier="ABC-123" xsi:type="Diagram" viewpoint="ArchiMate Diagram">
         //        <node identifier="EAID_94620B68_C54A_435d_899D_652653D6D95F" xsi:type="Container" x="0" y="40" w="220" h="50">
         //          <label xml:lang="de">Actor1</label>
