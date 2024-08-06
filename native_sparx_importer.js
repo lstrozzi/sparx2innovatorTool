@@ -335,7 +335,7 @@ function exportElements(doc, model, filter) {
         //           <value xml:lang="de">ApplicationBusinessApplication</value>
         //         </property>
         //       </properties>
-        let mmb_stereotype = convertStereotype(element['Stereotype']);
+        let mmb_stereotype = convertElementStereotype(element['Object_Type'], element['Stereotype']);
         let properties = doc.createElement('properties');
         el.appendChild(properties);
         let property = doc.createElement('property');
@@ -359,6 +359,9 @@ function convertElementType(sparxtype) {
         case 'Actor':
             innovatortype = 'BusinessRole';
             break;
+        case 'Activity':
+            innovatortype = 'BusinessProcess';
+            break;
         default:
             innovatortype = sparxtype;
             break;
@@ -366,14 +369,13 @@ function convertElementType(sparxtype) {
     return innovatortype;
 }
 
-function convertStereotype(sparxstereotype) {
+function convertElementStereotype(sparxtype, sparxstereotype) {
     switch (sparxstereotype) {
-        case 'ReplacedBy':
-            innovatorstereotype = 'AssociationApplicationDirected_ToApplicationReplacedByApplication';
-            break;
         case 'bag_InfSys':
             innovatorstereotype = 'ApplicationBusinessApplication';
             break;
+        case 'BusinessProcess':
+            innovatorstereotype = 'BusinessProcess';
         default:
             innovatorstereotype = sparxstereotype;
             break;
@@ -423,7 +425,7 @@ function exportConnectors(doc, model, filter) {
         let connector = extracted.connectors[key];
         let sourceid = connector['Start_Object_ID'];
         let targetid = connector['End_Object_ID'];
-        let mmb_stereotype = convertStereotype(connector['Stereotype']);
+        let mmb_stereotype = convertConnectorStereotype(connector['Connector_Type'], connector['Stereotype'], extracted.elements[sourceid], extracted.elements[targetid]);
 
         // <relationship identifier="EAID_1CF9F3EF_2625_4d19_AC65_BBFE9D37CAAD" xsi:type="Association" source="EAID_94620B68_C54A_435d_899D_652653D6D95F" target="EAID_AB5B300A_4BB6_4def_96B1_BC69E66A68D0">
         let rel = doc.createElement('relationship');
@@ -475,6 +477,9 @@ function convertConnectorType(sparxtype) {
         case 'Dependency':
             innovatortype = 'Association';
             break;
+        case 'Realization':
+            innovatortype = 'Realization';
+            break;
         case 'InformationFlow':
             innovatortype = 'Flow';
             break;
@@ -486,6 +491,39 @@ function convertConnectorType(sparxtype) {
             break;
     }
     return innovatortype;
+}
+
+function convertConnectorStereotype(sparxtype, sparxstereotype, sourceelement, targetelement) {
+    if (sourceelement == null || targetelement == null) return;
+
+    innovatorstereotype = convertElementStereotype(sparxtype, sparxstereotype);     // default to the element stereotype conversion (in all 'default' switch cases)
+    sourceelementtype = sourceelement['Object_Type'];
+    targetelementtype = targetelement['Object_Type'];
+
+    switch (sparxtype) {
+        case 'Dependency':
+            switch (sparxstereotype) {
+                case 'ReplacedBy':
+                    innovatorstereotype = 'AssociationApplicationDirected_ToApplicationReplacedByApplication';
+                    break;
+                default:
+                    break;
+            }
+            break;
+        case 'Realisation':
+        case 'Realization':
+            switch (sparxstereotype) {
+                default:
+                    if (sourceelementtype == 'Component' && targetelementtype == 'BusinessProcess') {
+                        innovatorstereotype = 'RealizationBusiness_OfBusinessProcess';
+                    }
+                    break;
+            }
+        default:
+            break;
+    }
+
+    return innovatorstereotype;
 }
 
 function exportDiagrams(doc, model, filter) {
