@@ -1,463 +1,25 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
-<model xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.opengroup.org/xsd/archimate/3.0/ http://www.opengroup.org/xsd/archimate/3.0/archimate3_Diagram.xsd http://purl.org/dc/elements/1.1/ http://www.opengroup.org/xsd/archimate/3.0/dc.xsd" version="16.0.1.30523" identifier="id-cb1614e2-9d73-4924-bd59-a7693fe132b3" xmlns="http://www.opengroup.org/xsd/archimate/3.0/">
+<model xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.opengroup.org/xsd/archimate/3.0/ http://www.opengroup.org/xsd/archimate/3.0/archimate3_Diagram.xsd http://purl.org/dc/elements/1.1/ http://www.opengroup.org/xsd/archimate/3.0/dc.xsd" version="16.0.1.30523" identifier="id-86d9ef2d-9739-4de8-afef-4b306c3b5430" xmlns="http://www.opengroup.org/xsd/archimate/3.0/">
   <name xml:lang="de">Innovator</name>
   <metadata>
     <schema>http://purl.org/dc/elements/1.1/</schema>
     <schemaversion>1.1</schemaversion>
     <dc:title>Innovator</dc:title>
     <dc:creator>cm018809.adb.intra.admin.ch:x60020912</dc:creator>
-    <dc:date>Freitag, 2. August 2024 13:58:23</dc:date>
+    <dc:date>Dienstag, 6. August 2024 07:09:44</dc:date>
   </metadata>
   <elements>
-    <element identifier="id-054e67bb-787b-4fba-b784-ae2cdca8f160" xsi:type="ApplicationCollaboration">
-      <name xml:lang="de">test - A</name>
+    <element identifier="id-3eaaa985-6302-d87a-3093-4aa053fb1ae9" xsi:type="BusinessProcess">
+      <name xml:lang="de">Business Process 1</name>
       <properties>
-        <property propertyDefinitionRef="id-9e72f967-f690-8527-7e2d-012b15811b2f">
-          <value xml:lang="de">nein</value>
-        </property>
-        <property propertyDefinitionRef="id-650abe4c-fa4c-54c7-866a-3becacefd081">
-          <value xml:lang="de">n/a</value>
-        </property>
-        <property propertyDefinitionRef="id-a648a2e0-195f-4ec5-bc31-a4ac484f4ad9">
-          <value xml:lang="de">n/a</value>
-        </property>
-        <property propertyDefinitionRef="id-04614bef-c5a8-3411-319f-876a0a00c207">
-          <value xml:lang="de"> : </value>
-        </property>
-        <property propertyDefinitionRef="id-e827dbf8-4b87-73fc-54f6-bd3684e4c8a1">
-          <value xml:lang="de">n/a</value>
-        </property>
-        <property propertyDefinitionRef="id-23fcdd0e-cae2-d936-34cd-a3b5e3048aaf">
-          <value xml:lang="de">n/a</value>
-        </property>
-        <property propertyDefinitionRef="id-59107bd3-5536-3505-6186-38658bb793cd">
-          <value xml:lang="de">n/a</value>
-        </property>
-        <property propertyDefinitionRef="id-75e0a5be-1058-181a-c091-dfa7da4ab25a">
-          <value xml:lang="de">n/a</value>
-        </property>
-        <property propertyDefinitionRef="id-976fc586-b485-a958-b3d8-7056ecebf527">
-          <value xml:lang="de">n/a</value>
-        </property>
-        <property propertyDefinitionRef="id-f8187e3b-feb5-961e-cad4-f4a38347c7cc">
-          <value xml:lang="de">n/a</value>
-        </property>
-        <property propertyDefinitionRef="id-8c9254d0-83e1-ba19-efca-0607989486eb">
-          <value xml:lang="de">n/a</value>
-        </property>
-        <property propertyDefinitionRef="id-32f570c6-6056-ec80-68c1-7a4f82b5bbec">
-          <value xml:lang="de">0 - Plan</value>
-        </property>
-        <property propertyDefinitionRef="id-d08ab7ab-0aef-c9c0-c987-8d6d2c033b44">
-          <value xml:lang="de">Vordefinierter Wert</value>
-        </property>
-        <property propertyDefinitionRef="id-d62ea9c9-d3e7-c9e1-1097-abbb02a38879">
-          <value xml:lang="de">n/a</value>
-        </property>
-        <property propertyDefinitionRef="id-8c32c4e3-4e5c-d188-ea6a-61d55577979b">
-          <value xml:lang="de">n/a</value>
-        </property>
-        <property propertyDefinitionRef="id-9e2a3238-0dfe-3ec3-bdb0-b59daa3a5d78">
-          <value xml:lang="de">n/a</value>
-        </property>
-        <property propertyDefinitionRef="id-51e994ca-7b81-49ee-c6c9-16864912fab5">
-          <value xml:lang="de">n/a</value>
-        </property>
-        <property propertyDefinitionRef="id-8ba67d64-5d76-06f5-5b6b-58201f355d5a">
-          <value xml:lang="de">n/a</value>
-        </property>
-        <property propertyDefinitionRef="id-d769b30a-95e0-2032-0bc7-748df22fe6e9">
-          <value xml:lang="de">n/a</value>
-        </property>
-        <property propertyDefinitionRef="id-74504d2c-ecd2-9a01-baed-6d6166791fb3">
-          <value xml:lang="de">nein</value>
-        </property>
-        <property propertyDefinitionRef="id-23c9de63-02dc-65dc-f9fb-56559bbbcd67">
-          <value xml:lang="de">ja</value>
-        </property>
-        <property propertyDefinitionRef="id-0e0f63db-68fc-d309-3705-970ac87249ff">
-          <value xml:lang="de">nein</value>
-        </property>
-        <property propertyDefinitionRef="id-6c7d0825-8eed-bc24-eef5-bf56f147552a">
-          <value xml:lang="de">nein</value>
-        </property>
-        <property propertyDefinitionRef="id-558c4012-bea2-fdba-1f51-35e16f1f191e">
-          <value xml:lang="de">nein</value>
-        </property>
-        <property propertyDefinitionRef="id-35fd1090-1bed-2c17-4540-102ee54fecaa">
-          <value xml:lang="de">nein</value>
-        </property>
-        <property propertyDefinitionRef="id-2bde9967-0320-014f-16e5-0fadac8915b4">
-          <value xml:lang="de">nein</value>
-        </property>
-        <property propertyDefinitionRef="id-49850d81-d368-457c-327a-50b412e7794a">
-          <value xml:lang="de">nein</value>
-        </property>
-        <property propertyDefinitionRef="id-0ab49c57-5c4c-53f6-af84-863b12d75151">
-          <value xml:lang="de">nein</value>
-        </property>
-        <property propertyDefinitionRef="id-6b141f32-bc35-9de9-921f-da2a14b582fc">
-          <value xml:lang="de">nein</value>
-        </property>
-        <property propertyDefinitionRef="id-11324081-09a5-f51e-c803-a56378a9e765">
-          <value xml:lang="de">nein</value>
-        </property>
-        <property propertyDefinitionRef="id-1a973bd9-019e-3f0c-6e90-2630ed1768bd">
-          <value xml:lang="de">0</value>
-        </property>
-        <property propertyDefinitionRef="id-56d31914-2324-f09d-ca8b-ddfcb4f24462">
-          <value xml:lang="de">0</value>
-        </property>
-        <property propertyDefinitionRef="id-d4da4733-814e-5225-6db3-bf00d9c09695">
-          <value xml:lang="de">0</value>
-        </property>
-        <property propertyDefinitionRef="id-bb98855a-5efc-dfef-4342-dc2805353b91">
-          <value xml:lang="de">0</value>
-        </property>
-        <property propertyDefinitionRef="id-be0f1d26-6d4e-8e98-593a-6c8cfdd07841">
-          <value xml:lang="de">0</value>
-        </property>
-        <property propertyDefinitionRef="id-dfa993d0-4e97-c83d-2a81-c35bb1fea49f">
-          <value xml:lang="de">0</value>
-        </property>
-        <property propertyDefinitionRef="id-9b98a234-af1f-f0fc-2539-db36eb07136a">
-          <value xml:lang="de">0</value>
-        </property>
-        <property propertyDefinitionRef="id-6e9f5bd0-20f6-65ce-5826-b8ae12e24830">
-          <value xml:lang="de">0</value>
-        </property>
-        <property propertyDefinitionRef="id-02cd3c4f-c2d4-3ada-12c3-60af03c042e9">
-          <value xml:lang="de">0</value>
-        </property>
-        <property propertyDefinitionRef="id-a4acb691-4845-6432-5648-93be6fa603c3">
-          <value xml:lang="de">0</value>
-        </property>
-        <property propertyDefinitionRef="id-3377201e-5304-b11b-421d-e22d14de8021">
-          <value xml:lang="de">0</value>
-        </property>
-        <property propertyDefinitionRef="id-2d7a3770-0b5d-122d-b401-83abb021d7af">
-          <value xml:lang="de">n/a</value>
-        </property>
-        <property propertyDefinitionRef="id-4cfccc6e-4407-4816-ff00-7620e95f6a1c">
-          <value xml:lang="de">n/a</value>
-        </property>
-        <property propertyDefinitionRef="id-f28c23a8-1996-f168-4666-b4ec4361145b">
-          <value xml:lang="de">n/a</value>
-        </property>
-        <property propertyDefinitionRef="id-ab507d0f-3d37-95a2-9ad3-961750af0a41">
-          <value xml:lang="de">n/a</value>
-        </property>
-        <property propertyDefinitionRef="id-aa83df2c-7691-6d96-c3f7-df75c2a2b85e">
-          <value xml:lang="de">n/a</value>
-        </property>
-        <property propertyDefinitionRef="id-9a45ff88-134c-b1a0-ec7e-ab8c43c8b0da">
-          <value xml:lang="de">n/a</value>
-        </property>
-        <property propertyDefinitionRef="id-67d07e72-3d1b-50e5-3773-bb7a97db2d6d">
-          <value xml:lang="de">n/a</value>
-        </property>
-        <property propertyDefinitionRef="id-6978da2f-6d54-1a52-48a7-cb558a4fd136">
-          <value xml:lang="de">n/a</value>
-        </property>
-        <property propertyDefinitionRef="id-83bdb838-2d51-6b6d-eb54-1d61ba073532">
-          <value xml:lang="de">n/a</value>
-        </property>
-        <property propertyDefinitionRef="id-656405b8-1b44-4599-cc56-2fffe68aa8e4">
-          <value xml:lang="de">n/a</value>
-        </property>
-        <property propertyDefinitionRef="id-33a84f07-55a8-1d4b-73d9-9b4643e191c2">
-          <value xml:lang="de">n/a</value>
-        </property>
-        <property propertyDefinitionRef="id-2ed077d5-146f-d5e0-41e2-bca01e94eb3a">
-          <value xml:lang="de">n/a</value>
-        </property>
-        <property propertyDefinitionRef="id-386b32a8-1bbd-12ff-cef6-48bc2fbcea92">
-          <value xml:lang="de">n/a</value>
-        </property>
-        <property propertyDefinitionRef="id-2da9b237-bf03-cb10-cf36-394daa80f3cf">
-          <value xml:lang="de">n/a</value>
-        </property>
-        <property propertyDefinitionRef="id-2857b80f-5621-605f-ed90-9b84991c3b75">
-          <value xml:lang="de">n/a</value>
-        </property>
-        <property propertyDefinitionRef="id-9e29bb81-9450-9ce8-9521-f40ab14da2be">
-          <value xml:lang="de">n/a</value>
-        </property>
-        <property propertyDefinitionRef="id-3003b452-a376-4aba-9e4e-8aa04336b9d9">
-          <value xml:lang="de">n/a</value>
-        </property>
-        <property propertyDefinitionRef="id-31882911-c38f-d789-b23b-ffff83e0f3c8">
-          <value xml:lang="de">n/a</value>
-        </property>
-        <property propertyDefinitionRef="id-cf4a8620-ad18-8275-6585-fa71d2f32aa6">
-          <value xml:lang="de">n/a</value>
-        </property>
-        <property propertyDefinitionRef="id-81c178ed-a07f-539d-5b5e-3cbea0171190">
-          <value xml:lang="de">n/a</value>
-        </property>
-        <property propertyDefinitionRef="id-bbdea7c6-269c-bf73-0ec8-5439e741020a">
-          <value xml:lang="de">n/a</value>
-        </property>
-        <property propertyDefinitionRef="id-ab0578a2-524e-027f-977c-24a881c8a415">
-          <value xml:lang="de">n/a</value>
-        </property>
-        <property propertyDefinitionRef="id-5d7ea6a7-a3eb-eb05-0248-0a2e63f29788">
-          <value xml:lang="de">n/a</value>
-        </property>
-        <property propertyDefinitionRef="id-42153c45-2419-4b14-47e7-df5bf9c736b0">
-          <value xml:lang="de">n/a</value>
-        </property>
-        <property propertyDefinitionRef="id-debb90c4-ece2-f67d-06c5-321714169e4f">
-          <value xml:lang="de">n/a</value>
-        </property>
-        <property propertyDefinitionRef="id-471ab4ea-ac08-f33e-f791-a2d5bed2f875">
-          <value xml:lang="de">n/a</value>
-        </property>
-        <property propertyDefinitionRef="id-be8e1484-13cb-5da8-9e0c-e9aff2fbe58e">
-          <value xml:lang="de">n/a</value>
-        </property>
-        <property propertyDefinitionRef="id-143a4899-00f5-d900-62f9-49e815536bda">
-          <value xml:lang="de">n/a</value>
-        </property>
-        <property propertyDefinitionRef="id-5d944abf-1a49-6ba9-4ba3-2f33ab18ca5a">
-          <value xml:lang="de">n/a</value>
-        </property>
-        <property propertyDefinitionRef="id-ff3151ee-fd5e-0b04-3a7a-630d26df6d23">
-          <value xml:lang="de">n/a</value>
-        </property>
-        <property propertyDefinitionRef="id-b6ceeaff-2b3c-89b9-c415-35234b0ffe23">
-          <value xml:lang="de">n/a</value>
-        </property>
-        <property propertyDefinitionRef="id-15818c8d-d799-b814-b383-bd5f9c4409a0">
-          <value xml:lang="de">n/a</value>
-        </property>
         <property propertyDefinitionRef="id-Stereotype">
-          <value xml:lang="de">ApplicationBusinessApplication</value>
+          <value xml:lang="de">BusinessProcess</value>
         </property>
       </properties>
     </element>
-    <element identifier="id-6e4d1973-bc9f-80d8-5f65-21418fb37d70" xsi:type="ApplicationCollaboration">
-      <name xml:lang="de">test - B</name>
+    <element identifier="id-d12668c7-538c-07e9-ca23-28482845475b" xsi:type="ApplicationCollaboration">
+      <name xml:lang="de">Business Application A</name>
       <properties>
-        <property propertyDefinitionRef="id-9e72f967-f690-8527-7e2d-012b15811b2f">
-          <value xml:lang="de">nein</value>
-        </property>
-        <property propertyDefinitionRef="id-650abe4c-fa4c-54c7-866a-3becacefd081">
-          <value xml:lang="de">n/a</value>
-        </property>
-        <property propertyDefinitionRef="id-a648a2e0-195f-4ec5-bc31-a4ac484f4ad9">
-          <value xml:lang="de">n/a</value>
-        </property>
-        <property propertyDefinitionRef="id-04614bef-c5a8-3411-319f-876a0a00c207">
-          <value xml:lang="de"> : </value>
-        </property>
-        <property propertyDefinitionRef="id-e827dbf8-4b87-73fc-54f6-bd3684e4c8a1">
-          <value xml:lang="de">n/a</value>
-        </property>
-        <property propertyDefinitionRef="id-23fcdd0e-cae2-d936-34cd-a3b5e3048aaf">
-          <value xml:lang="de">n/a</value>
-        </property>
-        <property propertyDefinitionRef="id-59107bd3-5536-3505-6186-38658bb793cd">
-          <value xml:lang="de">n/a</value>
-        </property>
-        <property propertyDefinitionRef="id-75e0a5be-1058-181a-c091-dfa7da4ab25a">
-          <value xml:lang="de">n/a</value>
-        </property>
-        <property propertyDefinitionRef="id-976fc586-b485-a958-b3d8-7056ecebf527">
-          <value xml:lang="de">n/a</value>
-        </property>
-        <property propertyDefinitionRef="id-f8187e3b-feb5-961e-cad4-f4a38347c7cc">
-          <value xml:lang="de">n/a</value>
-        </property>
-        <property propertyDefinitionRef="id-8c9254d0-83e1-ba19-efca-0607989486eb">
-          <value xml:lang="de">n/a</value>
-        </property>
-        <property propertyDefinitionRef="id-32f570c6-6056-ec80-68c1-7a4f82b5bbec">
-          <value xml:lang="de">0 - Plan</value>
-        </property>
-        <property propertyDefinitionRef="id-d08ab7ab-0aef-c9c0-c987-8d6d2c033b44">
-          <value xml:lang="de">Vordefinierter Wert</value>
-        </property>
-        <property propertyDefinitionRef="id-d62ea9c9-d3e7-c9e1-1097-abbb02a38879">
-          <value xml:lang="de">n/a</value>
-        </property>
-        <property propertyDefinitionRef="id-8c32c4e3-4e5c-d188-ea6a-61d55577979b">
-          <value xml:lang="de">n/a</value>
-        </property>
-        <property propertyDefinitionRef="id-9e2a3238-0dfe-3ec3-bdb0-b59daa3a5d78">
-          <value xml:lang="de">n/a</value>
-        </property>
-        <property propertyDefinitionRef="id-51e994ca-7b81-49ee-c6c9-16864912fab5">
-          <value xml:lang="de">n/a</value>
-        </property>
-        <property propertyDefinitionRef="id-8ba67d64-5d76-06f5-5b6b-58201f355d5a">
-          <value xml:lang="de">n/a</value>
-        </property>
-        <property propertyDefinitionRef="id-d769b30a-95e0-2032-0bc7-748df22fe6e9">
-          <value xml:lang="de">n/a</value>
-        </property>
-        <property propertyDefinitionRef="id-74504d2c-ecd2-9a01-baed-6d6166791fb3">
-          <value xml:lang="de">nein</value>
-        </property>
-        <property propertyDefinitionRef="id-23c9de63-02dc-65dc-f9fb-56559bbbcd67">
-          <value xml:lang="de">ja</value>
-        </property>
-        <property propertyDefinitionRef="id-0e0f63db-68fc-d309-3705-970ac87249ff">
-          <value xml:lang="de">nein</value>
-        </property>
-        <property propertyDefinitionRef="id-6c7d0825-8eed-bc24-eef5-bf56f147552a">
-          <value xml:lang="de">nein</value>
-        </property>
-        <property propertyDefinitionRef="id-558c4012-bea2-fdba-1f51-35e16f1f191e">
-          <value xml:lang="de">nein</value>
-        </property>
-        <property propertyDefinitionRef="id-35fd1090-1bed-2c17-4540-102ee54fecaa">
-          <value xml:lang="de">nein</value>
-        </property>
-        <property propertyDefinitionRef="id-2bde9967-0320-014f-16e5-0fadac8915b4">
-          <value xml:lang="de">nein</value>
-        </property>
-        <property propertyDefinitionRef="id-49850d81-d368-457c-327a-50b412e7794a">
-          <value xml:lang="de">nein</value>
-        </property>
-        <property propertyDefinitionRef="id-0ab49c57-5c4c-53f6-af84-863b12d75151">
-          <value xml:lang="de">nein</value>
-        </property>
-        <property propertyDefinitionRef="id-6b141f32-bc35-9de9-921f-da2a14b582fc">
-          <value xml:lang="de">nein</value>
-        </property>
-        <property propertyDefinitionRef="id-11324081-09a5-f51e-c803-a56378a9e765">
-          <value xml:lang="de">nein</value>
-        </property>
-        <property propertyDefinitionRef="id-1a973bd9-019e-3f0c-6e90-2630ed1768bd">
-          <value xml:lang="de">0</value>
-        </property>
-        <property propertyDefinitionRef="id-56d31914-2324-f09d-ca8b-ddfcb4f24462">
-          <value xml:lang="de">0</value>
-        </property>
-        <property propertyDefinitionRef="id-d4da4733-814e-5225-6db3-bf00d9c09695">
-          <value xml:lang="de">0</value>
-        </property>
-        <property propertyDefinitionRef="id-bb98855a-5efc-dfef-4342-dc2805353b91">
-          <value xml:lang="de">0</value>
-        </property>
-        <property propertyDefinitionRef="id-be0f1d26-6d4e-8e98-593a-6c8cfdd07841">
-          <value xml:lang="de">0</value>
-        </property>
-        <property propertyDefinitionRef="id-dfa993d0-4e97-c83d-2a81-c35bb1fea49f">
-          <value xml:lang="de">0</value>
-        </property>
-        <property propertyDefinitionRef="id-9b98a234-af1f-f0fc-2539-db36eb07136a">
-          <value xml:lang="de">0</value>
-        </property>
-        <property propertyDefinitionRef="id-6e9f5bd0-20f6-65ce-5826-b8ae12e24830">
-          <value xml:lang="de">0</value>
-        </property>
-        <property propertyDefinitionRef="id-02cd3c4f-c2d4-3ada-12c3-60af03c042e9">
-          <value xml:lang="de">0</value>
-        </property>
-        <property propertyDefinitionRef="id-a4acb691-4845-6432-5648-93be6fa603c3">
-          <value xml:lang="de">0</value>
-        </property>
-        <property propertyDefinitionRef="id-3377201e-5304-b11b-421d-e22d14de8021">
-          <value xml:lang="de">0</value>
-        </property>
-        <property propertyDefinitionRef="id-2d7a3770-0b5d-122d-b401-83abb021d7af">
-          <value xml:lang="de">n/a</value>
-        </property>
-        <property propertyDefinitionRef="id-4cfccc6e-4407-4816-ff00-7620e95f6a1c">
-          <value xml:lang="de">n/a</value>
-        </property>
-        <property propertyDefinitionRef="id-f28c23a8-1996-f168-4666-b4ec4361145b">
-          <value xml:lang="de">n/a</value>
-        </property>
-        <property propertyDefinitionRef="id-ab507d0f-3d37-95a2-9ad3-961750af0a41">
-          <value xml:lang="de">n/a</value>
-        </property>
-        <property propertyDefinitionRef="id-aa83df2c-7691-6d96-c3f7-df75c2a2b85e">
-          <value xml:lang="de">n/a</value>
-        </property>
-        <property propertyDefinitionRef="id-9a45ff88-134c-b1a0-ec7e-ab8c43c8b0da">
-          <value xml:lang="de">n/a</value>
-        </property>
-        <property propertyDefinitionRef="id-67d07e72-3d1b-50e5-3773-bb7a97db2d6d">
-          <value xml:lang="de">n/a</value>
-        </property>
-        <property propertyDefinitionRef="id-6978da2f-6d54-1a52-48a7-cb558a4fd136">
-          <value xml:lang="de">n/a</value>
-        </property>
-        <property propertyDefinitionRef="id-83bdb838-2d51-6b6d-eb54-1d61ba073532">
-          <value xml:lang="de">n/a</value>
-        </property>
-        <property propertyDefinitionRef="id-656405b8-1b44-4599-cc56-2fffe68aa8e4">
-          <value xml:lang="de">n/a</value>
-        </property>
-        <property propertyDefinitionRef="id-33a84f07-55a8-1d4b-73d9-9b4643e191c2">
-          <value xml:lang="de">n/a</value>
-        </property>
-        <property propertyDefinitionRef="id-2ed077d5-146f-d5e0-41e2-bca01e94eb3a">
-          <value xml:lang="de">n/a</value>
-        </property>
-        <property propertyDefinitionRef="id-386b32a8-1bbd-12ff-cef6-48bc2fbcea92">
-          <value xml:lang="de">n/a</value>
-        </property>
-        <property propertyDefinitionRef="id-2da9b237-bf03-cb10-cf36-394daa80f3cf">
-          <value xml:lang="de">n/a</value>
-        </property>
-        <property propertyDefinitionRef="id-2857b80f-5621-605f-ed90-9b84991c3b75">
-          <value xml:lang="de">n/a</value>
-        </property>
-        <property propertyDefinitionRef="id-9e29bb81-9450-9ce8-9521-f40ab14da2be">
-          <value xml:lang="de">n/a</value>
-        </property>
-        <property propertyDefinitionRef="id-3003b452-a376-4aba-9e4e-8aa04336b9d9">
-          <value xml:lang="de">n/a</value>
-        </property>
-        <property propertyDefinitionRef="id-31882911-c38f-d789-b23b-ffff83e0f3c8">
-          <value xml:lang="de">n/a</value>
-        </property>
-        <property propertyDefinitionRef="id-cf4a8620-ad18-8275-6585-fa71d2f32aa6">
-          <value xml:lang="de">n/a</value>
-        </property>
-        <property propertyDefinitionRef="id-81c178ed-a07f-539d-5b5e-3cbea0171190">
-          <value xml:lang="de">n/a</value>
-        </property>
-        <property propertyDefinitionRef="id-bbdea7c6-269c-bf73-0ec8-5439e741020a">
-          <value xml:lang="de">n/a</value>
-        </property>
-        <property propertyDefinitionRef="id-ab0578a2-524e-027f-977c-24a881c8a415">
-          <value xml:lang="de">n/a</value>
-        </property>
-        <property propertyDefinitionRef="id-5d7ea6a7-a3eb-eb05-0248-0a2e63f29788">
-          <value xml:lang="de">n/a</value>
-        </property>
-        <property propertyDefinitionRef="id-42153c45-2419-4b14-47e7-df5bf9c736b0">
-          <value xml:lang="de">n/a</value>
-        </property>
-        <property propertyDefinitionRef="id-debb90c4-ece2-f67d-06c5-321714169e4f">
-          <value xml:lang="de">n/a</value>
-        </property>
-        <property propertyDefinitionRef="id-471ab4ea-ac08-f33e-f791-a2d5bed2f875">
-          <value xml:lang="de">n/a</value>
-        </property>
-        <property propertyDefinitionRef="id-be8e1484-13cb-5da8-9e0c-e9aff2fbe58e">
-          <value xml:lang="de">n/a</value>
-        </property>
-        <property propertyDefinitionRef="id-143a4899-00f5-d900-62f9-49e815536bda">
-          <value xml:lang="de">n/a</value>
-        </property>
-        <property propertyDefinitionRef="id-5d944abf-1a49-6ba9-4ba3-2f33ab18ca5a">
-          <value xml:lang="de">n/a</value>
-        </property>
-        <property propertyDefinitionRef="id-ff3151ee-fd5e-0b04-3a7a-630d26df6d23">
-          <value xml:lang="de">n/a</value>
-        </property>
-        <property propertyDefinitionRef="id-b6ceeaff-2b3c-89b9-c415-35234b0ffe23">
-          <value xml:lang="de">n/a</value>
-        </property>
-        <property propertyDefinitionRef="id-15818c8d-d799-b814-b383-bd5f9c4409a0">
-          <value xml:lang="de">n/a</value>
-        </property>
         <property propertyDefinitionRef="id-Stereotype">
           <value xml:lang="de">ApplicationBusinessApplication</value>
         </property>
@@ -465,25 +27,55 @@
     </element>
   </elements>
   <relationships>
-    <relationship identifier="id-d42f3f6d-6620-ea30-d0f7-08f0cc5b2598" source="id-054e67bb-787b-4fba-b784-ae2cdca8f160" target="id-6e4d1973-bc9f-80d8-5f65-21418fb37d70" xsi:type="Flow">
-      <name xml:lang="de">FlowApplication_ToBusinessApplication</name>
+    <relationship identifier="id-47927ae1-6f6b-a9a0-d489-dbd7a6e5cea3" source="id-d12668c7-538c-07e9-ca23-28482845475b" target="id-3eaaa985-6302-d87a-3093-4aa053fb1ae9" xsi:type="Realization">
+      <name xml:lang="de">RealizationBusiness_OfBusinessProcess</name>
       <properties>
         <property propertyDefinitionRef="id-Stereotype">
-          <value xml:lang="de">FlowApplication_ToBusinessApplication</value>
+          <value xml:lang="de">RealizationBusiness_OfBusinessProcess</value>
         </property>
       </properties>
     </relationship>
   </relationships>
   <propertyDefinitions>
-    <propertyDefinition identifier="id-9e72f967-f690-8527-7e2d-012b15811b2f" type="boolean">
-      <name>isTemporaryElementDeprecated</name>
-      <name xml:lang="en">is temporary element (deprecated)</name>
-      <name xml:lang="de">ist temporäres Element (deprecated)</name>
+    <propertyDefinition identifier="id-d8d8c1dd-efb7-adb1-5609-b60f6c0c2b16" type="number">
+      <name>Costs</name>
+      <name xml:lang="en">Costs</name>
+      <name xml:lang="de">Kosten</name>
     </propertyDefinition>
-    <propertyDefinition identifier="id-650abe4c-fa4c-54c7-866a-3becacefd081" type="string">
-      <name>EnumApplicationType</name>
-      <name xml:lang="en">Type of Application</name>
-      <name xml:lang="de">Typ der Fachanwendung</name>
+    <propertyDefinition identifier="id-9cd609cb-a82f-a873-6056-e37f463e3e6a" type="boolean">
+      <name>Boolean_IsOperationalCriticality</name>
+      <name xml:lang="en">Operational Criticality</name>
+      <name xml:lang="de">Betriebskritikalität</name>
+    </propertyDefinition>
+    <propertyDefinition identifier="id-fe0d6b24-d51c-ee1e-c874-f23a4ed619aa" type="boolean">
+      <name>Boolean_IsKernelRelevanceVBS</name>
+      <name xml:lang="en">Kernel relevance VBS</name>
+      <name xml:lang="de">Kernel-relevant VBS</name>
+    </propertyDefinition>
+    <propertyDefinition identifier="id-b2435abc-ffa5-c04c-cfe5-28195d79328a" type="boolean">
+      <name>Boolean_IsDecisionProcess</name>
+      <name xml:lang="en">is decision process</name>
+      <name xml:lang="de">ist Entscheidungsprozess</name>
+    </propertyDefinition>
+    <propertyDefinition identifier="id-d3124d03-8f37-98b6-cc33-f49e80fca9be" type="boolean">
+      <name>Boolean_IsGeverSupported</name>
+      <name xml:lang="en">GEVER supported</name>
+      <name xml:lang="de">GEVER-unterstützt</name>
+    </propertyDefinition>
+    <propertyDefinition identifier="id-27195e7c-4755-0863-cd46-ccfc104cec7b" type="string">
+      <name>TestCaseAssignmentType</name>
+      <name xml:lang="en">Test Case Assignment Type</name>
+      <name xml:lang="de">Art der Testfallzuordnung</name>
+    </propertyDefinition>
+    <propertyDefinition identifier="id-65c0f111-83b5-22bf-0a98-7f0ceebb95b1" type="string">
+      <name>Enum_DemandForActionForProcess</name>
+      <name xml:lang="en">Demand for action (Process)</name>
+      <name xml:lang="de">Handlungsbedarf (Prozess)</name>
+    </propertyDefinition>
+    <propertyDefinition identifier="id-81b09d0f-610f-a127-f135-cd05db5ae00a" type="string">
+      <name>Enum_ProcessType</name>
+      <name xml:lang="en">Process Type</name>
+      <name xml:lang="de">Prozesstyp</name>
     </propertyDefinition>
     <propertyDefinition identifier="id-a648a2e0-195f-4ec5-bc31-a4ac484f4ad9" type="string">
       <name>latestSynchronisationTimeStamp</name>
@@ -840,35 +432,20 @@
       <name xml:lang="en"></name>
       <name xml:lang="de">Erfüllungsgrad (Req.) deprecated</name>
     </propertyDefinition>
+    <propertyDefinition identifier="id-9e72f967-f690-8527-7e2d-012b15811b2f" type="boolean">
+      <name>isTemporaryElementDeprecated</name>
+      <name xml:lang="en">is temporary element (deprecated)</name>
+      <name xml:lang="de">ist temporäres Element (deprecated)</name>
+    </propertyDefinition>
+    <propertyDefinition identifier="id-650abe4c-fa4c-54c7-866a-3becacefd081" type="string">
+      <name>EnumApplicationType</name>
+      <name xml:lang="en">Type of Application</name>
+      <name xml:lang="de">Typ der Fachanwendung</name>
+    </propertyDefinition>
     <propertyDefinition identifier="id-ede5d1a9-05f9-5cab-2e60-2c9b277b16d6" type="boolean">
       <name>abstrakt</name>
       <name xml:lang="en">abstract model element</name>
       <name xml:lang="de">abstraktes Modellelement</name>
-    </propertyDefinition>
-    <propertyDefinition identifier="id-80396852-f3fa-75e3-4baa-38bdeca3e97b" type="string">
-      <name>Kopplung statisch</name>
-      <name xml:lang="en">Coupling static</name>
-      <name xml:lang="de">Kopplung statisch</name>
-    </propertyDefinition>
-    <propertyDefinition identifier="id-cef04801-279a-8b19-c3e7-658631bedeff" type="string">
-      <name>Kopplung dynamisch</name>
-      <name xml:lang="en">Coupling dynamic</name>
-      <name xml:lang="de">Kopplung dynamisch</name>
-    </propertyDefinition>
-    <propertyDefinition identifier="id-9c2767e7-e9dd-861f-4eaf-763f52df164a" type="string">
-      <name>Automatisierungsgrad</name>
-      <name xml:lang="en">Automation</name>
-      <name xml:lang="de">Automatisierungsgrad</name>
-    </propertyDefinition>
-    <propertyDefinition identifier="id-75fc6ad1-7871-043f-9efb-e5f9025afe07" type="string">
-      <name>CommunicationProtocol</name>
-      <name xml:lang="en">Protocol</name>
-      <name xml:lang="de">Protokoll</name>
-    </propertyDefinition>
-    <propertyDefinition identifier="id-47025541-596e-3115-0c52-19f11744f019" type="string">
-      <name>Technologie</name>
-      <name xml:lang="en"></name>
-      <name xml:lang="de"></name>
     </propertyDefinition>
     <propertyDefinition identifier="id-e94c8817-6ad1-2a23-8e76-fbebd088721f" type="string">
       <name>EnumLifeCycle</name>
@@ -928,8 +505,8 @@
   </propertyDefinitions>
   <views>
     <diagrams>
-      <view identifier="id-da3e55d8-9c34-9b6f-a6ca-43f2584d0864" xsi:type="Diagram" viewpoint="ArchiMate Diagram">
-        <name xml:lang="de">Luca - Test</name>
+      <view identifier="id-90ec830c-2ada-ec8e-6f62-33bf6746cc86" xsi:type="Diagram" viewpoint="ArchiMate Diagram">
+        <name xml:lang="de">Architecture Diagram</name>
         <properties>
           <property propertyDefinitionRef="id-15b59f9d-fd19-3e08-fe81-e01ee55fe342">
             <value xml:lang="de">None</value>
@@ -947,11 +524,11 @@
             <value xml:lang="de">DiagramEAEnterpriseArchitecture</value>
           </property>
         </properties>
-        <node identifier="id-18aa34a1-28ed-2e4b-7c83-0558bb51f7bf" elementRef="id-054e67bb-787b-4fba-b784-ae2cdca8f160" xsi:type="Element" x="0" y="0" w="270" h="90" />
-        <node identifier="id-62d09113-700f-8a7e-b255-eacd2930984f" elementRef="id-6e4d1973-bc9f-80d8-5f65-21418fb37d70" xsi:type="Element" x="660" y="0" w="270" h="90" />
-        <connection identifier="id-6de82a7d-1b9b-2587-76f7-9cfe8f6756ef" relationshipRef="id-d42f3f6d-6620-ea30-d0f7-08f0cc5b2598" xsi:type="Relationship" source="id-18aa34a1-28ed-2e4b-7c83-0558bb51f7bf" target="id-62d09113-700f-8a7e-b255-eacd2930984f">
-          <sourceAttachment x="270" y="45" />
-          <targetAttachment x="660" y="45" />
+        <node identifier="id-565b9cb1-c1a1-e37f-e352-fb64f8627df9" elementRef="id-3eaaa985-6302-d87a-3093-4aa053fb1ae9" xsi:type="Element" x="0" y="0" w="200" h="60" />
+        <node identifier="id-b3ecfa00-dc87-6fd0-57a3-a1995339e8b3" elementRef="id-d12668c7-538c-07e9-ca23-28482845475b" xsi:type="Element" x="370" y="0" w="200" h="60" />
+        <connection identifier="id-54e09c54-826a-cbb1-8dbc-49ed5c7dc6ed" relationshipRef="id-47927ae1-6f6b-a9a0-d489-dbd7a6e5cea3" xsi:type="Relationship" source="id-b3ecfa00-dc87-6fd0-57a3-a1995339e8b3" target="id-565b9cb1-c1a1-e37f-e352-fb64f8627df9">
+          <sourceAttachment x="370" y="30" />
+          <targetAttachment x="200" y="30" />
         </connection>
       </view>
     </diagrams>

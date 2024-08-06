@@ -452,7 +452,11 @@ function exportConnectors(doc, model, filter) {
         //       <name xml:lang="de">ApplicationBusinessApplication</name>
         let name = doc.createElement('name');
         name.setAttribute('xml:lang', 'de');
-        name.textContent = connector['Name'];
+        connector_name = connector['Name'];
+        if (connector_name == null || connector_name == '') {
+            connector_name = mmb_stereotype;
+        }
+        name.textContent = connector_name;
         rel.appendChild(name);
 
         //       <properties>
