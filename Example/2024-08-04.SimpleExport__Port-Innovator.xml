@@ -4,7 +4,7 @@
   <name xml:lang="de">Innovator</name>
   <elements>
     <element identifier="EA_014E484D-91D6-4739-ADD2-F932B78191CC" xsi:type="BusinessProcess">
-      <name xml:lang="de">K21 Infektionsgeschehen: monitoren, früherkennen, beeinflussen und überwachen</name>
+      <name xml:lang="de">K21 Infektionsgeschehen: monitoren, frï¿½herkennen, beeinflussen und ï¿½berwachen</name>
       <properties>
         <property propertyDefinitionRef="id-Stereotype">
           <value xml:lang="de">BusinessProcess</value>
@@ -30,18 +30,18 @@
   </elements>
   <relationships>
     <relationship identifier="EA_37222965-CA7C-4A8A-8879-8AB9DC818236" xsi:type="Association" source="EA_F42E07AD-881D-4910-A077-36FBA09F6ECA" target="EA_1385821C-0FED-467D-A087-968926E51B35">
-      <name xml:lang="de">abgelöst durch IDD</name>
+      <name xml:lang="de">abgelï¿½st durch IDD</name>
       <properties>
         <property propertyDefinitionRef="id-Stereotype">
           <value xml:lang="de">AssociationApplicationDirected_ToApplicationReplacedByApplication</value>
         </property>
       </properties>
     </relationship>
-    <relationship identifier="EA_DC32E8DD-BAD2-4B2B-BC72-0007FED9B49A" xsi:type="Realisation" source="EA_F42E07AD-881D-4910-A077-36FBA09F6ECA" target="EA_014E484D-91D6-4739-ADD2-F932B78191CC">
+    <relationship identifier="EA_DC32E8DD-BAD2-4B2B-BC72-0007FED9B49A" xsi:type="Realization" source="EA_F42E07AD-881D-4910-A077-36FBA09F6ECA" target="EA_014E484D-91D6-4739-ADD2-F932B78191CC">
       <name xml:lang="de"/>
       <properties>
         <property propertyDefinitionRef="id-Stereotype">
-          <value xml:lang="de"/>
+          <value xml:lang="de">RealizationBusiness_OfBusinessProcess</value>
         </property>
       </properties>
     </relationship>
@@ -69,7 +69,7 @@
           <label xml:lang="de">IDD</label>
         </node>
         <node identifier="id-6627" elementRef="EA_014E484D-91D6-4739-ADD2-F932B78191CC" xsi:type="Element" x="70" y="291" w="135" h="76">
-          <label xml:lang="de">K21 Infektionsgeschehen: monitoren, früherkennen, beeinflussen und überwachen</label>
+          <label xml:lang="de">K21 Infektionsgeschehen: monitoren, frï¿½herkennen, beeinflussen und ï¿½berwachen</label>
         </node>
         <connection relationshipRef="EA_37222965-CA7C-4A8A-8879-8AB9DC818236" identifier="DL-3211" xsi:type="Relationship" source="id-6622" target="id-6625">
           <sourceAttachment x="3" y="0"/>
@@ -91,7 +91,7 @@
           <label xml:lang="de">IDD</label>
         </node>
         <node identifier="id-3" elementRef="EA_014E484D-91D6-4739-ADD2-F932B78191CC" xsi:type="Element" x="550" y="50" w="220" h="50">
-          <label xml:lang="de">K21 Infektionsgeschehen: monitoren, früherkennen, beeinflussen und überwachen</label>
+          <label xml:lang="de">K21 Infektionsgeschehen: monitoren, frï¿½herkennen, beeinflussen und ï¿½berwachen</label>
         </node>
       </view>
     </diagrams>

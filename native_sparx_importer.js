@@ -477,6 +477,7 @@ function convertConnectorType(sparxtype) {
         case 'Dependency':
             innovatortype = 'Association';
             break;
+        case 'Realisation':
         case 'Realization':
             innovatortype = 'Realization';
             break;
@@ -514,7 +515,7 @@ function convertConnectorStereotype(sparxtype, sparxstereotype, sourceelement, t
         case 'Realization':
             switch (sparxstereotype) {
                 default:
-                    if (sourceelementtype == 'Component' && targetelementtype == 'BusinessProcess') {
+                    if (sourceelementtype == 'Component' && targetelementtype == 'Activity') {
                         innovatorstereotype = 'RealizationBusiness_OfBusinessProcess';
                     }
                     break;
