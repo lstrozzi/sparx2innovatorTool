@@ -7,7 +7,7 @@
   <name xml:lang="de">Innovator</name>
   <elements>
     <element identifier="EA_014E484D-91D6-4739-ADD2-F932B78191CC" xsi:type="BusinessProcess">
-      <name xml:lang="de">K21 Infektionsgeschehen: monitoren, frï¿½herkennen, beeinflussen und ï¿½berwachen</name>
+      <name xml:lang="de">K21 Infektionsgeschehen: monitoren, früherkennen, beeinflussen und überwachen</name>
       <properties>
         <property propertyDefinitionRef="id-Stereotype">
           <value xml:lang="de">BusinessProcess</value>
@@ -24,7 +24,7 @@
       </properties>
     </element>
     <element identifier="EA_4FFD222F-1E3D-4EAD-BC7B-88CCE2604001" xsi:type="BusinessProcess">
-      <name xml:lang="de">K01 Meldungen erhalten und fï¿½hren</name>
+      <name xml:lang="de">K01 Meldungen erhalten und führen</name>
       <properties>
         <property propertyDefinitionRef="id-Stereotype">
           <value xml:lang="de">BusinessProcess</value>
@@ -63,7 +63,7 @@
     <relationship identifier="EA_1E4E9E06-E7FC-4F61-BF89-ECC7FB96524E" xsi:type="Association"
       source="EA_A747B025-31AB-4F97-9A5F-9AB3A0A74D72"
       target="EA_1385821C-0FED-467D-A087-968926E51B35">
-      <name xml:lang="de">lï¿½st IDD ab</name>
+      <name xml:lang="de">löst IDD ab</name>
       <properties>
         <property propertyDefinitionRef="id-Stereotype">
           <value xml:lang="de">AssociationApplicationDirected_ToApplicationReplacedByApplication</value>
@@ -152,11 +152,11 @@
         </node>
         <node identifier="id-4684" elementRef="EA_4FFD222F-1E3D-4EAD-BC7B-88CCE2604001"
           xsi:type="Element" x="70" y="455" w="135" h="75">
-          <label xml:lang="de">K01 Meldungen erhalten und fï¿½hren</label>
+          <label xml:lang="de">K01 Meldungen erhalten und führen</label>
         </node>
         <node identifier="id-2937" elementRef="EA_014E484D-91D6-4739-ADD2-F932B78191CC"
           xsi:type="Element" x="68" y="205" w="135" h="102">
-          <label xml:lang="de">K21 Infektionsgeschehen: monitoren, frï¿½herkennen, beeinflussen und ï¿½berwachen</label>
+          <label xml:lang="de">K21 Infektionsgeschehen: monitoren, früherkennen, beeinflussen und überwachen</label>
         </node>
         <node identifier="id-2912" elementRef="EA_A747B025-31AB-4F97-9A5F-9AB3A0A74D72"
           xsi:type="Element" x="392" y="319" w="110" h="60">
@@ -208,11 +208,11 @@
         </node>
         <node identifier="id-4" elementRef="EA_4FFD222F-1E3D-4EAD-BC7B-88CCE2604001"
           xsi:type="Element" x="800" y="50" w="220" h="50">
-          <label xml:lang="de">K01 Meldungen erhalten und fï¿½hren</label>
+          <label xml:lang="de">K01 Meldungen erhalten und führen</label>
         </node>
         <node identifier="id-5" elementRef="EA_014E484D-91D6-4739-ADD2-F932B78191CC"
           xsi:type="Element" x="1050" y="50" w="220" h="50">
-          <label xml:lang="de">K21 Infektionsgeschehen: monitoren, frï¿½herkennen, beeinflussen und ï¿½berwachen</label>
+          <label xml:lang="de">K21 Infektionsgeschehen: monitoren, früherkennen, beeinflussen und überwachen</label>
         </node>
         <node identifier="id-6" elementRef="EA_A747B025-31AB-4F97-9A5F-9AB3A0A74D72"
           xsi:type="Element" x="1300" y="50" w="220" h="50">
