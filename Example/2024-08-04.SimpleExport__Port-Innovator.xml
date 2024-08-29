@@ -1,5 +1,8 @@
 <model xmlns:dc="http://purl.org/dc/elements/1.1/"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.opengroup.org/xsd/archimate/3.0/ http://www.opengroup.org/xsd/archimate/3.1/archimate3_Diagram.xsd http://purl.org/dc/elements/1.1/ http://www.opengroup.org/xsd/archimate/3.1/dc.xsd" version="16.0.1.21019" identifier="id-085c6229-1eec-4881-889f-99b109ade5b8"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.opengroup.org/xsd/archimate/3.0/ http://www.opengroup.org/xsd/archimate/3.1/archimate3_Diagram.xsd
+                      http://purl.org/dc/elements/1.1/ http://www.opengroup.org/xsd/archimate/3.1/dc.xsd"
+  version="16.0.1.21019" identifier="id-085c6229-1eec-4881-889f-99b109ade5b8"
   xmlns="http://www.opengroup.org/xsd/archimate/3.0/">
   <name xml:lang="de">Innovator</name>
   <elements>
@@ -11,7 +14,8 @@
         </property>
       </properties>
     </element>
-    <element identifier="EA_1385821C-0FED-467D-A087-968926E51B35" xsi:type="ApplicationCollaboration">
+    <element identifier="EA_1385821C-0FED-467D-A087-968926E51B35"
+      xsi:type="ApplicationCollaboration">
       <name xml:lang="de">IDD</name>
       <properties>
         <property propertyDefinitionRef="id-Stereotype">
@@ -19,7 +23,34 @@
         </property>
       </properties>
     </element>
-    <element identifier="EA_F42E07AD-881D-4910-A077-36FBA09F6ECA" xsi:type="ApplicationCollaboration">
+    <element identifier="EA_4FFD222F-1E3D-4EAD-BC7B-88CCE2604001" xsi:type="BusinessProcess">
+      <name xml:lang="de">K01 Meldungen erhalten und fï¿½hren</name>
+      <properties>
+        <property propertyDefinitionRef="id-Stereotype">
+          <value xml:lang="de">BusinessProcess</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="EA_A747B025-31AB-4F97-9A5F-9AB3A0A74D72"
+      xsi:type="ApplicationCollaboration">
+      <name xml:lang="de">nasure</name>
+      <properties>
+        <property propertyDefinitionRef="id-Stereotype">
+          <value xml:lang="de">ApplicationBusinessApplication</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="EA_B158BB4F-EDDF-4FFA-989F-BAAD41AD0ABC"
+      xsi:type="ApplicationCollaboration">
+      <name xml:lang="de">Harvester</name>
+      <properties>
+        <property propertyDefinitionRef="id-Stereotype">
+          <value xml:lang="de">ApplicationBusinessApplication</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="EA_F42E07AD-881D-4910-A077-36FBA09F6ECA"
+      xsi:type="ApplicationCollaboration">
       <name xml:lang="de">Dashboard Covid-19</name>
       <properties>
         <property propertyDefinitionRef="id-Stereotype">
@@ -29,16 +60,60 @@
     </element>
   </elements>
   <relationships>
-    <relationship identifier="EA_37222965-CA7C-4A8A-8879-8AB9DC818236" xsi:type="Association" source="EA_F42E07AD-881D-4910-A077-36FBA09F6ECA" target="EA_1385821C-0FED-467D-A087-968926E51B35">
-      <name xml:lang="de">abgelï¿½st durch IDD</name>
+    <relationship identifier="EA_1E4E9E06-E7FC-4F61-BF89-ECC7FB96524E" xsi:type="Association"
+      source="EA_A747B025-31AB-4F97-9A5F-9AB3A0A74D72"
+      target="EA_1385821C-0FED-467D-A087-968926E51B35">
+      <name xml:lang="de">lï¿½st IDD ab</name>
       <properties>
         <property propertyDefinitionRef="id-Stereotype">
           <value xml:lang="de">AssociationApplicationDirected_ToApplicationReplacedByApplication</value>
         </property>
       </properties>
     </relationship>
-    <relationship identifier="EA_DC32E8DD-BAD2-4B2B-BC72-0007FED9B49A" xsi:type="Realization" source="EA_F42E07AD-881D-4910-A077-36FBA09F6ECA" target="EA_014E484D-91D6-4739-ADD2-F932B78191CC">
-      <name xml:lang="de"/>
+    <relationship identifier="EA_2745259C-2CBC-4BA5-953B-29059720B621" xsi:type="Realization"
+      source="EA_B158BB4F-EDDF-4FFA-989F-BAAD41AD0ABC"
+      target="EA_4FFD222F-1E3D-4EAD-BC7B-88CCE2604001">
+      <name xml:lang="de">RealizationBusiness_OfBusinessProcess</name>
+      <properties>
+        <property propertyDefinitionRef="id-Stereotype">
+          <value xml:lang="de">RealizationBusiness_OfBusinessProcess</value>
+        </property>
+      </properties>
+    </relationship>
+    <relationship identifier="EA_2D1385A3-E66F-43C9-8B68-317CE15AB19C" xsi:type="Realization"
+      source="EA_A747B025-31AB-4F97-9A5F-9AB3A0A74D72"
+      target="EA_4FFD222F-1E3D-4EAD-BC7B-88CCE2604001">
+      <name xml:lang="de">RealizationBusiness_OfBusinessProcess</name>
+      <properties>
+        <property propertyDefinitionRef="id-Stereotype">
+          <value xml:lang="de">RealizationBusiness_OfBusinessProcess</value>
+        </property>
+      </properties>
+    </relationship>
+    <relationship identifier="EA_601576A1-8242-44CD-A28B-A9F965DD53A0" xsi:type="Association"
+      source="EA_F42E07AD-881D-4910-A077-36FBA09F6ECA"
+      target="EA_A747B025-31AB-4F97-9A5F-9AB3A0A74D72">
+      <name xml:lang="de">CONNECTOR_TO_PORT</name>
+      <properties>
+        <property propertyDefinitionRef="id-Stereotype">
+          <value xml:lang="de">AssociationApplicationDirected_ToApplicationReplacedByApplication</value>
+        </property>
+      </properties>
+    </relationship>
+    <relationship identifier="EA_6976F7C5-E0C1-4567-8A1D-13EEBBF00F08" xsi:type="Realization"
+      source="EA_B158BB4F-EDDF-4FFA-989F-BAAD41AD0ABC"
+      target="EA_014E484D-91D6-4739-ADD2-F932B78191CC">
+      <name xml:lang="de">RealizationBusiness_OfBusinessProcess</name>
+      <properties>
+        <property propertyDefinitionRef="id-Stereotype">
+          <value xml:lang="de">RealizationBusiness_OfBusinessProcess</value>
+        </property>
+      </properties>
+    </relationship>
+    <relationship identifier="EA_9C6B0A58-5D5E-4F0F-9E21-AA7BF0511E6F" xsi:type="Realization"
+      source="EA_A747B025-31AB-4F97-9A5F-9AB3A0A74D72"
+      target="EA_014E484D-91D6-4739-ADD2-F932B78191CC">
+      <name xml:lang="de">RealizationBusiness_OfBusinessProcess</name>
       <properties>
         <property propertyDefinitionRef="id-Stereotype">
           <value xml:lang="de">RealizationBusiness_OfBusinessProcess</value>
@@ -55,27 +130,62 @@
   </propertyDefinitions>
   <views>
     <diagrams>
-      <view identifier="EA_B94B72FE-C691-45AA-A7D2-221DB6CB1689" xsi:type="Diagram" viewpoint="ArchiMate Diagram">
-        <name xml:lang="de">_BAG Fachanwendungen und Prozesse_APPS_ONLY</name>
+      <view identifier="EA_79F6BD40-0272-475B-851E-C89CB99ACCBB" xsi:type="Diagram"
+        viewpoint="ArchiMate Diagram">
+        <name xml:lang="de">BAG Fachanwendungen und Prozesse</name>
         <properties>
           <property propertyDefinitionRef="id-Stereotype">
             <value xml:lang="de">DiagramEAEnterpriseArchitecture</value>
           </property>
         </properties>
-        <node identifier="id-6622" elementRef="EA_F42E07AD-881D-4910-A077-36FBA09F6ECA" xsi:type="Element" x="83" y="103" w="110" h="60">
+        <node identifier="id-2922" elementRef="EA_F42E07AD-881D-4910-A077-36FBA09F6ECA"
+          xsi:type="Element" x="83" y="103" w="110" h="60">
           <label xml:lang="de">Dashboard Covid-19</label>
         </node>
-        <node identifier="id-6625" elementRef="EA_1385821C-0FED-467D-A087-968926E51B35" xsi:type="Element" x="392" y="103" w="110" h="60">
+        <node identifier="id-2904" elementRef="EA_1385821C-0FED-467D-A087-968926E51B35"
+          xsi:type="Element" x="392" y="103" w="110" h="60">
           <label xml:lang="de">IDD</label>
         </node>
-        <node identifier="id-6627" elementRef="EA_014E484D-91D6-4739-ADD2-F932B78191CC" xsi:type="Element" x="70" y="291" w="135" h="76">
+        <node identifier="id-2910" elementRef="EA_B158BB4F-EDDF-4FFA-989F-BAAD41AD0ABC"
+          xsi:type="Element" x="82" y="353" w="110" h="60">
+          <label xml:lang="de">Harvester</label>
+        </node>
+        <node identifier="id-4684" elementRef="EA_4FFD222F-1E3D-4EAD-BC7B-88CCE2604001"
+          xsi:type="Element" x="70" y="455" w="135" h="75">
+          <label xml:lang="de">K01 Meldungen erhalten und fï¿½hren</label>
+        </node>
+        <node identifier="id-2937" elementRef="EA_014E484D-91D6-4739-ADD2-F932B78191CC"
+          xsi:type="Element" x="68" y="205" w="135" h="102">
           <label xml:lang="de">K21 Infektionsgeschehen: monitoren, frï¿½herkennen, beeinflussen und ï¿½berwachen</label>
         </node>
-        <connection relationshipRef="EA_37222965-CA7C-4A8A-8879-8AB9DC818236" identifier="DL-3211" xsi:type="Relationship" source="id-6622" target="id-6625">
-          <sourceAttachment x="3" y="0"/>
-          <targetAttachment x="3" y="0"/>
+        <node identifier="id-2912" elementRef="EA_A747B025-31AB-4F97-9A5F-9AB3A0A74D72"
+          xsi:type="Element" x="392" y="319" w="110" h="60">
+          <label xml:lang="de">nasure</label>
+        </node>
+        <connection relationshipRef="EA_1E4E9E06-E7FC-4F61-BF89-ECC7FB96524E" identifier="DL-1293"
+          xsi:type="Relationship" source="id-2912" target="id-2904">
+          <sourceAttachment x="0" y="0" />
+          <targetAttachment x="0" y="0" />
         </connection>
-        <connection relationshipRef="EA_DC32E8DD-BAD2-4B2B-BC72-0007FED9B49A" identifier="DL-3220" xsi:type="Relationship" source="id-6622" target="id-6627"/>
+        <connection relationshipRef="EA_6976F7C5-E0C1-4567-8A1D-13EEBBF00F08" identifier="DL-2211"
+          xsi:type="Relationship" source="id-2910" target="id-2937">
+          <sourceAttachment x="0" y="29" />
+          <targetAttachment x="1" y="0" />
+        </connection>
+        <connection relationshipRef="EA_2745259C-2CBC-4BA5-953B-29059720B621" identifier="DL-2213"
+          xsi:type="Relationship" source="id-2910" target="id-4684">
+          <sourceAttachment x="0" y="0" />
+          <targetAttachment x="0" y="0" />
+        </connection>
+        <connection relationshipRef="EA_2D1385A3-E66F-43C9-8B68-317CE15AB19C" identifier="DL-3207"
+          xsi:type="Relationship" source="id-2912" target="id-4684" />
+        <connection relationshipRef="EA_9C6B0A58-5D5E-4F0F-9E21-AA7BF0511E6F" identifier="DL-3208"
+          xsi:type="Relationship" source="id-2912" target="id-2937">
+          <sourceAttachment x="0" y="0" />
+          <targetAttachment x="0" y="0" />
+        </connection>
+        <connection relationshipRef="EA_601576A1-8242-44CD-A28B-A9F965DD53A0" identifier="DL-3219"
+          xsi:type="Relationship" source="id-2922" target="id-2912" />
       </view>
       <view identifier="AllElements" xsi:type="Diagram" viewpoint="ArchiMate Diagram">
         <name xml:lang="de">All Elements</name>
@@ -84,14 +194,29 @@
             <value xml:lang="de">DiagramEAEnterpriseArchitecture</value>
           </property>
         </properties>
-        <node identifier="id-1" elementRef="EA_F42E07AD-881D-4910-A077-36FBA09F6ECA" xsi:type="Element" x="50" y="50" w="220" h="50">
+        <node identifier="id-1" elementRef="EA_F42E07AD-881D-4910-A077-36FBA09F6ECA"
+          xsi:type="Element" x="50" y="50" w="220" h="50">
           <label xml:lang="de">Dashboard Covid-19</label>
         </node>
-        <node identifier="id-2" elementRef="EA_1385821C-0FED-467D-A087-968926E51B35" xsi:type="Element" x="300" y="50" w="220" h="50">
+        <node identifier="id-2" elementRef="EA_1385821C-0FED-467D-A087-968926E51B35"
+          xsi:type="Element" x="300" y="50" w="220" h="50">
           <label xml:lang="de">IDD</label>
         </node>
-        <node identifier="id-3" elementRef="EA_014E484D-91D6-4739-ADD2-F932B78191CC" xsi:type="Element" x="550" y="50" w="220" h="50">
+        <node identifier="id-3" elementRef="EA_B158BB4F-EDDF-4FFA-989F-BAAD41AD0ABC"
+          xsi:type="Element" x="550" y="50" w="220" h="50">
+          <label xml:lang="de">Harvester</label>
+        </node>
+        <node identifier="id-4" elementRef="EA_4FFD222F-1E3D-4EAD-BC7B-88CCE2604001"
+          xsi:type="Element" x="800" y="50" w="220" h="50">
+          <label xml:lang="de">K01 Meldungen erhalten und fï¿½hren</label>
+        </node>
+        <node identifier="id-5" elementRef="EA_014E484D-91D6-4739-ADD2-F932B78191CC"
+          xsi:type="Element" x="1050" y="50" w="220" h="50">
           <label xml:lang="de">K21 Infektionsgeschehen: monitoren, frï¿½herkennen, beeinflussen und ï¿½berwachen</label>
+        </node>
+        <node identifier="id-6" elementRef="EA_A747B025-31AB-4F97-9A5F-9AB3A0A74D72"
+          xsi:type="Element" x="1300" y="50" w="220" h="50">
+          <label xml:lang="de">nasure</label>
         </node>
       </view>
     </diagrams>

@@ -9,7 +9,7 @@ function convert_guid(guid) {
     return "EA_" + guid;
 }
 
-function importObjects(tableName) {
+function importObjects(xmlDoc, tableName) {
     let tables = xmlDoc.getElementsByTagName('Table');
     let totalObjects = {};
 
@@ -83,7 +83,12 @@ function importObjects(tableName) {
                     objects[dict['ea_guid']] = dict;
                 } else if (dict['Object_ID'] != null) {
                     dict['Object_ID'] = convert_guid(dict['Object_ID']);
-                    objects[dict['Object_ID']] = dict;
+                    if (tableName == 't_diagramobjects') {
+                        key = dict['Diagram_ID'] + "-" + dict['Object_ID'];
+                        objects[key] = dict;
+                    } else {
+                        objects[dict['Object_ID']] = dict;
+                    }
                 } else if (dict['Client'] != null) {
                     dict['Client'] = convert_guid(dict['Client']);
                     objects[dict['Client']] = dict;
@@ -97,6 +102,8 @@ function importObjects(tableName) {
                 } else {
                     console.log('No GUID or Object_ID found for object');
                 }
+
+                console.log('Imported ' + tableName + ' object with GUID ' + dict['ea_guid']);
             });
             totalObjects = Object.assign(totalObjects, objects);
         }
@@ -108,19 +115,19 @@ function importObjects(tableName) {
     return totalObjects;
 }
 
-function importNativeFile() {
+function importNativeFile(xmlDoc) {
     objectIdsToBeExported = [];
 
-    extracted.packages       = importObjects('t_package');
-    extracted.elements       = importObjects('t_object');
-    extracted.connectors     = importObjects('t_connector');
-    extracted.attributes     = importObjects('t_attribute');
-    extracted.operations     = importObjects('t_operation');
-    extracted.diagrams       = importObjects('t_diagram');
-    extracted.diagramobjects = importObjects('t_diagramobjects');
-    extracted.diagramlinks   = importObjects('t_diagramlinks');
-    extracted.taggedvalues   = importObjects('t_taggedvalue');
-    extracted.xrefs          = importObjects('t_xref');
+    extracted.packages       = importObjects(xmlDoc, 't_package');
+    extracted.elements       = importObjects(xmlDoc, 't_object');
+    extracted.connectors     = importObjects(xmlDoc, 't_connector');
+    extracted.attributes     = importObjects(xmlDoc, 't_attribute');
+    extracted.operations     = importObjects(xmlDoc, 't_operation');
+    extracted.diagrams       = importObjects(xmlDoc, 't_diagram');
+    extracted.diagramobjects = importObjects(xmlDoc, 't_diagramobjects');
+    extracted.diagramlinks   = importObjects(xmlDoc, 't_diagramlinks');
+    extracted.taggedvalues   = importObjects(xmlDoc, 't_taggedvalue');
+    extracted.xrefs          = importObjects(xmlDoc, 't_xref');
 }
 //#endregion
 
@@ -312,11 +319,14 @@ function exportElements(doc, model, filter) {
 
     // add all elements
     for (let key in extracted.elements) {
-        if (filter && !objectIdsToBeExported.elements.includes(key)) continue;
+        if (filter && !objectIdsToBeExported.elements.includes(key)) 
+            continue;
 
         let element = extracted.elements[key];
-        if (elementTypeBlackList.includes(element['Object_Type'])) continue;
-        if (element['Object_Type'] == 'Port') continue;
+        if (elementTypeBlackList.includes(element['Object_Type'])) 
+            continue;
+        if (element['Object_Type'] == 'Port') 
+            continue;
 
         // <element identifier="EAID_94620B68_C54A_435d_899D_652653D6D95F" xsi:type="Actor">
         let el = doc.createElement('element');
@@ -766,39 +776,68 @@ function processNativeFile(file) {
     var reader = new FileReader();
 
     reader.onload = function(e) {
-        console.log('Reading file...');
-        var contents = e.target.result;
-        
-        // Process contents here
-        // The file contains XML. Import the XML to a DOM and then process it
-        var parser = new DOMParser();
-        xmlDoc = parser.parseFromString(contents, 'text/xml');
-        console.log('...file read');
+        var binaryString = e.target.result;
+        var encoding = getEncodingFromXml(binaryString) || 'windows-1252'; // Default to 'windows-1252' if encoding is not found
 
-        importNativeFile();
-        exportToInnovator(false);
+        var readerWithEncoding = new FileReader();
+        readerWithEncoding.onload = function(e) {
+            console.log('Reading file...');
+            var contents = e.target.result;
 
-        fillDiagramsTable();
+            // Process contents here
+            var parser = new DOMParser();
+            var xmlDoc = parser.parseFromString(contents, 'text/xml');
+            console.log('...file read');
+
+            importNativeFile(xmlDoc);
+            exportToInnovator(false);
+
+            fillDiagramsTable();
+        };
+        readerWithEncoding.readAsText(file, encoding);
     };
-    reader.readAsText(file, 'windows-1252');
+    reader.readAsBinaryString(file);
 }
 
 function convertNativeFile(file) {
     var reader = new FileReader();
 
     reader.onload = function(e) {
-        var innovatorXmi = exportToInnovator(true);
-        var blob = new Blob([innovatorXmi], {type: 'text/xml'});
+        var binaryString = e.target.result;
+        var encoding = getEncodingFromXml(binaryString) || 'windows-1252'; // Default to 'windows-1252' if encoding is not found
 
-        // Create a URL for the Blob
-        var url = URL.createObjectURL(blob);
+        var readerWithEncoding = new FileReader();
+        readerWithEncoding.onload = function(e) {
+            // Process contents here
+            var contents = e.target.result;
+            var parser = new DOMParser();
+            var xmlDoc = parser.parseFromString(contents, 'text/xml');
+            importNativeFile(xmlDoc);
+            var innovatorXmi = exportToInnovator(true);
+            var blob = new Blob([innovatorXmi], {type: 'text/xml'});
 
-        // Set the href of the download link to the Blob URL and show the link
-        var downloadLink = document.getElementById('downloadLink');
-        downloadLink.href = url;
-        downloadLink.download = convert_filename(file.name);
-        downloadLink.style.display = 'block';
+            // Create a URL for the Blob
+            var url = URL.createObjectURL(blob);
+
+            // Set the href of the download link to the Blob URL and show the link
+            var downloadLink = document.getElementById('downloadLink');
+            downloadLink.href = url;
+            downloadLink.download = convert_filename(file.name);
+            downloadLink.style.display = 'block';
+        };
+        readerWithEncoding.readAsText(file, encoding);
     };
-    reader.readAsText(file);
+    reader.readAsBinaryString(file);
+}
+
+function getEncodingFromXml(binaryString) {
+    var xmlDeclaration = binaryString.match(/<\?xml.*?\?>/);
+    if (xmlDeclaration) {
+        var encodingMatch = xmlDeclaration[0].match(/encoding=["'](.*?)["']/);
+        if (encodingMatch) {
+            return encodingMatch[1];
+        }
+    }
+    return null;
 }
 //#endregion
